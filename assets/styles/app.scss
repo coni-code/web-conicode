@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/bootstrap";
+@import "_variables";
+@import "../fonts/fonts";
+
+body {
+    background-color: $background-color-first;
+    font-family: "Roboto-Regular";
+    box-shadow: $body-box-sizing;
+    margin: $body-margin;
+    padding: $body-padding;
+    color: $font-color1;
+}
+
