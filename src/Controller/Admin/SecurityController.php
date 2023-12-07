@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,14 +13,20 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'dev_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-         if ($this->getUser()) {
-             return $this->redirectToRoute('dev_admin');
-         }
+        if ($this->getUser()) {
+            return $this->redirectToRoute('dev_admin');
+        }
+
+        $form = $this->createForm(LoginType::class);
 
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('admin/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('admin/security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'form' => $form
+        ]);
     }
 
     #[Route(path: '/logout', name: 'dev_logout')]
