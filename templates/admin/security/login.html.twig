@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+    {{ form_start(form, {'method': 'GET'}) }}
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -15,17 +15,37 @@
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    {{ form_label(form.email, 'Email') }}
+    {{ form_widget(form.email, {
+        'attr': {
+            'class': 'form-control',
+            'id': 'inputEmail',
+            'autocomplete': 'email',
+            'required': 'required',
+            'autofocus': 'autofocus'
+        }})
+    }}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+    {{ form_label(form.password, 'Password') }}
+    {{ form_widget(form.password, {
+        'attr': {
+            'class': 'form-control',
+            'id': 'inputPassword',
+            'autocomplete': 'current-password',
+            'required':
+            'required'
+        }})
+    }}
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    {{ form_widget(form.save, {
+        'label': 'Sign in',
+        'attr': {
+            'class': 'btn btn-lg btn-primary',
+        }})
+    }}
+
+    {{ form_end(form) }}
 {% endblock %}
