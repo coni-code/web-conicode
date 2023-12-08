@@ -3,3 +3,17 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+_locale_prefix:
+    resource: ../src/Controller/**/*
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: en|pl
+    defaults: { _locale: pl}
+    exclude:
+        - ../src/Controller/Admin/*
+
+root_redirect:
+    path: /
+    controller: App\Controller\LanguageController::changeLanguage
