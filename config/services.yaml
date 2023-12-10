@@ -4,7 +4,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    key: '%env(TRELLO_API_KEY)%'
+    token: '%env(TRELLO_API_SECRET)%'
+    board_id: '%env(TRELLO_BOARD_ID)%'
+    organization_id: '%env(TRELLO_ORGANIZATION_ID)%'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -20,5 +23,18 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    GuzzleHttp\Client:
+        arguments:
+            $config: [timeout: 4]
+
+    GuzzleHttp\ClientInterface:
+        alias: GuzzleHttp\Client
+
+    App\Trello\Client\Config:
+        arguments:
+            $key: '%key%'
+            $token: '%token%'
+            $boardId: '%board_id%'
+            $organizationId: '%organization_id%'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
