@@ -3,8 +3,8 @@
 {% block body %}
     <nav class="navbar sticky-top navbar-expand-lg navbar-color">
         <div class="container-fluid">
-            <a class="navbar-brand fs-1">
-                ConiCode
+            <a href="{{ path('app_home') }}" class="navbar-brand fs-1">
+                <img src="{{ asset('build/images/brand/logo.png') }}" alt="Logo" height="100" width="100">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
