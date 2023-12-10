@@ -59,11 +59,15 @@ Encore
         // For example, to process SCSS files
         options.sassOptions = {
             indentedSyntax: false, // Set to true if using indented Sass
-            // ... inne opcje Sass
         };
     })
 
     .addStyleEntry('bootstrap', './node_modules/bootstrap/dist/css/bootstrap.min.css')
+
+    .copyFiles({
+        from: './assets/image',
+        to: 'images/[path][name].[ext]',
+    })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

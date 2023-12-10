@@ -1,0 +1,5 @@
+form.send: 'Wyślij'
+form.contact.label.email: 'Email'
+form.contact.label.subject: 'Tytuł'
+form.contact.label.body: 'Treść'
+home.contact.header: 'Wyślij nam wiadomość:'
