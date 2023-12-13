@@ -1,6 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import "_variables";
 @import "../fonts/fonts";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import '~flag-icons/css/flag-icons.min.css';
 
 body {
     background-color: $primary-background-color;
@@ -49,6 +51,11 @@ body {
 
 .navbar-nav .nav-link:focus {
     color: $font-color2; 
+}
+
+.fi-lang{
+    font-size: 40px;
+    border-radius: 50%;
 }
 
 .form-group {
