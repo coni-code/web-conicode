@@ -1,13 +1,15 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <nav class="navbar sticky-top navbar-expand-lg navbar-color">
+    <nav class="navbar sticky-top navbar-expand-md navbar-color">
         <div class="container-fluid">
             <a href="{{ path('app_home') }}" class="navbar-brand fs-1">
                 <img src="{{ asset('build/images/brand/logo.png') }}" alt="Logo" height="100" width="100">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler collapsed d-flex d-md-none flex-colomn justify-content-around" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="toggler-icon top-bar"></span>
+                <span class="toggler-icon middle-bar"></span>
+                <span class="toggler-icon bottom-bar"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
@@ -31,4 +33,5 @@
         </div>
     </nav>
 {% endblock %}
+
 
