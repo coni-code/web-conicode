@@ -12,6 +12,18 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
+                            {% if app.locale != 'pl' %}
+                            <a href="{{ path('app_language_changer', { '_locale':'pl' }) }}">
+                                <i class="fi fi-pl fis fi-lang"></i>
+                            </a>
+                            {% endif %}
+                            {% if app.locale != 'en' %}
+                            <a href="{{ path('app_language_changer', { '_locale':'en' }) }}">
+                                <i class="fi fi-gb fis fi-lang"></i>
+                            </a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link fs-2" href="#">Home</a>
                         </li>
                         <li class="nav-item">
