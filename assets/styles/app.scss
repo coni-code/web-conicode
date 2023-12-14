@@ -10,9 +10,10 @@ body {
     padding: $body-padding;
     color: $font-color1;
 }
-
-.navbar-color{
-    background-color: $primary-light-background-color;
+.navbar{
+    position: fixed!important;
+    top:0;
+    left:0;
 }
 
 .nav-link{
