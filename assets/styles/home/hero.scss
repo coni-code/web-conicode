@@ -1,20 +1,20 @@
 @import "../_variables";
 
 
-#hero{
+.hero {
     width: 100%;
     height: 100svh;
     border-top: 4px solid $primary-red-color;
     border-bottom: 4px solid $primary-red-color;
     display: flex;
     flex-wrap: wrap;
-    font-family: 'RethinkSans';
+    font-family: 'RethinkSans', serif;
     overflow:hidden;
     position: relative;
     background: linear-gradient(137deg, rgba(255,255,255,0.1) 0%, rgba(252,176,69,0) 100%); 
 }
 
-#hero-background{
+.hero-background {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -24,19 +24,17 @@
     align-items: center;
     justify-content: space-evenly;
     z-index: -1;
-    background: url("../../image/blob.svg");
-    background-position: 100% 100%;
-    background-repeat: no-repeat;
+    background: url("../../image/blob.svg") no-repeat 100% 100%;
     overflow: hidden;
 }
 
-.hero-line{
+.hero-line {
     width: 2px;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.055);
 }
 
-#hero-main{
+.hero-main {
     width: 50%;
     height: 100%;
     display: flex;
@@ -44,34 +42,35 @@
     justify-content: center;
 }
 
-#hero-title > h1{
+.hero-title > h1 {
     font-size: clamp(3em,5vw,9em);
     margin-bottom: 0;
     padding-bottom: 0;
     font-weight: 400;
-    b{
+
+    b {
         color: $primary-yellow-color;
-    }:first-child{
+    }:first-child {
         color: $primary-red-color;
     }
 }
 
-#hero-title > h3{
+.hero-title > h3 {
     margin-top: 0;
     padding-top: 0;
-    color: $font-color3;
+    color: $font-color-grey;
 }
 
-#hero-main > p{
+.hero-main > p {
     position: absolute;
     writing-mode: vertical-rl;
     text-orientation:sideways;
     left: 30px;
     top:50%;
-    color: $font-color3;
+    color: $font-color-grey;
 }
 
-#hero-desc{
+.hero-desc {
     position: relative;
     width: 50%;
     height: 100%;
@@ -81,32 +80,43 @@
     align-items: center;
 }
 
-#hero-desc p{
-    color: $font-color3;
+.hero-desc p {
+    color: $font-color-grey;
     font-weight: 200;
+    font-size: 1.5rem;
 }
 
-.hero-desc-content{
+.hero-desc-content {
+    display: flex;
+    flex-direction: column;
     width: 50%;
+
+    h2 {
+        font-size: 2.5rem;
+    }
 }
-.button-1{
-    width: 50px;
-    height:12px;
+
+.learn-more-btn {
+    text-align: center;
     padding: 12px;
+    align-self: flex-start;
+    width: fit-content;
+    max-width: 100%;
     background-color: $primary-red-color;
     border-radius: 24px;
-    color: $font-color1;
+    color: $font-color-white;
     text-decoration: none;
-    font-weight: 800;
+    font-weight: bold;
     transition: 100ms;
-    border: 5px solid $primary-red-color;
+    border: 3px solid $primary-red-color;
 }
-.button-1:hover{
+
+.learn-more-btn:hover {
     background-color: $button-hover;
     border-color: $button-hover;
 }
-.button-1:active{
-    color: $primary-red-color;
+
+.learn-more-btn:active {
     background-color: #00000000;
     border-color: $primary-red-color;
 }
