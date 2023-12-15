@@ -8,27 +8,28 @@ body {
     box-shadow: $body-box-sizing;
     margin: $body-margin;
     padding: $body-padding;
-    color: $font-color1;
+    color: $font-color-white;
 }
-
-.navbar-color{
-    background-color: $primary-light-background-color;
+.navbar{
+    position: fixed!important;
+    top:0;
+    left:0;
 }
 
 .nav-link{
-    color: $font-color1;
+    color: $font-color-white;
     transition: all 0.5s;
     position: relative;
     margin-left: 15px;
 }
 
 .nav-link:hover{
-    color:$font-color2;
+    color:$font-color-yellow;
 }
 
 .nav-link:hover::after {
-    background-color: $font-color2; 
-    color: $font-color2;
+    background-color: $font-color-yellow;
+    color: $font-color-yellow;
     content: '';
     position: absolute;
     bottom: 0;
@@ -36,19 +37,19 @@ body {
 }
 
 .navbar-brand{
-    color: $font-color3;
+    color: $font-color-grey;
 }
 
 .navbar-brand:hover{
-    color: $font-color3;
+    color: $font-color-grey;
 }
 
 .navbar-toggler{
-    background-color: $font-color1;
+    background-color: $font-color-white;
 }
 
 .navbar-nav .nav-link:focus {
-    color: $font-color2; 
+    color: $font-color-yellow;
 }
 
 .container {
