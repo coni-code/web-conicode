@@ -1,6 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import "_variables";
 @import "../fonts/fonts";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import '~flag-icons/css/flag-icons.min.css';
 
 body {
     background-color: $primary-background-color;
@@ -58,6 +60,11 @@ body {
     min-height: 100vh;
     margin-top: 3rem;
     border-radius: 5px;
+}
+
+.fi-lang{
+    font-size: 40px;
+    border-radius: 50%;
 }
 
 .form-group {
