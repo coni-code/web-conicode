@@ -1,17 +1,12 @@
 {% block body %}
-    <div id="contact" class="w-100 row m-0" style="height:500px">
-        <div id="form" class="col d-flex align-items-center justify-content-center flex-column">
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="h2">{{ 'home.contact.header'|trans }}</h1>
-                </div>
-                <div class="card-body">
-                    {{ include('website/contact/_form.html.twig') }}
-                </div>
-            </div>
+    <div id="contact" class="card w-100">
+        <div class="card-header">
+            <h1 class="h2">{{ 'home.contact.header'|trans }}</h1>
         </div>
-        <div id="info" class="col">
-            <h1 class="h2">Index</h1>
+        <div class="card-body">
+            <div class="w-50">
+                {{ include('website/contact/_form.html.twig') }}
+            </div>
         </div>
     </div>
 {% endblock %}

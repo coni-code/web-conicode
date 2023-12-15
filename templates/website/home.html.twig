@@ -1,8 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-{% include 'website/navbar/index.html.twig' %}
-{{ include('website/contact/index.html.twig') }}
+
+{{ include('website/navbar/index.html.twig') }}
+{{ include('website/hero/index.html.twig') }}
+    <div class="container">
+        {{ include('website/contact/index.html.twig') }}
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

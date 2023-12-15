@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="hero">
+    <div class="hero-background">
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+    </div>
+    <div class="hero-main">
+        <div class="hero-title">
+            <h1>C<b>O</b>NI <b>CO/D>E</b></h1>
+            <h3>{{ 'home.hero.subtitle'|trans }}</h3>
+        </div>
+        <p>CREATING PORTFOLIO</p>
+    </div>
+    <div class="hero-desc">
+        <div class="hero-desc-content">
+            <h2>{{ 'home.hero.content.title'|trans }}</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nam venenatis ipsum in risus dictum, quis pharetra ipsum tempus. 
+                Vivamus sodales mollis felis eu molestie. Sed aliquam urna non quam condimentum imperdiet.
+            </p>
+            <a class="learn-more-btn" href="#">{{ 'home.hero.learn_more'|trans }}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
