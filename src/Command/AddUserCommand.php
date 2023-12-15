@@ -12,19 +12,20 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Validation;
 
 #[AsCommand(
-    name: 'app:add-user',
+    name: 'create:user',
     description: 'Command for managing users',
 )]
 class AddUserCommand extends Command
 {
     public function __construct(
-        private readonly ManagerRegistry $doctrine
-    )
-    {
+        private readonly ManagerRegistry $doctrine,
+        private readonly UserPasswordHasherInterface $passwordHasher,
+    ) {
         parent::__construct();
     }
 
@@ -66,7 +67,6 @@ class AddUserCommand extends Command
                 throw new \RuntimeException($error);
             }
 
-
             return $password;
         });
         $passwordQuestion->setMaxAttempts(4);
@@ -76,6 +76,7 @@ class AddUserCommand extends Command
         $role = $helper->ask($input, $output, $roleQuestion);
 
         $user = UserFactory::createUser(
+            $this->passwordHasher,
             $email,
             password_hash($password, PASSWORD_DEFAULT),
             [$role]

@@ -12,22 +12,35 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link fs-2" href="#">Home</a>
+                            {% if app.locale != 'pl' %}
+                            <a class="nav-link" href="{{ path('app_language_changer', { '_locale':'pl' }) }}">
+                                <i class="fi fi-pl fis fi-lang"></i>
+                            </a>
+                            {% endif %}
+                            {% if app.locale != 'en' %}
+                            <a class="nav-link" href="{{ path('app_language_changer', { '_locale':'en' }) }}">
+                                <i class="fi fi-gb fis fi-lang"></i>
+                            </a>
+                            {% endif %}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-2" href="#">Logo</a>
+                            <a class="nav-link fs-2" href="#">{{'home.navbar.element.home'|trans}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-2" href="#">Team</a>
+                            <a class="nav-link fs-2" href="#">{{'home.navbar.element.logo'|trans}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-2" href="#">Contact</a>
+                            <a class="nav-link fs-2" href="#">{{'home.navbar.element.team'|trans}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-2" href="#">Portfolio</a>
+                            <a class="nav-link fs-2" href="#">{{'home.navbar.element.contact'|trans}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-2" href="#">{{'home.navbar.element.portfolio'|trans}}</a>
                         </li>
                     </ul>
                 </div>
         </div>
     </nav>
 {% endblock %}
+
