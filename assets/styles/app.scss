@@ -52,6 +52,14 @@ body {
     color: $font-color-yellow;
 }
 
+.container {
+    background-color: $primary-light-background-color;
+    padding: 1rem;
+    min-height: 100vh;
+    margin-top: 3rem;
+    border-radius: 5px;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -64,7 +72,7 @@ body {
 }
 
 .card {
-    background-color: $primary-light-background-color;
+    background-color: $primary-background-color;
 }
 
 .card-header {
