@@ -61,6 +61,22 @@ class BoardList extends AbstractTrelloEntity implements TrelloEntity
         $this->cards = $cards;
     }
 
+    public function addCard(Card $card): void
+    {
+        if (!$this->cards->contains($card)) {
+            $this->cards->add($card);
+            $card->setBoardList($this);
+        }
+    }
+
+    public function removeCard(Card $card): void
+    {
+        if ($this->cards->contains($card)) {
+            $this->cards->removeElement($card);
+            $card->setBoardList(null);
+        }
+    }
+
     public function isVisible(): bool
     {
         return $this->visible;

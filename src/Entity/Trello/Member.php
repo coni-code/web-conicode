@@ -20,22 +20,17 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
     private ?string $avatarUrl = null;
 
     #[ORM\ManyToMany(targetEntity: Card::class, mappedBy: 'members')]
-    #[ORM\InverseJoinColumn(name: 'trello_card_members', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\InverseJoinColumn(name: 'trello_cards_members', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $cards;
 
     #[ORM\ManyToMany(targetEntity: Board::class, mappedBy: 'members')]
-    #[ORM\InverseJoinColumn(name: 'trello_card_members', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\InverseJoinColumn(name: 'trello_boards_members', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $boards;
 
     public function __construct()
     {
         $this->cards  = new ArrayCollection();
         $this->boards = new ArrayCollection();
-    }
-
-    public function getCards(): Collection
-    {
-        return $this->cards;
     }
 
     public function getAvatarHash(): ?string
@@ -58,6 +53,11 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
         $this->avatarUrl = $avatarUrl;
     }
 
+    public function getCards(): Collection
+    {
+        return $this->cards;
+    }
+
     public function setCards(Collection $cards): void
     {
         $this->cards = $cards;
@@ -68,6 +68,14 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
         if (!$this->cards->contains($card)) {
             $this->cards->add($card);
             $card->addMember($this);
+        }
+    }
+
+    public function removeCard(Card $card): void
+    {
+        if ($this->cards->contains($card)) {
+            $this->cards->removeElement($card);
+            $card->removeMember($this);
         }
     }
 

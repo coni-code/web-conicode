@@ -27,7 +27,7 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
     private ?BoardList $boardList = null;
 
     #[ORM\ManyToMany(targetEntity: Member::class, inversedBy: 'cards', orphanRemoval: true)]
-    #[ORM\JoinTable(name: 'trello_card_members')]
+    #[ORM\JoinTable(name: 'trello_cards_members')]
     private Collection $members;
 
     public function __construct()
@@ -70,7 +70,7 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
         return $this->boardList;
     }
 
-    public function setBoardList(BoardList $boardList): void
+    public function setBoardList(?BoardList $boardList): void
     {
         $this->boardList = $boardList;
     }
@@ -90,6 +90,14 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
         if (!$this->members->contains($member)) {
             $this->members->add($member);
             $member->addCard($this);
+        }
+    }
+
+    public function removeMember(Member $member): void
+    {
+        if ($this->members->contains($member)) {
+            $this->members->removeElement($member);
+            $member->removeCard($this);
         }
     }
 

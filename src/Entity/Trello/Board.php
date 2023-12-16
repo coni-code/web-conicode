@@ -6,8 +6,10 @@ use App\Repository\Trello\BoardRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Table(name: 'trello_board')]
+#[UniqueEntity(fields: 'trelloId')]
 #[ORM\Entity(repositoryClass: BoardRepository::class)]
 class Board extends AbstractTrelloEntity implements TrelloEntity
 {
@@ -22,7 +24,7 @@ class Board extends AbstractTrelloEntity implements TrelloEntity
     private Collection $boardLists;
 
     #[ORM\ManyToMany(targetEntity: Member::class, inversedBy: 'boards', cascade: ['remove'])]
-    #[ORM\JoinTable(name: 'trello_board_members')]
+    #[ORM\JoinTable(name: 'trello_boards_members')]
     private Collection $members;
 
     public function __construct()
@@ -98,7 +100,7 @@ class Board extends AbstractTrelloEntity implements TrelloEntity
     public function removeMember(Member $member): void
     {
         if (!$this->members->contains($member)) {
-            $this->members->add($member);
+            $this->members->removeElement($member);
             $member->removeBoard($this);
         }
     }
