@@ -19,6 +19,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 #[AsCommand(
     name: 'create:user',
     description: 'Command for managing users',
+    aliases: ['cr:us'],
 )]
 class AddUserCommand extends Command
 {
@@ -44,7 +45,7 @@ class AddUserCommand extends Command
 
         $user = $this->userRepository->findOneBy(['email' => $email]);
 
-        if(!$user){
+        if($user) {
             $io->info("Account with this email already exists exit command or edit your credentials");
 
             $dataChangeQuestion = new ChoiceQuestion("Choose which credential do you want to update?\n",["EMAIL", "PASSWORD", "ROLE"]);
