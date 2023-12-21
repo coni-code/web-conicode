@@ -18,7 +18,7 @@ class AbstractEntity
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?string $id = null;
 
     public function getId(): ?string
