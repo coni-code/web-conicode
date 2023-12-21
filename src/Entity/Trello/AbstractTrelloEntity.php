@@ -10,32 +10,23 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\MappedSuperclass]
 #[Gedmo\SoftDeleteable(fieldName: "deletedAt", timeAware: true, hardDelete: false)]
-class AbstractTrelloEntity
+abstract class AbstractTrelloEntity
 {
     use SoftDeleteableEntity;
     use BlameableEntity;
     use TimestampableEntity;
 
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?string $id = null;
 
-    #[ORM\Column]
-    private string $trelloId;
+    public function setId(string $id): void
+    {
+        $this->id = $id;
+    }
 
     public function getId(): ?string
     {
         return $this->id;
-    }
-
-    public function getTrelloId(): string
-    {
-        return $this->trelloId;
-    }
-
-    public function setTrelloId(string $trelloId): void
-    {
-        $this->trelloId = $trelloId;
     }
 }

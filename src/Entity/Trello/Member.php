@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Table(name: 'trello_member')]
-#[UniqueEntity(fields: 'trelloId')]
 #[ORM\Entity(repositoryClass: MemberRepository::class)]
 class Member extends AbstractTrelloEntity implements TrelloEntity
 {
