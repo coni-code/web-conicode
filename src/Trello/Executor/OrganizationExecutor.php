@@ -26,6 +26,6 @@ class OrganizationExecutor extends AbstractExecutor
         $organizationDatum = $this->fetcher->getOrganization($organizationId);
         $organization = $this->preparer->prepareOne($organizationDatum);
 
-        $this->save($organization);
+        $this->saveOne($organization);
     }
 }

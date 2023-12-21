@@ -26,6 +26,6 @@ class BoardExecutor extends AbstractExecutor
         $boardDatum = $this->fetcher->getBoard($boardId);
         $board = $this->preparer->prepareOne($boardDatum);
 
-        $this->save($board);
+        $this->saveOne($board);
     }
 }
