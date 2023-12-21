@@ -5,6 +5,8 @@ services:
   db:
     container_name: db
     image: mysql
+    volumes:
+      - db_data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -18,3 +20,6 @@ services:
     restart: always
     ports:
       - "8080:8080"
+volumes:
+  db_data:
+    
