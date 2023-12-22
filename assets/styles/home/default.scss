@@ -1,0 +1,36 @@
+@import "../_variables";
+
+.section{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'RethinkSans', serif;
+    overflow:hidden;
+    position: relative;
+    background: linear-gradient(137deg, rgba(255,255,255,0.1) 0%, rgba(252,176,69,0) 100%); 
+}
+
+.btn-01{
+    text-align: center;
+    padding: 12px;
+    width: fit-content;
+    max-width: 100%;
+    background-color: $primary-red-color;
+    border-radius: 24px;
+    color: $font-color-white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 100ms;
+    border: 3px solid $primary-red-color;
+}
+
+.btn-01:hover {
+    background-color: $button-hover;
+    border-color: $button-hover;
+}
+
+.btn-01:active {
+    background-color: #00000000;
+    color: $primary-red-color;
+    border-color: $primary-red-color;
+}
