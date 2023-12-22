@@ -12,47 +12,6 @@ body {
     padding: $body-padding;
     color: $font-color-white;
 }
-.navbar{
-    position: fixed!important;
-    top:0;
-    left:0;
-}
-
-.nav-link{
-    color: $font-color-white;
-    transition: all 0.5s;
-    position: relative;
-    margin-left: 15px;
-}
-
-.nav-link:hover{
-    color:$font-color-yellow;
-}
-
-.nav-link:hover::after {
-    background-color: $font-color-yellow;
-    color: $font-color-yellow;
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-.navbar-brand{
-    color: $font-color-grey;
-}
-
-.navbar-brand:hover{
-    color: $font-color-grey;
-}
-
-.navbar-toggler{
-    background-color: $font-color-white;
-}
-
-.navbar-nav .nav-link:focus {
-    color: $font-color-yellow;
-}
 
 .container {
     background-color: $primary-light-background-color;
