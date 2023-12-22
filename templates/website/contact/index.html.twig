@@ -1,11 +1,26 @@
 {% block body %}
-    <div id="contact" class="card w-100">
-        <div class="card-header">
-            <h1 class="h2">{{ 'home.contact.header'|trans }}</h1>
+    <div id="contact" class="section">
+        <div class="contact-box contact-left">
+            <h1>{{ 'home.contact.header'|trans }}</h1>
+            {{ include('website/contact/_form.html.twig') }}
+
         </div>
-        <div class="card-body">
-            <div class="w-50">
-                {{ include('website/contact/_form.html.twig') }}
+            <div class="contact-box">
+                <h1>Our socials</h1>
+                <p></p>
+                <div class="contact-section">
+                <a href="https://www.linkedin.com/company/conicodepl/" class="btn-01 contact-section-box">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <h4>Linkedin</h4>
+                </a>
+                <a href="https://github.com/coni-code" class="btn-01 contact-section-box">
+                    <i class="fa-brands fa-github"></i>
+                        <h4>Github</h4>
+                </a>
+                <div class="btn-01 contact-section-box">
+                    <i class="fa-solid fa-face-grimace"></i>
+                        <h4>Soon...</h4>
+                </div>
             </div>
         </div>
     </div>
