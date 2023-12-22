@@ -3,20 +3,32 @@
 {% block body %}
     <nav>
         <ul class="links">
-            <li>
-                <a class="nav-item" href="#">{{'home.navbar.element.home'|trans}}</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">{{'home.navbar.element.home'|trans}}</a>
             </li>
-            <li>
-                <a class="nav-item" href="#">{{'home.navbar.element.logo'|trans}}</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">{{'home.navbar.element.logo'|trans}}</a>
             </li>
-            <li>
-                <a class="nav-item" href="#">{{'home.navbar.element.team'|trans}}</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">{{'home.navbar.element.team'|trans}}</a>
             </li>
-            <li>
-                <a class="nav-item" href="#">{{'home.navbar.element.contact'|trans}}</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">{{'home.navbar.element.contact'|trans}}</a>
             </li>
-            <li>
-                <a class="nav-item" href="#">{{'home.navbar.element.portfolio'|trans}}</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">{{'home.navbar.element.portfolio'|trans}}</a>
+            </li>
+            <li class="nav-lang">
+                {% if app.locale != 'pl' %}
+                    <a class="nav-lang" href="{{ path('app_language_changer', { '_locale':'pl' }) }}">
+                        <i class="fi fi-pl fis fi-lang"></i>
+                    </a>
+                {% endif %}
+                {% if app.locale != 'en' %}
+                    <a class="nav-lang" href="{{ path('app_language_changer', { '_locale':'en' }) }}">
+                        <i class="fi fi-gb fis fi-lang"></i>
+                    </a>
+                {% endif %}
             </li>
         </ul>
     </nav>

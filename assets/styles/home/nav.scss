@@ -1,6 +1,6 @@
 @import "../_variables";
 
-nav{
+nav {
     width: 100%;
     height: 70px;
     margin: 0 auto;
@@ -11,7 +11,7 @@ nav{
     z-index: 1;
 }
 
-.links{
+.links {
     background-color: $navbarColor;
     background-image: 
         radial-gradient(circle, 
@@ -19,38 +19,41 @@ nav{
         rgba(255,255,255,0) 100%,
         rgba(252,176,69,0) 100%);
     border-radius:20px;
-    padding: 8px 12px;
+    padding: 4px 12px;
     backdrop-filter: blur(5px);
     border: solid 2px $border-navbar-color;
+    margin-bottom: 0;
 }
 
-nav .links{
+nav .links {
     display: flex;
     gap: 1rem;
 }
 
-li{
+.nav-item {
     list-style: none;
+    border: 1px solid transparent;
 }
 
-.nav-item{
+.nav-link {
+    text-decoration: none;
+    color: $font-color-white;
+    font-size: 1rem;
     padding: 6px 16px;
     transition: 150ms;
 }
 
-.nav-item:hover{
-    background-color: $button-hover;
+.nav-lang {
+    list-style: none;
+    align-self: center;
+}
+
+.nav-item:hover {
+    border: 1px solid $button-hover;
     border-radius: 20px;
 }
 
-.nav-item:focus{
+.nav-item:focus {
     background-color: $primary-red-color;
     border-radius: 20px;
 }
-
-a{
-    text-decoration: none;
-    color: $font-color-white;
-    font-size: 1rem;
-}
-
