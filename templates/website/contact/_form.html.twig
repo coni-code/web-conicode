@@ -5,7 +5,7 @@
                 {{ form_label(form.email, 'form.contact.label.email'|trans) }}
                 {{ form_widget(form.email, {
                     'attr': {
-                        'class': 'form-control',
+                        'class': 'form-control contact-input',
                         'placeholder': 'form.contact.label.email'|trans,
                     }
                 }) }}
@@ -16,7 +16,7 @@
                 {{ form_label(form.subject, 'form.contact.label.subject'|trans) }}
                 {{ form_widget(form.subject, {
                     'attr': {
-                        'class': 'form-control',
+                        'class': 'form-control contact-input',
                         'placeholder': 'form.contact.label.subject'|trans,
                     }
                 }) }}
@@ -28,9 +28,9 @@
         {{ form_label(form.body, 'form.contact.label.body'|trans) }}
         {{ form_widget(form.body, {
             'attr': {
-                'class': 'form-control',
+                'class': 'form-control contact-input',
                 'placeholder': 'form.contact.label.body'|trans,
-                'rows': 4,
+                'rows': 6,
             }
         }) }}
     </div>
@@ -38,7 +38,7 @@
     {{ form_widget(form.submit, {
         'label': 'form.send'|trans,
         'attr': {
-            'class': 'btn btn-lg btn-success w-25',
+            'class': 'btn-01 submit',
         }
     }) }}
     </div>
