@@ -40,7 +40,7 @@ class AddUserCommand extends Command
     {
         $helper = $this->getHelper('question');
 
-        $email = $this->askEmail("Please enter your email: ");
+        $email = $this->askEmail("Please enter your email:");
         $email = $helper->ask($input, $output, $email);
 
         $user = $this->userRepository->findOneBy(['email' => $email]);
@@ -51,7 +51,7 @@ class AddUserCommand extends Command
 
         return $this->createUser($helper, $input, $output, $email);
     }
-    public function updateUser(HelperInterface $helper, InputInterface $input, OutputInterface $output, User $user): int
+    private function updateUser(HelperInterface $helper, InputInterface $input, OutputInterface $output, User $user): int
     {
         $isChanged = false;
         $io = new SymfonyStyle($input, $output);
@@ -95,7 +95,7 @@ class AddUserCommand extends Command
         }
         return Command::SUCCESS;
     }
-    public function createUser(HelperInterface $helper, InputInterface $input, OutputInterface $output, string $email): int
+    private function createUser(HelperInterface $helper, InputInterface $input, OutputInterface $output, string $email): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -117,7 +117,7 @@ class AddUserCommand extends Command
         $io->success("You successfully registered user with credentials:\nemail: $email\npassword: $password\nrole: $role");
         return Command::SUCCESS;
     }
-    public function askEmail(string $question, bool $nullable = false): Question
+    private function askEmail(string $question, bool $nullable = false): Question
     {
         $emailQuestion = new Question($question."\n > ");
         $emailQuestion->setValidator(function (?string $email) use ($nullable): ?string {
@@ -136,7 +136,7 @@ class AddUserCommand extends Command
 
         return $emailQuestion;
     }
-    public function askPassword(string $question, bool $nullable = false): Question
+    private function askPassword(string $question, bool $nullable = false): Question
     {
         $passwordQuestion = new Question($question."\n > ");
         $passwordQuestion->setHidden(true);
@@ -164,7 +164,7 @@ class AddUserCommand extends Command
 
         return $passwordQuestion;
     }
-    public function askRole(string $question, bool $nullable = false): Question
+    private function askRole(string $question, bool $nullable = false): Question
     {
         $choices = RoleEnum::getChoices();
         if ($nullable) {
@@ -172,7 +172,7 @@ class AddUserCommand extends Command
         }
         return new ChoiceQuestion($question."\n > ", $choices, 0);
     }
-    public function askConfirmation(
+    private function askConfirmation(
         string $parameter,
         HelperInterface $helper,
         InputInterface $input,
@@ -189,7 +189,7 @@ class AddUserCommand extends Command
             }
         }
     }
-    public function save(User $user): void
+    private function save(User $user): void
     {
         $entityManager = $this->doctrine->getManager();
         $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));

@@ -7,6 +7,10 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
-import "./styles/home/hero.scss"
 import 'bootstrap';
-import '@fortawesome/fontawesome-free'
+import "./styles/home/nav.scss"
+import '@fortawesome/fontawesome-free';
+
+import "./styles/home/hero.scss";
+import "./styles/home/default.scss";
+import "./styles/home/contact.scss";
