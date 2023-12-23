@@ -22,17 +22,16 @@ class BoardPreparer extends AbstractPreparer
             'idOrganization' => $idOrganization,
         ] = $apiDatum;
 
-        if ($board = $this->boardRepository->findOneBy(['id' => $id])) {
-            $id !== $board->getId() && $board->setId($id);
-            $name !== $board->getName() && $board->setName($name);
-        } else {
+        if (!$board = $this->boardRepository->findOneBy(['id' => $id])) {
             $board = new Board();
             $board->setId($id);
-            $board->setName($name);
+        }
 
-            if ($organization = $this->organizationRepository->findOneBy(['id' => $idOrganization])) {
-                $board->setOrganization($organization);
-            }
+        $id !== $board->getId() && $board->setId($id);
+        $name !== $board->getName() && $board->setName($name);
+
+        if ($organization = $this->organizationRepository->findOneBy(['id' => $idOrganization])) {
+            $board->setOrganization($organization);
         }
 
         return $board;

@@ -21,20 +21,18 @@ class BoardListPreparer extends AbstractPreparer
         [
             'id' => $id,
             'name' => $name,
-            'idOrganization' => $idOrganization,
+            'idBoard' => $idBoard,
         ] = $apiDatum;
 
-        if ($boardList = $this->boardListRepository->findOneBy(['id' => $id])) {
-            $id !== $boardList->getId() && $boardList->setId($id);
-            $name !== $boardList->getName() && $boardList->setName($name);
-        } else {
+        if (!$boardList = $this->boardListRepository->findOneBy(['id' => $id])) {
             $boardList = new BoardList();
             $boardList->setId($id);
-            $boardList->setName($name);
+        }
 
-            if ($board = $this->boardRepository->findOneBy(['id' => $idOrganization])) {
-                $boardList->setBoard($board);
-            }
+        $name !== $boardList->getName() && $boardList->setName($name);
+
+        if ($board = $this->boardRepository->findOneBy(['id' => $idBoard])) {
+            $boardList->setBoard($board);
         }
 
         return $boardList;
