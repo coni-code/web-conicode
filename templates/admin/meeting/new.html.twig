@@ -1,0 +1,24 @@
+{% extends '/admin/base.html.twig' %}
+
+{% set header = 'Add Meeting' %}
+
+{% block body %}
+    <div class="page">
+        <div class="page-header d-flex align-items-center justify-content-between">
+            <h1><i class="fa fa-calendar-alt"></i><span class="text-header">{{ header }}</span></h1>
+
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="{{ path('dev_admin') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('dev_meeting_index') }}">Meetings</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ header }}</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4>{{ header }}</h4>
+            </div>
+            {{ include('admin/meeting/_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

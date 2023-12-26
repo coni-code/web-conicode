@@ -1,0 +1,42 @@
+{{ form_start(form) }}
+<div class="card-body">
+    <div class="row">
+        <div class="col-xxl-3">
+            <div class="form-group">
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+        <div class="col-xxl-3">
+            <div class="form-group">
+                {{ form_label(form.date) }}
+                {{ form_widget(form.date, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xxl-6">
+            <div class="form-group">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-footer">
+    <a class="btn btn-danger" href="{{ path('dev_meeting_index') }}">Cancel</a>
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}

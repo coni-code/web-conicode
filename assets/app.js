@@ -16,3 +16,4 @@ import "./styles/home/default.scss";
 import "./styles/home/contact.scss";
 import './styles/admin/sidebar.scss';
 import './styles/admin/topbar.scss';
+import './styles/admin/page-header.scss';
