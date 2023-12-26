@@ -1,23 +1,24 @@
+{% set currentPath = app.request.pathinfo %}
+
 <aside class="sidebar">
     <div id="leftside-navigation" class="nano">
         <ul class="nano-content">
-            <li>
+            <li {% if currentPath == path('dev_admin') %} class="active" {% endif %}>
                 <a href="{{ path('dev_admin') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
             </li>
-            <li class="sub-menu">
+            <li class="sub-menu {% if currentPath starts with '/meeting' %} active {% endif %}">
                 <a class="sub-header" href="{{ path('dev_meeting_index') }}"><i class="fa fa-calendar-alt"></i><span>Meetings</span></a>
             </li>
             <li class="sub-menu">
-                <a class="sub-header" href="javascript:void(0);"><i class="fa fa-chart-bar"></i><span>Reports</span></a>
+                <a class="sub-header" href="javascript:void(0);">
+                    <i class="fa fa-chart-bar"></i><span>Reports</span>
+                </a>
             </li>
             <li class="sub-menu">
                 <a href="javascript:void(0);"><i class="fa fa-table"></i><span>Trello</span><i class="arrow fa fa-angle-right pull-right"></i></a>
                 <ul>
-                    <li><a href="javascript:void(0);">Example#1</a>
-                    </li>
-
-                    <li><a href="javascript:void(0);">Example#2</a>
-                    </li>
+                    <li><a href="javascript:void(0);">Example#1</a></li>
+                    <li><a href="javascript:void(0);">Example#2</a></li>
                 </ul>
             </li>
         </ul>
