@@ -25,7 +25,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private ?string $password = null;
 
     /** @var Collection<Meeting> */
-    #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist'])]
     #[ORM\JoinTable(name: 'users_meetings')]
     private Collection $meetings;
 
