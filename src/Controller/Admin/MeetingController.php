@@ -39,7 +39,6 @@ class MeetingController extends AbstractController
         return $this->render('admin/meeting/new.html.twig', [
             'meeting' => $meeting,
             'form' => $form,
-            ''
         ]);
     }
 

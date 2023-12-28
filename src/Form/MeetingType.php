@@ -26,9 +26,9 @@ class MeetingType extends AbstractType
                 'choices' => MeetingStatusEnum::getChoices()
             ])
             ->add('users', EntityType::class, [
-                'required' => false,
                 'class' => User::class,
-                'choice_label' => 'email'
+                'required' => false,
+                'multiple' => true
             ])
         ;
     }

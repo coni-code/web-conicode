@@ -121,4 +121,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
             $meeting->removeUser($this);
         }
     }
+
+    public function __toString(): string
+    {
+        return $this->getEmail();
+    }
 }
