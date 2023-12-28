@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\MeetingStatusEnum;
 use App\Repository\MeetingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -24,6 +25,13 @@ class Meeting
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\Column(
+        type: Types::STRING,
+        enumType: MeetingStatusEnum::class,
+        options: ["default"=>MeetingStatusEnum::STATUS_PENDING]
+    )]
+    private MeetingStatusEnum $status = MeetingStatusEnum::STATUS_PENDING;
 
     /** @var Collection<User> */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings')]
@@ -73,6 +81,16 @@ class Meeting
         $this->date = $date;
 
         return $this;
+    }
+
+    public function getStatus(): MeetingStatusEnum
+    {
+        return $this->status;
+    }
+
+    public function setStatus(MeetingStatusEnum $status): void
+    {
+        $this->status = $status;
     }
 
     public function getUsers(): Collection
