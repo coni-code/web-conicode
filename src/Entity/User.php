@@ -29,9 +29,14 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\JoinTable(name: 'users_meetings')]
     private Collection $meetings;
 
+    #[ORM\OneToMany(mappedBy: 'meeting', targetEntity: Vote::class)]
+    #[ORM\JoinColumn(name: 'meeting_id', referencedColumnName: 'id')]
+    private Collection $votes;
+
     public function __construct()
     {
         $this->meetings = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getEmail(): ?string
@@ -119,6 +124,31 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         if ($this->meetings->contains($meeting)) {
             $this->meetings->removeElement($meeting);
             $meeting->removeUser($this);
+        }
+    }
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function setVotes(Collection $votes): void
+    {
+        $this->votes = $votes;
+    }
+
+    public function addVote(Vote $vote): void
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setUser($this);
+        }
+    }
+
+    public function removeVote(Vote $vote): void
+    {
+        if ($this->votes->contains($vote)) {
+            $this->votes->removeElement($vote);
+            $vote->setUser(null);
         }
     }
 
