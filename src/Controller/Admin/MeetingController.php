@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Meeting;
+use App\Entity\User;
 use App\Form\MeetingType;
 use App\Repository\MeetingRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,6 +31,15 @@ class MeetingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Meeting $meeting */
+            $meeting = $form->getData();
+
+            /** @var User $user */
+            foreach ($meeting->getUsers() as $user) {
+                $user->addMeeting($meeting);
+                $entityManager->persist($user);
+            }
+
             $entityManager->persist($meeting);
             $entityManager->flush();
 

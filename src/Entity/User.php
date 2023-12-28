@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -24,9 +25,14 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private ?string $password = null;
 
     /** @var Collection<Meeting> */
-    #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist'])]
     #[ORM\JoinTable(name: 'users_meetings')]
     private Collection $meetings;
+
+    public function __construct()
+    {
+        $this->meetings = new ArrayCollection();
+    }
 
     public function getEmail(): ?string
     {
@@ -114,5 +120,10 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
             $this->meetings->removeElement($meeting);
             $meeting->removeUser($this);
         }
+    }
+
+    public function __toString(): string
+    {
+        return $this->getEmail();
     }
 }
