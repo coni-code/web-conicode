@@ -11,5 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function handleUserDisabling(statusSelect, usersSelect) {
     const numericValue = parseInt(statusSelect.value, 10);
-    usersSelect.disabled = numericValue === 0;
+    if (numericValue === 0) {
+        usersSelect.disabled = true;
+        Array.from(usersSelect.options).forEach(option => option.selected = false);
+    } else {
+        usersSelect.disabled = false;
+    }
 }
