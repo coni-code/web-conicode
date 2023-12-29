@@ -12,7 +12,7 @@ _locale_prefix:
         _locale: en|pl
     defaults: { _locale: pl}
     exclude:
-        - ../src/Controller/Admin/*
+        - ../src/Controller/Admin/SecurityController.php
 
 root_redirect:
     path: /

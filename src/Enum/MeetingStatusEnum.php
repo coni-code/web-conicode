@@ -13,9 +13,9 @@ enum MeetingStatusEnum: string
     {
 
         return [
-            (new TranslatableMessage("admin.meeting.status.pending"))
+            (new TranslatableMessage("admin.form.meeting.status.pending"))
                 ->getMessage() => self::STATUS_PENDING,
-            (new TranslatableMessage("admin.meeting.status.confirmed"))
+            (new TranslatableMessage("admin.form.meeting.status.confirmed"))
                 ->getMessage() => self::STATUS_CONFIRMED
         ];
     }
