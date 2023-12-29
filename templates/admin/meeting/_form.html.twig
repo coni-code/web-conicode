@@ -1,7 +1,7 @@
 {{ form_start(form) }}
 <div class="card-body">
     <div class="row">
-        <div class="col-xxl-3">
+        <div class="col-xxl-2">
             <div class="form-group">
                 {{ form_label(form.title) }}
                 {{ form_widget(form.title, {
@@ -11,10 +11,20 @@
                 }) }}
             </div>
         </div>
-        <div class="col-xxl-3">
+        <div class="col-xxl-2">
             <div class="form-group">
-                {{ form_label(form.date) }}
-                {{ form_widget(form.date, {
+                {{ form_label(form.startDate) }}
+                {{ form_widget(form.startDate, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+        <div class="col-xxl-2">
+            <div class="form-group">
+                {{ form_label(form.endDate) }}
+                {{ form_widget(form.endDate, {
                     'attr': {
                         'class': 'form-control'
                     }

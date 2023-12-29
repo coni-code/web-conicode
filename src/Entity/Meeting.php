@@ -24,7 +24,10 @@ class Meeting
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    private ?\DateTimeInterface $startDate = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column(
         type: Types::STRING,
@@ -37,14 +40,9 @@ class Meeting
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings', cascade: ['persist'])]
     private Collection $users;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class)]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
-    private Collection $votes;
-
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,14 +74,26 @@ class Meeting
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->startDate;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    public function setStartDate(\DateTimeInterface $startDate): static
     {
-        $this->date = $date;
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(\DateTimeInterface $endDate): static
+    {
+        $this->endDate = $endDate;
 
         return $this;
     }
@@ -121,32 +131,6 @@ class Meeting
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             $user->removeMeeting($this);
-        }
-    }
-
-    public function getVotes(): Collection
-    {
-        return $this->votes;
-    }
-
-    public function setVotes(Collection $votes): void
-    {
-        $this->votes = $votes;
-    }
-
-    public function addVote(Vote $vote): void
-    {
-        if (!$this->votes->contains($vote)) {
-            $this->votes->add($vote);
-            $vote->setMeeting($this);
-        }
-    }
-
-    public function removeVote(Vote $vote): void
-    {
-        if ($this->votes->contains($vote)) {
-            $this->votes->removeElement($vote);
-            $vote->setMeeting(null);
         }
     }
 }

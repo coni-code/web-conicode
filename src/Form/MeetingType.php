@@ -21,7 +21,8 @@ class MeetingType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('date', DateTimeType::class)
+            ->add('startDate', DateTimeType::class)
+            ->add('endDate', DateTimeType::class)
             ->add('status', ChoiceType::class, [
                 'choices' => MeetingStatusEnum::getChoices()
             ])
