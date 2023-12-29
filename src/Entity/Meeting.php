@@ -88,12 +88,12 @@ class Meeting
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->startDate;
+        return $this->endDate;
     }
 
-    public function setEndDate(\DateTimeInterface $startDate): static
+    public function setEndDate(\DateTimeInterface $endDate): static
     {
-        $this->startDate = $startDate;
+        $this->endDate = $endDate;
 
         return $this;
     }
