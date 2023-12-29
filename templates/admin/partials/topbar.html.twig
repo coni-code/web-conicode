@@ -1,13 +1,26 @@
 <div class="topbar">
-    <!-- Reszta zawartości topbaru -->
     <div class="user-info">
         <div class="toggle-dropdown">
             <img class="avatar" src="{{ asset('build/images/brand/logo.png') }}" alt="user avatar" height="20" width="20">
             <span class="username" id="username">{{ app.user.email }}</span>
         </div>
         <ul class="dropdown-menu">
-            <li><a href="javascript:void(0);">Settings</a></li>
-            <li><a href="{{ path('dev_logout') }}">Logout</a></li>
+            <li><a href="javascript:void(0);">{{ 'admin.topbar.option.settings'|trans }}</a></li>
+            <li><a href="{{ path('dev_logout') }}">{{ 'admin.topbar.option.logout'|trans }}</a></li>
         </ul>
+    </div>
+    <div class="nav-lang nav-lang-admin">
+        {% if app.locale != 'pl' %}
+            <a class="nav-lang-link" href="{{ path('app_language_admin_changer', { '_locale':'pl' }) }}">
+                <i class="fi fi-pl fis fi-lang"></i>
+                <div class="tooltip">Polski</div>
+            </a>
+        {% endif %}
+        {% if app.locale != 'en' %}
+            <a class="nav-lang-link" href="{{ path('app_language_admin_changer', { '_locale':'en' }) }}">
+                <i class="fi fi-gb fis fi-lang"></i>
+                <div class="tooltip">English</div>
+            </a>
+        {% endif %}
     </div>
 </div>

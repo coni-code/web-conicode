@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-xxl-2">
             <div class="form-group">
-                {{ form_label(form.title) }}
+                {{ form_label(form.title, 'admin.form.meeting.title'|trans) }}
                 {{ form_widget(form.title, {
                     'attr': {
                         'class': 'form-control'
@@ -13,7 +13,7 @@
         </div>
         <div class="col-xxl-2">
             <div class="form-group">
-                {{ form_label(form.startDate) }}
+                {{ form_label(form.startDate, 'admin.form.meeting.start_date'|trans) }}
                 {{ form_widget(form.startDate, {
                     'attr': {
                         'class': 'form-control'
@@ -23,7 +23,7 @@
         </div>
         <div class="col-xxl-2">
             <div class="form-group">
-                {{ form_label(form.endDate) }}
+                {{ form_label(form.endDate, 'admin.form.meeting.end_date'|trans) }}
                 {{ form_widget(form.endDate, {
                     'attr': {
                         'class': 'form-control'
@@ -35,7 +35,7 @@
     <div class="row">
         <div class="col-xxl-3">
             <div class="form-group">
-                {{ form_label(form.status) }}
+                {{ form_label(form.status, 'admin.form.meeting.status'|trans) }}
                 {{ form_widget(form.status, {
                     'attr': {
                         'class': 'form-control form-select meeting-status-select'
@@ -45,7 +45,7 @@
         </div>
         <div class="col-xxl-3">
             <div class="form-group">
-                {{ form_label(form.users) }}
+                {{ form_label(form.users, 'admin.form.meeting.users'|trans) }}
                 {{ form_widget(form.users, {
                     'attr': {
                         'class': 'form-control form-select meeting-users-select',
@@ -58,7 +58,7 @@
     <div class="row">
         <div class="col-xxl-6">
             <div class="form-group">
-                {{ form_label(form.description) }}
+                {{ form_label(form.description, 'admin.form.meeting.description'|trans) }}
                 {{ form_widget(form.description, {
                     'attr': {
                         'class': 'form-control'
@@ -69,7 +69,7 @@
     </div>
 </div>
 <div class="card-footer">
-    <a class="btn btn-danger" href="{{ path('dev_meeting_index') }}">Cancel</a>
-    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+    <a class="btn btn-danger" href="{{ path('dev_meeting_index') }}">{{ 'admin.form.cancel'|trans }}</a>
+    <button class="btn btn-success">{{ button_label|default('admin.form.save'|trans) }}</button>
 </div>
 {{ form_end(form) }}
