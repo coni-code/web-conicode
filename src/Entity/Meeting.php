@@ -24,7 +24,10 @@ class Meeting
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    private ?\DateTimeInterface $startDate = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column(
         type: Types::STRING,
@@ -71,14 +74,26 @@ class Meeting
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->startDate;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    public function setStartDate(\DateTimeInterface $startDate): static
     {
-        $this->date = $date;
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
+    public function setEndDate(\DateTimeInterface $startDate): static
+    {
+        $this->startDate = $startDate;
 
         return $this;
     }
