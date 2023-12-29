@@ -4,14 +4,14 @@
     <div id="leftside-navigation" class="nano">
         <ul class="nano-content">
             <li {% if currentPath == path('dev_admin') %} class="active" {% endif %}>
-                <a href="{{ path('dev_admin') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                <a href="{{ path('dev_admin') }}"><i class="fa fa-dashboard"></i><span>{{ 'admin.sidebar.link.dashboard'|trans }}</span></a>
             </li>
             <li class="sub-menu {% if currentPath starts with '/meeting' %} active {% endif %}">
-                <a class="sub-header" href="{{ path('dev_meeting_index') }}"><i class="fa fa-calendar-alt"></i><span>Meetings</span></a>
+                <a class="sub-header" href="{{ path('dev_meeting_index') }}"><i class="fa fa-calendar-alt"></i><span>{{ 'admin.meeting.header.plural'|trans }}</span></a>
             </li>
             <li class="sub-menu">
                 <a class="sub-header" href="javascript:void(0);">
-                    <i class="fa fa-chart-bar"></i><span>Reports</span>
+                    <i class="fa fa-chart-bar"></i><span>{{ 'admin.sidebar.link.reports'|trans }}</span>
                 </a>
             </li>
             <li class="sub-menu">
