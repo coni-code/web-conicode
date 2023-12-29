@@ -20,17 +20,20 @@
             </li>
             <li class="nav-lang">
                 {% if app.locale != 'pl' %}
-                    <a class="nav-lang" href="{{ path('app_language_changer', { '_locale':'pl' }) }}">
+                    <a class="nav-lang-link" href="{{ path('app_language_changer', { '_locale':'pl' }) }}">
                         <i class="fi fi-pl fis fi-lang"></i>
+                        <div class="tooltip">Polski</div>
                     </a>
                 {% endif %}
                 {% if app.locale != 'en' %}
-                    <a class="nav-lang" href="{{ path('app_language_changer', { '_locale':'en' }) }}">
+                    <a class="nav-lang-link" href="{{ path('app_language_changer', { '_locale':'en' }) }}">
                         <i class="fi fi-gb fis fi-lang"></i>
+                        <div class="tooltip">English</div>       
                     </a>
                 {% endif %}
-            </li>
+            </li>          
         </ul>
     </nav>
 {% endblock %}
+
 

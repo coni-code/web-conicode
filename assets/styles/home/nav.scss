@@ -41,6 +41,7 @@ nav .links {
     font-size: 1rem;
     padding: 6px 16px;
     transition: 150ms;
+    position: relative;
 }
 
 .nav-lang {
@@ -48,12 +49,50 @@ nav .links {
     align-self: center;
 }
 
+.nav-lang-link {
+    position: relative;
+}
+
 .nav-item:hover {
     border: 1px solid $button-hover;
     border-radius: 20px;
+    transition: 150ms;
 }
 
-.nav-item:focus {
+.nav-link:focus {
     background-color: $primary-red-color;
     border-radius: 20px;
 }
+
+.tooltip {
+    position: absolute;
+    z-index: 2;
+    visibility: hidden;
+    opacity: 0;
+    background-color: $primary-red-color;
+    border-radius: 10px;
+    padding: 3px 5px;
+    color: $font-color-white;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.nav-lang-link .tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent $primary-red-color transparent;
+  }
+
+.nav-lang-link:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
