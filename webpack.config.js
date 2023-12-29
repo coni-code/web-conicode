@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('admin/sidebar', './assets/js/admin/sidebar.js')
+    .addEntry('admin/topbar', './assets/js/admin/topbar.js')
     .addEntry('admin/meeting-form', './assets/js/admin/meeting-form.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
