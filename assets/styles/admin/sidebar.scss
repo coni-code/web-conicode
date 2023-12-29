@@ -10,7 +10,7 @@
   width: $sidebar-width;
   height: 100%;
   background: #293949;
-  position: absolute;
+  position: fixed;
   transition: all .3s ease-in-out;
   z-index: 100;
   #leftside-navigation {
