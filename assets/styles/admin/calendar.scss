@@ -1,0 +1,40 @@
+#admin-layout {
+  #full-calendar {
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  .fc {
+    color: white;
+    border-color: white;
+
+    .fc-toolbar {
+      color: white;
+    }
+
+    .fc-day-header {
+      background-color: #333;
+      color: white;
+      border-color: white;
+    }
+
+    .fc-day, .fc-day-top {
+      color: white;
+      border-color: white;
+    }
+
+    .fc-event, .fc-event-dot {
+      color: white;
+      border-color: white;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
