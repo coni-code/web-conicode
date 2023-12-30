@@ -4,15 +4,6 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import '~flag-icons/css/flag-icons.min.css';
 
-body {
-    background-color: $primary-background-color;
-    font-family: "NotoSansDisplay-Regular", serif;
-    box-shadow: $body-box-sizing;
-    margin: $body-margin;
-    padding: $body-padding;
-    color: $font-color-white;
-}
-
 .container {
     background-color: $primary-light-background-color;
     padding: 1rem;
@@ -37,10 +28,4 @@ body {
     margin-bottom: 5px;
 }
 
-.card {
-    background-color: $primary-background-color;
-}
 
-.card-header {
-    color: white;
-}

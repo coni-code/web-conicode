@@ -1,13 +1,11 @@
 @import "../_variables";
 
 #contact{
-    width: 100%;
-    height: 600px;
+    grid-column: 8 span;
     min-height: fit-content;
     display: grid;
     grid-template-columns: 50% 1fr;
     gap:50px;
-    padding: 50px;
     overflow:visible;
 }
 

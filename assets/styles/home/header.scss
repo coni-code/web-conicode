@@ -1,0 +1,36 @@
+.first-node{
+    grid-column: span 2;
+}
+.second-node{
+    grid-column: span 4;
+}
+.third-node{
+    grid-column: span 2;
+
+}
+.forth-node{
+    grid-column: span 4;
+}
+.fifth-node{
+    grid-column: span 4;
+}
+@media screen and (max-width: 500px) {
+    .first-node{
+        grid-row-start: 2;
+        grid-column: span 4;
+    }
+    .second-node{
+        grid-row-start: 1;
+        grid-column: span 8;
+    }
+    .third-node{
+        grid-row-start: 2;
+        grid-column: span 4;
+    }
+    .forth-node{
+        grid-column: span 8;
+    }
+    .fifth-node{
+        grid-column: span 8;
+    }
+}
