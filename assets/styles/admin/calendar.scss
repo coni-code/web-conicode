@@ -2,30 +2,57 @@
   #full-calendar {
     max-width: 100%;
     margin: 10px;
+    color: white;
+    border-color: #293949!important;
   }
 
   .fc {
     color: white;
-    border-color: white;
+    border-color: #293949;
+
+    .fc-scrollgrid {
+      border:none;
+
+      thead th {
+        border: none;
+      }
+
+      tbody td {
+        border: none;
+      }
+    }
 
     .fc-toolbar {
       color: white;
     }
 
     .fc-day-header {
-      background-color: #333;
+      background-color: #1f2d38;
       color: white;
-      border-color: white;
+      border-color: #11243a;
     }
 
     .fc-day, .fc-day-top {
       color: white;
-      border-color: white;
+      background-color: #293949;
+      border: 2px solid #11243a!important;
+    }
+
+    .fc-day-other {
+      color: #59697a;
+      background-color: #1f2d38;
+      border: 1px solid #11243a;
+    }
+
+    .fc-day-today {
+      background-color: #BB004B;
+      color: white;
+      border: 1px solid #11243a;
     }
 
     .fc-event, .fc-event-dot {
       color: white;
-      border-color: white;
+      background-color: #BB004B;
     }
 
     a {
@@ -33,7 +60,7 @@
       text-decoration: none;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }
