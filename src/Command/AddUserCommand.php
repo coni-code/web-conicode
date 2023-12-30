@@ -2,10 +2,14 @@
 
 namespace App\Command;
 
+use App\Entity\Trello\Member;
 use App\Entity\User;
 use App\Enum\RoleEnum;
+use App\Repository\Trello\MemberRepository;
 use App\Repository\UserRepository;
 use App\Service\Factory\UserFactory;
+use App\Trello\Fetcher\MemberFetcher;
+use App\Trello\Preparer\MemberPreparer;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -27,7 +31,10 @@ class AddUserCommand extends Command
     public function __construct(
         private readonly ManagerRegistry $doctrine,
         private readonly UserPasswordHasherInterface $passwordHasher,
-        private readonly UserRepository $userRepository
+        private readonly UserRepository $userRepository,
+        private readonly MemberRepository $memberRepository,
+        private readonly MemberFetcher $fetcher,
+        private readonly MemberPreparer $preparer
     ) {
         parent::__construct();
     }
@@ -86,7 +93,13 @@ class AddUserCommand extends Command
             $isChanged = true;
         }
 
-        $this->save($user);
+        if ($user->getTrelloMemberId()) {
+            $member = $this->askTrelloMember($io, $helper, $input, $output, $user);
+        } else {
+            $member = $this->memberRepository->findOneBy(['id'], $user->getTrelloMemberId());
+        }
+
+        $this->save($user, $member);
         if($isChanged)
         {
             $io->success("You successfully edited credentials");
@@ -106,14 +119,17 @@ class AddUserCommand extends Command
         $role = $this->askRole("Please choose your role:");
         $role = $helper->ask($input, $output, $role);
 
+
         $user = UserFactory::createUser(
             $this->passwordHasher,
             $email,
             password_hash($password, PASSWORD_DEFAULT),
-            [$role]
+            [$role],
         );
 
-        $this->save($user);
+        $member = $this->askTrelloMember($io, $helper, $input, $output, $user);
+
+        $this->save($user, $member);
         $io->success("You successfully registered user with credentials:\nemail: $email\npassword: $password\nrole: $role");
         return Command::SUCCESS;
     }
@@ -189,11 +205,27 @@ class AddUserCommand extends Command
             }
         }
     }
-    private function save(User $user): void
+    private function save(User $user, ?Member $member): void
     {
         $entityManager = $this->doctrine->getManager();
         $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
         $entityManager->persist($user);
+        $entityManager->persist($member);
         $entityManager->flush();
+    }
+    private function askTrelloMember(
+        SymfonyStyle $io,
+        HelperInterface $helper,
+        InputInterface $input,
+        OutputInterface $output,
+        User $user
+    ): Member|int {
+        #najpierw sprawdzenie u nas w bazie tj zapytanie do repo a pozniej dopiero fetch
+        $memberId = new Question("Please type your Member ID:");
+        $memberId = $helper->ask($input, $output, $memberId);
+        $apiDatum = $this->fetcher->getMember($memberId);
+        $member = $this->preparer->prepareOne($apiDatum);
+        $user->setTrelloMemberId($member);
+        return $member;
     }
 }
