@@ -13,7 +13,21 @@
   position: fixed;
   transition: all .3s ease-in-out;
   z-index: 100;
+
   #leftside-navigation {
+    .logo-container {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      height: 100px;
+      .sidebar-logo {
+        width: 150px;
+        height: 150px;
+        position:absolute;
+        top: -25px;
+        left: 50px;
+      }
+    }
     ul, ul ul {
       margin: -2px 0 0;
       padding: 0;
