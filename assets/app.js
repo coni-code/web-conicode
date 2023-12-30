@@ -11,9 +11,9 @@ import 'bootstrap';
 import "./styles/home/nav.scss"
 import '@fortawesome/fontawesome-free';
 
-import "./styles/home/hero.scss";
 import "./styles/home/default.scss";
 import "./styles/home/contact.scss";
+import "./styles/home/header.scss";
 
 import './styles/admin/sidebar.scss';
 import './styles/admin/topbar.scss';
