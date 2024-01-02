@@ -2,11 +2,11 @@
 
 namespace App\Entity\Trello;
 
+use App\Entity\User;
 use App\Repository\Trello\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Table(name: 'trello_member')]
 #[ORM\Entity(repositoryClass: MemberRepository::class)]
@@ -25,6 +25,9 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
     #[ORM\ManyToMany(targetEntity: Board::class, mappedBy: 'members')]
     #[ORM\InverseJoinColumn(name: 'trello_boards_members', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $boards;
+
+    #[ORM\OneToOne(mappedBy: 'member', targetEntity: User::class)]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -107,5 +110,15 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
     public function getFilename(): string
     {
         return 'users/' . $this->avatarHash . '.png';
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 }

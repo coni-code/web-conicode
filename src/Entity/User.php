@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trello\Member;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -28,6 +29,10 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist'])]
     #[ORM\JoinTable(name: 'users_meetings')]
     private Collection $meetings;
+
+    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
+    #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'id')]
+    private ?Member $member = null;
 
     public function __construct()
     {
@@ -94,6 +99,16 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
      */
     public function eraseCredentials(): void
     {
+    }
+
+    public function getMember(): ?Member
+    {
+        return $this->member;
+    }
+
+    public function setMember(?Member $member): void
+    {
+        $this->member = $member;
     }
 
     public function getMeetings(): Collection
