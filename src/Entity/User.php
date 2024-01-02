@@ -31,8 +31,8 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private Collection $meetings;
 
     #[ORM\OneToOne(inversedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
-    #[ORM\JoinColumn(name: 'trello_member_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private ?Member $trelloMemberId;
+    #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'id')]
+    private ?Member $member = null;
 
     public function __construct()
     {
@@ -101,14 +101,14 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     {
     }
 
-    public function getTrelloMemberId(): ?Member
+    public function getMember(): ?Member
     {
-        return $this->trelloMemberId;
+        return $this->member;
     }
 
-    public function setTrelloMemberId(Member $trelloMemberId): void
+    public function setMember(?Member $member): void
     {
-        $this->trelloMemberId = $trelloMemberId;
+        $this->member = $member;
     }
 
     public function getMeetings(): Collection

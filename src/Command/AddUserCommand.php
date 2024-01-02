@@ -93,13 +93,13 @@ class AddUserCommand extends Command
             $isChanged = true;
         }
 
-        if ($user->getTrelloMemberId()) {
+        if (!$user->getMember()) {
             $member = $this->askTrelloMember($io, $helper, $input, $output, $user);
+            $this->save($user, $member);
         } else {
-            $member = $this->memberRepository->findOneBy(['id'], $user->getTrelloMemberId());
+            $this->save($user);
         }
 
-        $this->save($user, $member);
         if($isChanged)
         {
             $io->success("You successfully edited credentials");
@@ -205,12 +205,12 @@ class AddUserCommand extends Command
             }
         }
     }
-    private function save(User $user, ?Member $member): void
+    private function save(User $user, Member $member = null): void
     {
         $entityManager = $this->doctrine->getManager();
+        !$member ?? $entityManager->persist($member);
         $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
         $entityManager->persist($user);
-        $entityManager->persist($member);
         $entityManager->flush();
     }
     private function askTrelloMember(
@@ -220,12 +220,13 @@ class AddUserCommand extends Command
         OutputInterface $output,
         User $user
     ): Member|int {
-        #najpierw sprawdzenie u nas w bazie tj zapytanie do repo a pozniej dopiero fetch
         $memberId = new Question("Please type your Member ID:");
         $memberId = $helper->ask($input, $output, $memberId);
-        $apiDatum = $this->fetcher->getMember($memberId);
-        $member = $this->preparer->prepareOne($apiDatum);
-        $user->setTrelloMemberId($member);
+        if(!$member = $this->memberRepository->findOneBy(['id' => $memberId])) {
+            $apiDatum = $this->fetcher->getMember($memberId);
+            $member = $this->preparer->prepareOne($apiDatum);
+        }
+        $user->setMember($member);
         return $member;
     }
 }
