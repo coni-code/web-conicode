@@ -25,6 +25,7 @@ Encore
     .addEntry('admin/topbar', './assets/js/admin/topbar.js')
     .addEntry('admin/calendar', './assets/js/admin/calendar.js')
     .addEntry('admin/meeting-form', './assets/js/admin/meeting-form.js')
+    .addEntry('website/navbar', './assets/js/website/navbar.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
@@ -88,3 +89,4 @@ Encore
 ;
 
 module.exports = Encore.getWebpackConfig();
+

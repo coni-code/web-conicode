@@ -68,6 +68,12 @@ nav .links {
     border-radius: 20px;
 }
 
+.links .nav-item.hovered .nav-link {
+    background-color: $primary-red-color;
+    border-radius: 20px;
+    transition: 150ms;
+}
+
 .tooltip {
     position: absolute;
     z-index: 2;
@@ -99,4 +105,5 @@ nav .links {
     visibility: visible;
     opacity: 1;
 }
+
 
