@@ -24,7 +24,8 @@ cacl() {
     php bin/console cache:clear
 }
 
-check() {
-    yarn eslint assets/
+quality() {
+    npx eslint assets/
+    npx stylelint assets/styles/**/*.scss
     vendor/bin/phpstan analyse
 }
