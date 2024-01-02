@@ -3,8 +3,10 @@
 {% block body %}
 
 {{ include('website/navbar/index.html.twig') }}
-{{ include('website/hero/index.html.twig') }}
+<div class="main-container">
+{{ include('website/header/index.html.twig') }}
 {{ include('website/contact/index.html.twig') }}
+</div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
