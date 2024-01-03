@@ -2,12 +2,11 @@
 
 body {
     background-color: $primary-background-color;
-    font-family: 'RobotoSlab';
+    font-family: 'RobotoSlab', serif;
     box-shadow: $body-box-sizing;
     margin: $body-margin;
     padding: $body-padding;
     color: $font-color-white;
-    background-color: $primary-background-color;
     display: flex;
     justify-content: center;
 }
@@ -26,6 +25,7 @@ body {
     border: 2px solid $primary-card-border;
     box-shadow: 0px 0px 3px #000;
     padding: 20px;
+    min-height: 200px;
 }
 .card-desc{
     color: $font-color-grey;

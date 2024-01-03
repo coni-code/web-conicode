@@ -14,6 +14,7 @@ import '@fortawesome/fontawesome-free';
 import "./styles/home/default.scss";
 import "./styles/home/contact.scss";
 import "./styles/home/header.scss";
+import "./styles/home/portfolio.scss";
 
 import './styles/admin/login.scss';
 import './styles/admin/sidebar.scss';
