@@ -9,13 +9,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # Ustawienie Node.js
     - name: Set up Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '14'
 
-    # Ustawienie PHP
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
