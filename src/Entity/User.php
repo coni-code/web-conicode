@@ -30,8 +30,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\JoinTable(name: 'users_meetings')]
     private Collection $meetings;
 
-    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
-    #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'id')]
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
     private ?Member $member = null;
 
     public function __construct()
