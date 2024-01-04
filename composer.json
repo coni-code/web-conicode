@@ -11,6 +11,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.5",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.17",
+        "fakerphp/faker": "^1.23",
         "gedmo/doctrine-extensions": "^3.14",
         "guzzlehttp/guzzle": "^7.8",
         "league/flysystem-bundle": "^3.3",

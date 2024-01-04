@@ -26,7 +26,8 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
     #[ORM\InverseJoinColumn(name: 'trello_boards_members', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $boards;
 
-    #[ORM\OneToOne(mappedBy: 'member', targetEntity: User::class)]
+    #[ORM\OneToOne(inversedBy: 'member', targetEntity: User::class, cascade: ['persist'])]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $user = null;
 
     public function __construct()
