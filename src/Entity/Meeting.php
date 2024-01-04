@@ -2,13 +2,18 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiResource;
 use App\Enum\MeetingStatusEnum;
 use App\Repository\MeetingRepository;
+use App\Service\ApiFilter\MeetingFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ApiResource]
+#[ApiFilter(MeetingFilter::class)]
 #[ORM\Entity(repositoryClass: MeetingRepository::class)]
 class Meeting
 {
