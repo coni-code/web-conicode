@@ -5,7 +5,7 @@
 {% block body %}
     <div class="page">
         <div class="page-header d-flex align-items-center justify-content-between">
-            <h1><i class="fa fa-calendar-alt"></i><span class="text-header">{{ header }}</span></h1>
+            <h1><span class="text-header">{{ header }}</span></h1>
 
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a href="{{ path('dev_admin') }}">{{ 'admin.sidebar.link.dashboard'|trans }}</a></li>
@@ -21,4 +21,8 @@
             {{ include('admin/meeting/_form.html.twig', {'button_label': 'Update'}) }}
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('select2') }}
 {% endblock %}

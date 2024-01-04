@@ -21,6 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('select2', './assets/js/admin/select2.js')
     .addEntry('admin/sidebar', './assets/js/admin/sidebar.js')
     .addEntry('admin/topbar', './assets/js/admin/topbar.js')
     .addEntry('admin/calendar', './assets/js/admin/calendar.js')
@@ -28,6 +29,8 @@ Encore
     .addEntry('website/navbar', './assets/js/website/navbar.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
+    // Enable jquery
+    .autoProvidejQuery()
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
