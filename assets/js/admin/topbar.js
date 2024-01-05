@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const topbartoggle = document.querySelector('#admin-layout .toggle-dropdown');
     const dropdown = document.querySelector('#admin-layout .dropdown-menu');
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     topbartoggle.addEventListener('click', toggleDropdown);
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', event => {
         if (!dropdown.contains(event.target) && !topbartoggle.contains(event.target)) {
             dropdown.classList.remove('show');
         }

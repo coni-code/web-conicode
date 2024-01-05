@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleUserDisabling(statusSelect, usersSelect) {
     const numericValue = parseInt(statusSelect.val(), 10);
     if (numericValue === 0) {
-        usersSelect.prop('disabled', true);
-        usersSelect.val(null).trigger('change');
+        usersSelect.disabled = true;
+        // eslint-disable-next-line no-return-assign
+        Array.from(usersSelect.options).forEach(option => option.selected = false);
     } else {
         usersSelect.prop('disabled', false);
     }
