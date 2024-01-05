@@ -16,6 +16,10 @@ class BoardListPreparer extends AbstractPreparer
     ) {
     }
 
+    /**
+     * @param array $apiDatum
+     * @return BoardList
+     */
     public function prepareOne(array $apiDatum): BoardList
     {
         [

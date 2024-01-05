@@ -27,7 +27,7 @@ class BoardFixtures extends Fixture implements DependentFixtureInterface
             throw new RuntimeException("Invalid member reference");
         }
         $board = BoardFactory::createBoard(
-            $faker->numberBetween(10000,99999),
+            (string)$faker->numberBetween(10000,99999),
             $faker->company()
         );
         $board->setOrganization($organization);

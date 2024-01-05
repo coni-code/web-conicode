@@ -13,6 +13,9 @@ class MemberPreparer extends AbstractPreparer
     {
     }
 
+    /**
+     * @param array $apiDatum
+     */
     public function prepareOne(array $apiDatum): Member
     {
         [

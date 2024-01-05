@@ -1,43 +1,51 @@
-@import "../_variables";
+@import '../variables';
 
 .first-node{
     grid-column: span 2;
 }
+
 .second-node{
     grid-column: span 4;
 }
+
 .third-node{
     grid-column: span 2;
 
 }
+
 .forth-node{
     grid-column: span 4;
 }
+
 .fifth-node{
     grid-column: span 4;
 }
 
 .card-element.hovered{
-    box-shadow: 0 0 10px $primary-red-color; 
+    box-shadow: 0 0 10px $primary-red-color;
     transition: box-shadow 0.3s ease-in-out;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (width <= 500px) {
     .first-node{
         grid-row-start: 2;
         grid-column: span 4;
     }
+
     .second-node{
         grid-row-start: 1;
         grid-column: span 8;
     }
+
     .third-node{
         grid-row-start: 2;
         grid-column: span 4;
     }
+
     .forth-node{
         grid-column: span 8;
     }
+
     .fifth-node{
         grid-column: span 8;
     }
