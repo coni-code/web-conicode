@@ -5,11 +5,17 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
+import $ from 'jquery';
+import select2 from 'select2';
+$.select2 = select2;
+global.$ = global.jQuery = $;
+
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 import 'bootstrap';
 import './styles/home/nav.scss';
 import '@fortawesome/fontawesome-free';
+import 'select2/dist/css/select2.min.css';
 
 import './styles/home/default.scss';
 import './styles/home/contact.scss';
@@ -20,3 +26,4 @@ import './styles/admin/sidebar.scss';
 import './styles/admin/topbar.scss';
 import './styles/admin/content.scss';
 import './styles/admin/calendar.scss';
+import './styles/admin/select2.scss';

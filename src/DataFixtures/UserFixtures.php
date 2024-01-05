@@ -22,6 +22,8 @@ class UserFixtures extends Fixture
             ['ROLE_ADMIN'],
         );
 
+        $this->addReference('user_admin', $user);
+
         $manager->persist($user);
         $manager->flush();
     }
