@@ -55,6 +55,9 @@ abstract class AbstractExecutor
         $em->flush();
     }
 
+    /** @phpstan-ignore-next-line
+     *  ignoring unused method because it may be useful in future development
+     */
     private function getExecutorClassName(): string
     {
         return substr(strrchr(get_class($this), '\\'), 1);

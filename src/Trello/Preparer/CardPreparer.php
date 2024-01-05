@@ -20,6 +20,10 @@ class CardPreparer extends AbstractPreparer
     ) {
     }
 
+    /**
+     * @param array $apiDatum
+     * @return Card
+     */
     public function prepareOne(array $apiDatum): Card
     {
         [
@@ -45,6 +49,7 @@ class CardPreparer extends AbstractPreparer
         }
 
         $members = new ArrayCollection();
+        /** @var array $idMembers */
         foreach ($idMembers as $idMember) {
             if ($member = $this->memberRepository->findOneBy(['id' => $idMember])) {
                 $members->add($member);

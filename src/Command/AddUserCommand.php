@@ -13,7 +13,7 @@ use App\Trello\Preparer\MemberPreparer;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\HelperInterface;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
@@ -43,9 +43,10 @@ class AddUserCommand extends Command
     {
     }
 
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $helper = $this->getHelper('question');
+        $helper = new QuestionHelper();
 
         $email = $this->askEmail("Please enter your email:");
         $email = $helper->ask($input, $output, $email);
@@ -58,7 +59,7 @@ class AddUserCommand extends Command
 
         return $this->createUser($helper, $input, $output, $email);
     }
-    private function updateUser(HelperInterface $helper, InputInterface $input, OutputInterface $output, User $user): int
+    private function updateUser(QuestionHelper $helper, InputInterface $input, OutputInterface $output, User $user): int
     {
         $isChanged = false;
         $io = new SymfonyStyle($input, $output);
@@ -108,7 +109,7 @@ class AddUserCommand extends Command
         }
         return Command::SUCCESS;
     }
-    private function createUser(HelperInterface $helper, InputInterface $input, OutputInterface $output, string $email): int
+    private function createUser(QuestionHelper $helper, InputInterface $input, OutputInterface $output, string $email): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -190,7 +191,7 @@ class AddUserCommand extends Command
     }
     private function askConfirmation(
         string $parameter,
-        HelperInterface $helper,
+        QuestionHelper $helper,
         InputInterface $input,
         OutputInterface $output,
         SymfonyStyle $io,
@@ -208,18 +209,18 @@ class AddUserCommand extends Command
     private function save(User $user, Member $member = null): void
     {
         $entityManager = $this->doctrine->getManager();
-        !$member ?? $entityManager->persist($member);
+        !$member ?: $entityManager->persist($member);
         $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
         $entityManager->persist($user);
         $entityManager->flush();
     }
     private function askTrelloMember(
         SymfonyStyle $io,
-        HelperInterface $helper,
+        QuestionHelper $helper,
         InputInterface $input,
         OutputInterface $output,
         User $user
-    ): Member|int {
+    ): Member {
         $memberId = new Question("Please type your Member ID:");
         $memberId = $helper->ask($input, $output, $memberId);
         if(!$member = $this->memberRepository->findOneBy(['id' => $memberId])) {

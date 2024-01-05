@@ -11,6 +11,10 @@ class OrganizationPreparer extends AbstractPreparer
     {
     }
 
+    /**
+     * @param array $apiDatum
+     * @return Organization
+     */
     public function prepareOne(array $apiDatum): Organization
     {
         [

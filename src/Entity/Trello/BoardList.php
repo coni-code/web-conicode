@@ -88,6 +88,6 @@ class BoardList extends AbstractTrelloEntity implements TrelloEntity
 
     public function __toString(): string
     {
-        return $this->getTrelloId();
+        return $this->getId();
     }
 }

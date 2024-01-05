@@ -33,7 +33,7 @@ class CardFixtures extends Fixture implements DependentFixtureInterface
 
             for ($i = 1; $i <= 10; $i++) {
                 $card = CardFactory::createCard(
-                    $faker->numberBetween(10000,99999),
+                    (string)$faker->numberBetween(10000,99999),
                     'Card - ' . $cardCount, $faker->realText(),
                     $faker->url());
                 $faker->randomElement([0, 1]) ?: $card->addMember($member);
