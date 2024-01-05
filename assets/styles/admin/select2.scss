@@ -1,0 +1,37 @@
+@import '../variables';
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: $primary-lighter-background-color;
+  color: white;
+}
+
+.select2-container--default .select2-results__option--selected {
+  background-color: $primary-light-background-color;
+}
+
+.select2-container--default .select2-dropdown {
+  background-color: $primary-light-background-color;
+}
+
+.select2-results__option .select2-results__option--selectable {
+  color: black;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: $primary-light-background-color;
+  border: none;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: white;
+
+  &:hover {
+    color: white;
+    background-color: transparent;
+  }
+}
+
+.select2-container--default.select2-container--disabled .select2-selection--multiple {
+  background-color: $primary-light-background-color;
+  cursor: not-allowed;
+}
