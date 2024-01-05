@@ -8,8 +8,8 @@
 import $ from 'jquery';
 import select2 from 'select2';
 $.select2 = select2;
-// eslint-disable-next-line no-multi-assign
-global.$ = global.jQuery = $;
+global.$ = $;
+global.jQuery = $;
 
 import './styles/app.scss';
 import 'bootstrap';
