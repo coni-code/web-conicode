@@ -1,4 +1,4 @@
-@import url("../_variables");
+@import url("../_variables.scss");
 
 nav {
     width: 100%;
@@ -13,8 +13,8 @@ nav {
 
 .links {
     background-color: $navbarColor;
-    background-image: 
-        radial-gradient(circle, 
+    background-image:
+        radial-gradient(circle,
         rgb(255 255 255 / 15%) 0%,
         rgb(255 255 255 / 0%) 100%,
         rgb(252 176 69 / 0%) 100%);
