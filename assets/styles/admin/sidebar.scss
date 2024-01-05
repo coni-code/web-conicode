@@ -1,11 +1,13 @@
-@import "../_variables";
+@import url("../_variables.scss");
 
 .sidebar-toggle {
   margin-left: -$sidebar-width;
 }
+
 .sidebar-margin {
   margin-left: $sidebar-width;
 }
+
 .sidebar {
   width: $sidebar-width;
   height: 100%;
@@ -20,6 +22,7 @@
       padding: 0;
       position: relative;
       height: 100px;
+
       .sidebar-logo {
         width: 150px;
         height: 150px;
@@ -28,62 +31,32 @@
         left: 50px;
       }
     }
+
     ul, ul ul {
       margin: -2px 0 0;
       padding: 0;
     }
-    ul {
-      li {
-        list-style-type: none;
-        border-bottom: 1px solid rgba(255,255,255,.05);
-        &.active {
-          & > a {
-            color: $primary-red-color;
-          }
-          ul {
-            display: block;
-          }
-        }
-        a {
-          color: #aeb2b7;
-          text-decoration: none;
-          display: block;
-          padding: 18px 0 18px 25px;
-          font-size: 12px;
-          outline: 0;
-          -webkit-transition: all 200ms ease-in;
-          -moz-transition: all 200ms ease-in;
-          -o-transition: all 200ms ease-in;
-          -ms-transition: all 200ms ease-in;
-          transition: all 200ms ease-in;
-          &:hover {
-            color: $primary-red-color;
-          }
-          span {
-            display: inline-block;
-          }
-          i {
-            width: 20px;
-            .fa-angle-left, .fa-angle-right {
-              padding-top: 3px;
-            }
-          }
-        }
-      }
-    }
+
     ul ul {
       display: none;
+
       li {
         background: #23313f;
         margin-bottom: 0;
         margin-left: 0;
         margin-right: 0;
         border-bottom: none;
+
         a {
           font-size: 12px;
           padding-top: 13px;
           padding-bottom: 13px;
           color: #aeb2b7;
+
+          &:active {
+            color: white;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+          }
         }
       }
     }
