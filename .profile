@@ -14,6 +14,7 @@ console() {
 
 reload() {
     run
+    yarn install
     composer install
     php bin/console do:sch:dr -f --full-database
     php bin/console do:mi:mi -n
