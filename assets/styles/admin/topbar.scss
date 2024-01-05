@@ -1,4 +1,4 @@
-@import "../_variables";
+@import url("../_variables.scss");
 
 #admin-layout {
   .topbar {
@@ -14,9 +14,7 @@
     top: 0;
     left: $sidebar-width;
     z-index: 100;
-  }
 
-  .topbar {
     .user-info {
       display: flex;
       align-items: center;
@@ -40,6 +38,7 @@
         img {
           opacity: .5;
         }
+
         span {
           color: $primary-red-color;
         }
@@ -52,7 +51,7 @@
       top: 50px;
       right: 0;
       background: #293949;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 5px rgb(0 0 0 / 20%);
       z-index: 1;
     }
 
