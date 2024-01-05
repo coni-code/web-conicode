@@ -25,7 +25,7 @@ class BoardListFixtures extends Fixture implements DependentFixtureInterface
 
         foreach ($lists as $list) {
             $boardList = BoardListFactory::createBoardList(
-                $faker->numberBetween(10000,99999),
+                (string)$faker->numberBetween(10000,99999),
                 $list,true);
             $manager->persist($boardList);
             $this->addReference(str_replace(' ', '_', strtolower($list)), $boardList);

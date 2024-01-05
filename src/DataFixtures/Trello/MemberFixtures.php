@@ -24,7 +24,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         }
 
         $member = MemberFactory::createMember(
-            $faker->numberBetween(10000,99999),
+            (string)$faker->numberBetween(10000,99999),
             $faker->hexColor(),
             $faker->imageUrl()
         );

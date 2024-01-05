@@ -1,4 +1,4 @@
-@import url("../_variables.scss");
+@import '../variables';
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
   background-color: $primary-lighter-background-color;

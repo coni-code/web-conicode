@@ -13,7 +13,7 @@ class OrganizationFixtures extends Fixture
     {
         $faker = Faker\Factory::create();
         $organization = OrganizationFactory::createOrganization(
-            $faker->numberBetween(100000,999999),
+            (string)$faker->numberBetween(100000,999999),
             $name = $faker->company(),
             $name,
             $faker->text(120),
