@@ -1,23 +1,23 @@
-document.addEventListener('DOMContentLoaded', function () {
-    let cardElements = document.querySelectorAll('.card-element');
-    let navItems = document.querySelectorAll('.nav-item');
+document.addEventListener('DOMContentLoaded', () => {
+    const cardElements = document.querySelectorAll('.card-element');
+    const navItems = document.querySelectorAll('.nav-item');
 
-    cardElements.forEach(function (element, index) {
-        element.addEventListener('mouseenter', function () {
+    cardElements.forEach((element, index) => {
+        element.addEventListener('mouseenter', () => {
             navItems[index].classList.add('hovered');
         });
 
-        element.addEventListener('mouseleave', function () {
+        element.addEventListener('mouseleave', () => {
             navItems[index].classList.remove('hovered');
         });
     });
 
-    navItems.forEach(function (element, index) {
-        element.addEventListener('mouseenter', function () {
+    navItems.forEach((element, index) => {
+        element.addEventListener('mouseenter', () => {
             cardElements[index].classList.add('hovered');
         });
 
-        element.addEventListener('mouseleave', function () {
+        element.addEventListener('mouseleave', () => {
             cardElements[index].classList.remove('hovered');
         });
     });
