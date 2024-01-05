@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardElements = document.querySelectorAll('.hover-element');
     const navItems = document.querySelectorAll('.nav-item');
 
-    console.log(navItems, cardElements);
     cardElements.forEach((element, index) => {
         element.addEventListener('mouseenter', () => {
             navItems[index].classList.add('hovered');
@@ -23,5 +22,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-
