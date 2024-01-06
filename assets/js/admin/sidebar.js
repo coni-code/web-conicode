@@ -4,19 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
     subMenuLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             const nextSubMenu = this.nextElementSibling;
-            document.querySelectorAll('#leftside-navigation ul ul').forEach(subMenu => {
-                if (subMenu !== nextSubMenu) {
-                    subMenu.style.display = 'none';
+
+            if (nextSubMenu && nextSubMenu.nodeType === 1) {
+                document.querySelectorAll('#leftside-navigation ul ul').forEach(subMenu => {
+                    if (subMenu !== nextSubMenu) {
+                        subMenu.style.display = 'none';
+                    }
+                });
+
+                if (window.getComputedStyle(nextSubMenu).display === 'none') {
+                    nextSubMenu.style.display = 'block';
+                } else {
+                    nextSubMenu.style.display = 'none';
                 }
-            });
 
-            if (window.getComputedStyle(nextSubMenu).display === 'none') {
-                nextSubMenu.style.display = 'block';
-            } else {
-                nextSubMenu.style.display = 'none';
+                e.stopPropagation();
             }
-
-            e.stopPropagation();
         });
     });
 });
