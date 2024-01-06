@@ -26,4 +26,5 @@ import './styles/admin/sidebar.scss';
 import './styles/admin/topbar.scss';
 import './styles/admin/content.scss';
 import './styles/admin/calendar.scss';
+import './styles/admin/detail.scss';
 import './styles/overrides/select2.scss';
