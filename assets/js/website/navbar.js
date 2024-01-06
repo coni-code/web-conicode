@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const cardElements = document.querySelectorAll('.card-element');
+    const cardElements = document.querySelectorAll('.hover-element');
     const navItems = document.querySelectorAll('.nav-item');
 
     cardElements.forEach((element, index) => {
@@ -22,4 +22,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
