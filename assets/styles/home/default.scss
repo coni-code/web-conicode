@@ -24,6 +24,9 @@ body {
     border-radius: 20px;
     background-color: $primary-background-color2;
     padding: 20px;
+    img{
+        max-width: 100%;
+    }
 }
 
 .card-desc{

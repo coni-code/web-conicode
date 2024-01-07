@@ -10,7 +10,6 @@
 
 .third-node{
     grid-column: span 2;
-
 }
 
 .forth-node{
@@ -20,13 +19,23 @@
 .fifth-node{
     grid-column: span 4;
 }
-
-.card-element.hovered{
-    box-shadow: 0 0 20px $primary-red-color;
-    transition: box-shadow 0.3s ease-in-out;
+.logo_box{
+    overflow: hidden;
 }
+.logo{
+    filter: grayscale(90%);
+    opacity: 60%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translate(-10%,15%);
+}
+@media screen and (max-width: 500px) {
+    .card-element.hovered{
+        box-shadow: 0 0 20px $primary-red-color;
+        transition: box-shadow 0.3s ease-in-out;
+    }
 
-@media screen and (width <= 500px) {
     .first-node{
         grid-row-start: 2;
         grid-column: span 4;
