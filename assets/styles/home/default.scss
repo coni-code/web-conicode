@@ -1,16 +1,16 @@
-@import "../_variables";
+@import '../variables';
 
 body {
     background-color: $primary-background-color;
-    font-family: 'RobotoSlab';
+    font-family: RobotoSlab, serif;
     box-shadow: $body-box-sizing;
     margin: $body-margin;
     padding: $body-padding;
     color: $font-color-white;
-    background-color: $primary-background-color;
     display: flex;
     justify-content: center;
 }
+
 .main-container{
     padding-top: 70px;
     width: 80%;
@@ -22,14 +22,13 @@ body {
 .card-element{
     position: relative;
     border-radius: 20px;
-    background-color: $primary-card-color;
-    border: 2px solid $primary-card-border;
-    box-shadow: 0px 0px 3px #000;
+    background-color: $primary-background-color2;
     padding: 20px;
     img{
         max-width: 100%;
     }
 }
+
 .card-desc{
     color: $font-color-grey;
     font-size: small;
@@ -40,6 +39,7 @@ body {
     padding: 0;
     margin: 0;
 }
+
 .btn-01{
     text-align: center;
     padding: 12px;
@@ -60,7 +60,7 @@ body {
 }
 
 .btn-01:active {
-    background-color: #00000000;
+    background-color: #0000;
     color: $primary-red-color;
     border-color: $primary-red-color;
 }

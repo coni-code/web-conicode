@@ -1,0 +1,15 @@
+@import "../variables";
+
+#admin-layout > .table > :not(caption) > * > * {
+  background-color: transparent;
+}
+
+#admin-layout > .table {
+  tr {
+    border-bottom: 3px solid $primary-background-color;
+  }
+  
+  tr > td, tr > th {
+    color: white;
+  }
+}

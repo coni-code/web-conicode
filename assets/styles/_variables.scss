@@ -1,47 +1,49 @@
-//variables
+/* Variables */
 
-// Background colors:
+/* Background colors */
 $primary-lighter-background-color: #1c3d61;
 $primary-light-background-color: #11243a;
-$primary-background-color: #0e0e11;
+$primary-background-color: #0b1826;
+$primary-background-color2: #162233;
 $primary-dark-background-color: #050c12;
 $primary-grey-background-color: #212121;
 $secondary-background-color: #0e0e30;
 
-// card colors
-$primary-card-color: #1c1a1e;
-$primary-card-border: #2f2e31;
-// Colors
+/* Colors */
 $primary-red-color: #BB004B;
 $primary-yellow-color: #F2AF29;
 $primary-green-color: #4F772D;
 $primary-blue-color: #4169e1;
+$success-color: #198754;
+$success2-color: #146c43;
+$warning-color: #ffc107;
+$warning2-color: #c18c20;
 
-// Lines color:
+/* Lines color */
 $nav-separator-color: #ffd900;
 $silver-line-color: #C0C0C0;
 
-// Button colors:
+/* Button colors */
 $buttonColor: #9a1c1c;
-$button-hover: rgba(169, 169, 169, 0.29);
+$button-hover: rgb(169 169 169 / 29%);
 
-// Hover colors:
+/* Hover colors */
 $glowButtonColor: #e60000;
 $nav-hover-effect: #0e0e3061;
 
-// Text colors:
+/* Text colors */
 $font-color-white: #FBFBFB;
 $font-color-yellow: #F2AF29;
 $font-color-grey: #b1b1b1;
 
-// Body start values:
+/* Body start values */
 $body-margin: 0;
 $body-padding: 0;
 $body-box-sizing: border-box;
 
-// Navbar Colors:
+/* Navbar Colors */
 $navbarColor: #0b182671;
 $border-navbar-color: #3d3d3d80;
 
-// Admin dashboard:
+/* Admin dashboard */
 $sidebar-width: 240px;

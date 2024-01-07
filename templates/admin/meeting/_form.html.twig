@@ -38,7 +38,7 @@
                 {{ form_label(form.status, 'admin.form.meeting.status'|trans) }}
                 {{ form_widget(form.status, {
                     'attr': {
-                        'class': 'form-control form-select meeting-status-select'
+                        'class': 'form-control form-select meeting-status-select select2-enable'
                     }
                 }) }}
             </div>
@@ -48,8 +48,7 @@
                 {{ form_label(form.users, 'admin.form.meeting.users'|trans) }}
                 {{ form_widget(form.users, {
                     'attr': {
-                        'class': 'form-control form-select meeting-users-select',
-                        'size': 1,
+                        'class': 'form-control form-select meeting-users-select select2-enable',
                     }
                 }) }}
             </div>
