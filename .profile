@@ -15,14 +15,18 @@ console() {
     php bin/console "$@"
 }
 
+# Reload database
+db() {
+    php bin/console doctrine:database:drop --force
+    php bin/console doctrine:database:create
+    php bin/console doctrine:migrations:migrate -n
+    php bin/console doctrine:fixtures:load -n
+}
+
 # Reload whole project
 reload() {
-    run
-    yarn install
     composer install
-    php bin/console do:sch:dr -f --full-database
-    php bin/console do:mi:mi -n
-    php bin/console do:fi:lo -n
+    db
     yarn build
 }
 
