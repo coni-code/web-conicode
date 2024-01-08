@@ -19,9 +19,11 @@
 .fifth-node{
     grid-column: span 4;
 }
-.logo_box{
+
+.logo-box{
     overflow: hidden;
 }
+
 .logo{
     filter: grayscale(90%);
     opacity: 60%;
@@ -30,7 +32,8 @@
     bottom: 0;
     transform: translate(-10%,15%);
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (width <= 500px) {
     .card-element.hovered{
         box-shadow: 0 0 20px $primary-red-color;
         transition: box-shadow 0.3s ease-in-out;
