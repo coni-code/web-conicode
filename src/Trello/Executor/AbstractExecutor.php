@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Trello\Executor;
 
 use App\Entity\Trello\TrelloEntity;
@@ -32,7 +34,7 @@ abstract class AbstractExecutor
         try {
             $this->doExecute($input, $output);
         } catch (Throwable $exception) {
-            throw new Exception($exception);
+            throw new Exception($exception->getMessage(), $exception->getCode());
         }
     }
 
