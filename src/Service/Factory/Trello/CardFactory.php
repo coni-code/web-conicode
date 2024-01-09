@@ -12,9 +12,8 @@ class CardFactory
         string $id,
         string $name,
         string $description,
-        string $url
-    ): Card
-    {
+        string $url,
+    ): Card {
         $card = new Card();
         $card->setId($id);
         $card->setName($name);

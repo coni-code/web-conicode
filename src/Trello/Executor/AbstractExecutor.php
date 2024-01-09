@@ -6,12 +6,10 @@ namespace App\Trello\Executor;
 
 use App\Entity\Trello\TrelloEntity;
 use Doctrine\Common\Collections\Collection;
-use Exception;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\Service\Attribute\Required;
-use Throwable;
 
 abstract class AbstractExecutor
 {
@@ -27,14 +25,14 @@ abstract class AbstractExecutor
     abstract public function doExecute(?InputInterface $input, ?OutputInterface $output);
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     final public function execute(?InputInterface $input, ?OutputInterface $output): void
     {
         try {
             $this->doExecute($input, $output);
-        } catch (Throwable $exception) {
-            throw new Exception($exception->getMessage(), $exception->getCode());
+        } catch (\Throwable $exception) {
+            throw new \Exception($exception->getMessage(), $exception->getCode());
         }
     }
 

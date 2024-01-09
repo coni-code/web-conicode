@@ -71,6 +71,7 @@ class MeetingController extends AbstractController
             'form' => $form,
         ]);
     }
+
     #[Route('/{id}/details', name: 'meeting_details', methods: ['GET'])]
     public function details(Meeting $meeting): Response
     {

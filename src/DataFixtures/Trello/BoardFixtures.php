@@ -11,7 +11,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
-use RuntimeException;
 
 class BoardFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -21,16 +20,16 @@ class BoardFixtures extends Fixture implements DependentFixtureInterface
         $organization = $this->getReference('trello_organization', Organization::class);
 
         if (!$organization instanceof Organization) {
-            throw new RuntimeException("Invalid board reference");
+            throw new \RuntimeException('Invalid board reference');
         }
         $member = $this->getReference('trello_member', Member::class);
 
         if (!$member instanceof Member) {
-            throw new RuntimeException("Invalid member reference");
+            throw new \RuntimeException('Invalid member reference');
         }
         $board = BoardFactory::createBoard(
-            (string)$faker->numberBetween(10000,99999),
-            $faker->company()
+            (string) $faker->numberBetween(10000, 99999),
+            $faker->company(),
         );
         $board->setOrganization($organization);
         $board->addMember($member);
@@ -44,7 +43,7 @@ class BoardFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             OrganizationFixtures::class,
-            MemberFixtures::class
+            MemberFixtures::class,
         ];
     }
 }

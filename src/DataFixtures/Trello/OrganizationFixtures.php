@@ -15,11 +15,11 @@ class OrganizationFixtures extends Fixture
     {
         $faker = Faker\Factory::create();
         $organization = OrganizationFactory::createOrganization(
-            (string)$faker->numberBetween(100000,999999),
+            (string) $faker->numberBetween(100000, 999999),
             $name = $faker->company(),
             $name,
             $faker->text(120),
-            $faker->url()
+            $faker->url(),
         );
         $this->addReference('trello_organization', $organization);
         $manager->persist($organization);

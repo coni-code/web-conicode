@@ -10,9 +10,8 @@ class BoardFactory
 {
     public static function createBoard(
         string $id,
-        string $name
-    ): Board
-    {
+        string $name,
+    ): Board {
         $board = new Board();
         $board->setId($id);
         $board->setName($name);

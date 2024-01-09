@@ -11,9 +11,8 @@ class MemberFactory
     public static function createMember(
         string $id,
         string $avatarHash,
-        string $avatarUrl
-    ): Member
-    {
+        string $avatarUrl,
+    ): Member {
         $member = new Member();
         $member->setAvatarHash($avatarHash);
         $member->setAvatarUrl($avatarUrl);

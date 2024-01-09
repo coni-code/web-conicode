@@ -10,7 +10,6 @@ class MemberFetcher extends AbstractFetcher
     private const MEMBER = 'members/{id}';
 
     /**
-     * @param string $id
      * @return array<string>
      */
     public function getMember(string $id): array
@@ -22,7 +21,6 @@ class MemberFetcher extends AbstractFetcher
     }
 
     /**
-     * @param string $id
      * @return array<string>
      */
     public function getMembersIdFromBoard(string $id): array
@@ -30,12 +28,11 @@ class MemberFetcher extends AbstractFetcher
         return $this->client->get(
             self::MEMBERS,
             $id,
-            ['id']
+            ['id'],
         );
     }
 
     /**
-     * @param string $id
      * @return array<string>
      */
     public function getMembersFromBoard(string $id): array

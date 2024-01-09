@@ -38,6 +38,7 @@ class SaveTrelloDataCommand extends Command
         $this->memberExecutor->execute($input, $output);
         $this->boardListExecutor->execute($input, $output);
         $this->cardExecutor->execute($input, $output);
+
         return Command::SUCCESS;
     }
 }

@@ -11,7 +11,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
-use RuntimeException;
 
 class CardFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -22,7 +21,7 @@ class CardFixtures extends Fixture implements DependentFixtureInterface
         $member = $this->getReference('trello_member', Member::class);
 
         if (!$member instanceof Member) {
-            throw new RuntimeException("Invalid member reference");
+            throw new \RuntimeException('Invalid member reference');
         }
 
         $cardCount = 1;
@@ -30,18 +29,20 @@ class CardFixtures extends Fixture implements DependentFixtureInterface
             $boardList = $this->getReference($list, BoardList::class);
 
             if (!$boardList instanceof BoardList) {
-                throw new RuntimeException("Invalid list reference");
+                throw new \RuntimeException('Invalid list reference');
             }
 
-            for ($i = 1; $i <= 10; $i++) {
+            for ($i = 1; $i <= 10; ++$i) {
                 $card = CardFactory::createCard(
-                    (string)$faker->numberBetween(10000,99999),
-                    'Card - ' . $cardCount, $faker->realText(),
-                    $faker->url());
+                    (string) $faker->numberBetween(10000, 99999),
+                    'Card - ' . $cardCount,
+                    $faker->realText(),
+                    $faker->url(),
+                );
                 $faker->randomElement([0, 1]) ?: $card->addMember($member);
                 $card->setBoardList($boardList);
                 $manager->persist($card);
-                $cardCount++;
+                ++$cardCount;
             }
         }
         $manager->flush();
@@ -51,7 +52,7 @@ class CardFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             BoardListFixtures::class,
-            MemberFixtures::class
+            MemberFixtures::class,
         ];
     }
 }

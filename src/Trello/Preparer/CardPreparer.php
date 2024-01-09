@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace App\Trello\Preparer;
 
-use App\Entity\Trello\Board;
 use App\Entity\Trello\Card;
 use App\Repository\Trello\BoardListRepository;
-use App\Repository\Trello\BoardRepository;
 use App\Repository\Trello\CardRepository;
 use App\Repository\Trello\MemberRepository;
-use App\Repository\Trello\OrganizationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class CardPreparer extends AbstractPreparer
@@ -22,10 +19,6 @@ class CardPreparer extends AbstractPreparer
     ) {
     }
 
-    /**
-     * @param array $apiDatum
-     * @return Card
-     */
     public function prepareOne(array $apiDatum): Card
     {
         [
@@ -38,7 +31,7 @@ class CardPreparer extends AbstractPreparer
         ] = $apiDatum;
 
         if (!$card = $this->cardRepository->findOneBy(['id' => $id])) {
-            $card = new Card;
+            $card = new Card();
             $card->setId($id);
         }
 

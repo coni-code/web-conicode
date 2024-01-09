@@ -26,12 +26,12 @@ class MeetingType extends AbstractType
             ->add('startDate', DateTimeType::class)
             ->add('endDate', DateTimeType::class)
             ->add('status', ChoiceType::class, [
-                'choices' => MeetingStatusEnum::getChoices()
+                'choices' => MeetingStatusEnum::getChoices(),
             ])
             ->add('users', EntityType::class, [
                 'class' => User::class,
                 'required' => false,
-                'multiple' => true
+                'multiple' => true,
             ])
         ;
     }

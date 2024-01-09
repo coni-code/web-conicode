@@ -11,7 +11,7 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\MappedSuperclass]
-#[Gedmo\SoftDeleteable(fieldName: "deletedAt", timeAware: true, hardDelete: false)]
+#[Gedmo\SoftDeleteable(fieldName: 'deletedAt', timeAware: true, hardDelete: false)]
 abstract class AbstractTrelloEntity
 {
     use SoftDeleteableEntity;

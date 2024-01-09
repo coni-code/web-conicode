@@ -10,7 +10,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
-use RuntimeException;
 
 class BoardListFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -22,13 +21,15 @@ class BoardListFixtures extends Fixture implements DependentFixtureInterface
         $board = $this->getReference('trello_board', Board::class);
 
         if (!$board instanceof Board) {
-            throw new RuntimeException("Invalid board reference");
+            throw new \RuntimeException('Invalid board reference');
         }
 
         foreach ($lists as $list) {
             $boardList = BoardListFactory::createBoardList(
-                (string)$faker->numberBetween(10000,99999),
-                $list,true);
+                (string) $faker->numberBetween(10000, 99999),
+                $list,
+                true,
+            );
             $manager->persist($boardList);
             $this->addReference(str_replace(' ', '_', strtolower($list)), $boardList);
             $boardList->setBoard($board);
@@ -40,7 +41,7 @@ class BoardListFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            BoardFixtures::class
+            BoardFixtures::class,
         ];
     }
 }
