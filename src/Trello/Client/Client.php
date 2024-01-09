@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Trello\Client;
 
 use GuzzleHttp\ClientInterface;

@@ -2,8 +2,11 @@
 
 namespace App\Trello\Executor;
 
+use App\Exception\AvatarDownloadException;
+use App\Exception\TrelloStorageException;
 use App\Repository\Trello\BoardRepository;
 use App\Trello\Client\Config;
+use App\Trello\Downloader\MemberAvatarDownloader;
 use App\Trello\Fetcher\MemberFetcher;
 use App\Trello\Preparer\MemberPreparer;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,9 +19,14 @@ class MemberExecutor extends AbstractExecutor
         private readonly MemberPreparer $preparer,
         private readonly BoardRepository $boardRepository,
         private readonly Config $config,
+        private readonly MemberAvatarDownloader $downloader,
     ) {
     }
 
+    /**
+     * @throws AvatarDownloadException
+     * @throws TrelloStorageException
+     */
     public function doExecute(?InputInterface $input, ?OutputInterface $output): void
     {
         if (!$this->config->getBoardId()) {
@@ -29,7 +37,10 @@ class MemberExecutor extends AbstractExecutor
         $memberData = $this->fetcher->getMembersFromBoard($this->config->getBoardId());
         $members = $this->preparer->prepare($memberData);
         $members = $this->preparer->addBoard($members, $board);
-
         $this->save($members);
+
+        $this->downloader->downloadAvatars($members);
     }
+
+
 }

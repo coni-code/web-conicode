@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Trello\Preparer;
 
 use App\Entity\Trello\Board;
@@ -15,6 +17,7 @@ class MemberPreparer extends AbstractPreparer
 
     /**
      * @param array $apiDatum
+     * @return Member
      */
     public function prepareOne(array $apiDatum): Member
     {
