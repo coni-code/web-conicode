@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Trello\Executor;
 
 use App\Exception\AvatarDownloadException;
@@ -41,6 +43,4 @@ class MemberExecutor extends AbstractExecutor
 
         $this->downloader->downloadAvatars($members);
     }
-
-
 }

@@ -12,8 +12,7 @@ class BoardListFactory
         string $id,
         string $name,
         bool $visible,
-    ): BoardList
-    {
+    ): BoardList {
         $boardList = new BoardList();
         $boardList->setId($id);
         $boardList->setName($name);

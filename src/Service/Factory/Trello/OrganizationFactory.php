@@ -13,7 +13,7 @@ class OrganizationFactory
         string $name,
         string $displayName,
         string $description,
-        string $url
+        string $url,
     ): Organization {
         $organization = new Organization();
 

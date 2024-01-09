@@ -15,10 +15,6 @@ class MemberPreparer extends AbstractPreparer
     {
     }
 
-    /**
-     * @param array $apiDatum
-     * @return Member
-     */
     public function prepareOne(array $apiDatum): Member
     {
         [
@@ -39,8 +35,6 @@ class MemberPreparer extends AbstractPreparer
     }
 
     /**
-     * @param Collection $members
-     * @param Board $board
      * @return Collection<Member>
      */
     public function addBoard(Collection $members, Board $board): Collection

@@ -54,5 +54,6 @@ stylelint() {
 quality() {
     npx eslint assets/
     npx stylelint assets/styles/**/*.scss
+    vendor/bin/php-cs-fixer fix --diff --allow-risky=yes
     vendor/bin/phpstan analyse
 }

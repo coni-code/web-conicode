@@ -34,7 +34,7 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
 
     public function __construct()
     {
-        $this->cards  = new ArrayCollection();
+        $this->cards = new ArrayCollection();
         $this->boards = new ArrayCollection();
     }
 

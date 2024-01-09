@@ -7,9 +7,8 @@ namespace App\Trello\Downloader;
 use App\Entity\Trello\Member;
 use App\Exception\AvatarDownloadException;
 use App\Exception\TrelloStorageException;
-use App\Trello\Client\Config;
-use GuzzleHttp\Client;
 use Doctrine\Common\Collections\Collection;
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
@@ -24,7 +23,7 @@ class MemberAvatarDownloader
 
     /**
      * @param Collection<Member> $members
-     * @return bool
+     *
      * @throws TrelloStorageException
      * @throws AvatarDownloadException
      */
@@ -37,7 +36,7 @@ class MemberAvatarDownloader
 
             try {
                 $response = $this->client->get(sprintf('%s/170.png', $avatarUrl));
-                if ($response->getStatusCode() === 200) {
+                if (200 === $response->getStatusCode()) {
                     $imageContent = $response->getBody()->getContents();
                     $this->trelloStorage->write('avatars/' . $member->getAvatarHash() . '.png', $imageContent);
                 }

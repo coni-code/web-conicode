@@ -13,7 +13,7 @@ class UserFactory
         UserPasswordHasherInterface $passwordHasher,
         string $email,
         string $password,
-        array $roles
+        array $roles,
     ): User {
         $user = new User();
 

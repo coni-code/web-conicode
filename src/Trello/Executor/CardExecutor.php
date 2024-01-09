@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\Trello\Executor;
 
 use App\Trello\Client\Config;
-use App\Trello\Fetcher\BoardFetcher;
 use App\Trello\Fetcher\CardFetcher;
-use App\Trello\Preparer\BoardPreparer;
 use App\Trello\Preparer\CardPreparer;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

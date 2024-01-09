@@ -16,10 +16,6 @@ class BoardPreparer extends AbstractPreparer
     ) {
     }
 
-    /**
-     * @param array $apiDatum
-     * @return Board
-     */
     public function prepareOne(array $apiDatum): Board
     {
         [

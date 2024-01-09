@@ -20,30 +20,30 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ORM\Entity(repositoryClass: MeetingRepository::class)]
 class Meeting
 {
-    #[Groups("read")]
+    #[Groups('read')]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Groups("read")]
+    #[Groups('read')]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[Groups("read")]
+    #[Groups('read')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $startDate = null;
 
-    #[Groups("read")]
+    #[Groups('read')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $endDate = null;
 
-    #[Groups("read")]
+    #[Groups('read')]
     #[ORM\Column(type: Types::STRING, enumType: MeetingStatusEnum::class, options: [
-        "default" => MeetingStatusEnum::STATUS_PENDING
+        'default' => MeetingStatusEnum::STATUS_PENDING,
     ])]
     private MeetingStatusEnum $status = MeetingStatusEnum::STATUS_PENDING;
 

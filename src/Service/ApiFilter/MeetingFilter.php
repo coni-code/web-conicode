@@ -7,9 +7,7 @@ namespace App\Service\ApiFilter;
 use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
-use DateTime;
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\Validator\Constraints\Date;
 
 class MeetingFilter extends AbstractFilter
 {
@@ -25,7 +23,7 @@ class MeetingFilter extends AbstractFilter
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
         Operation $operation = null,
-        array $context = []
+        array $context = [],
     ): void {
         if (!$value) {
             return;
@@ -87,7 +85,7 @@ class MeetingFilter extends AbstractFilter
                 'type' => 'datetime',
                 'required' => false,
                 'description' => 'Filter meetings after or on this date',
-            ]
+            ],
         ];
     }
 }

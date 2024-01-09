@@ -22,6 +22,7 @@ class LanguageController extends AbstractController
             default    => $this->redirect($request->headers->get('referer')),
         };
     }
+
     #[Route('/admin', name: 'admin_changer', methods: ['GET'])]
     public function changeAdminLanguage(Request $request): Response
     {

@@ -25,6 +25,7 @@ class SaveOrganizationCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->executor->execute($input, $output);
+
         return Command::SUCCESS;
     }
 }
