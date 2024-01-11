@@ -1,17 +1,5 @@
-.first-portfolio-node{
-    grid-column: span 3;
-}
-.third-portfolio-node{
-    grid-row: span 2;
-}
-.forth-portfolio-node{
-    grid-row: span 2;
-    grid-column: span 2;
-}
-.sixth-portfolio-node{
-    grid-row: span 2;
-    grid-column: span 4;
-}
-.ninth-portfolio-node{
-    grid-column: span 3;
+#portfolio{
+    grid-column: span 8;
+    height: 600px;
+    overflow: hidden;
 }
