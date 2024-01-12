@@ -17,7 +17,7 @@ import './styles/home/nav.scss';
 import '@fortawesome/fontawesome-free';
 import 'select2/dist/css/select2.min.css';
 
-import './styles/home/default.scss';
+import './styles/home/index.scss';
 import './styles/home/contact.scss';
 import './styles/home/header.scss';
 
