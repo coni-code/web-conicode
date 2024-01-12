@@ -1,5 +1,4 @@
 const Encore = require('@symfony/webpack-encore');
-
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -27,6 +26,7 @@ Encore
     .addEntry('admin/calendar', './assets/js/admin/calendar.js')
     .addEntry('admin/meeting-form', './assets/js/admin/meeting-form.js')
     .addEntry('website/navbar', './assets/js/website/navbar.js')
+    .addEntry('website/particles', './assets/js/website/particles.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
     // Enable jquery
@@ -75,6 +75,11 @@ Encore
     .copyFiles({
         from: './assets/image',
         to: 'images/[path][name].[ext]',
+    })
+
+    .copyFiles({
+        from: './assets/libs/particles',
+        to: 'libs/particles/[name].[ext]',
     })
 
     // uncomment if you use TypeScript
