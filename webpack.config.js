@@ -26,7 +26,7 @@ Encore
     .addEntry('admin/calendar', './assets/js/admin/calendar.js')
     .addEntry('admin/meeting-form', './assets/js/admin/meeting-form.js')
     .addEntry('website/navbar', './assets/js/website/navbar.js')
-    .addEntry('website/particles', './assets/js/website/particles.js')
+    .addEntry('particles', './assets/js/particles.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
     // Enable jquery
