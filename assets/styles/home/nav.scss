@@ -13,11 +13,10 @@ nav {
 
 .links {
     background-color: $navbarColor;
-    background-image:
-        radial-gradient(circle,
-        rgb(255 255 255 / 15%) 0%,
-        rgb(255 255 255 / 0%) 100%,
-        rgb(252 176 69 / 0%) 100%);
+    background-image: radial-gradient(circle, 
+        rgb(187 0 75 / 75%) 0%, 
+        rgb(255 255 255 / 0%) 75%, 
+        rgb(252 176 69 / 0%) 75%);
     border-radius:20px;
     padding: 4px 12px;
     backdrop-filter: blur(5px);
@@ -74,36 +73,41 @@ nav .links {
     transition: 150ms;
 }
 
-.tooltip {
+.nav-lang span {
+    cursor: pointer;
+}
+
+.home-dropdown-menu {
+    display: none;
     position: absolute;
-    z-index: 2;
-    visibility: hidden;
-    opacity: 0;
-    background-color: $primary-red-color;
-    border-radius: 10px;
-    padding: 3px 5px;
+    top: 50px;
+    right: 0;
+    background: #293949;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    z-index: 1;
+    border-radius: 20px;
+    padding: 1rem;
+
+    .nav-lang-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+}
+
+.home-dropdown-menu li {
+    list-style: none;
+}
+
+.home-dropdown-menu a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition: 150ms;
     color: $font-color-white;
-    box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
-    top: 120%;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.nav-lang-link .tooltip::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent $primary-red-color transparent;
-  }
-
-.nav-lang-link:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
+.home-dropdown-menu a:hover {
+    background-color: $primary-red-color;
+    border-radius: 20px;
 }
-
-
