@@ -14,7 +14,7 @@ nav {
 .links {
     background-color: $navbarColor;
     background-image: radial-gradient(circle, 
-        rgb(187 0 75 / 75%) 0%, 
+        transparent, 
         rgb(255 255 255 / 0%) 75%, 
         rgb(252 176 69 / 0%) 75%);
     border-radius:20px;
@@ -110,4 +110,18 @@ nav .links {
 .home-dropdown-menu a:hover {
     background-color: $primary-red-color;
     border-radius: 20px;
+}
+
+$glow-nav-effect-width: 560px;
+
+.glow-nav-effect {   
+    position: fixed;
+    top: -1px;
+    left: calc(50% - ($glow-nav-effect-width/2));
+    width: $glow-nav-effect-width;
+    height: 1px;
+    z-index: -1;
+    box-shadow: 0px 0px 140px 80px $primary-red-color;
+    background: transparent;
+    border: none;
 }
