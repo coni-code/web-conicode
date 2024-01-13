@@ -121,7 +121,7 @@ $glow-nav-effect-width: 560px;
     width: $glow-nav-effect-width;
     height: 1px;
     z-index: -1;
-    box-shadow: 0px 0px 140px 80px $primary-red-color;
+    box-shadow: 0 0 140px 80px $primary-red-color;
     background: transparent;
     border: none;
 }
