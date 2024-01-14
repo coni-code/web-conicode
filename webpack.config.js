@@ -20,6 +20,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('admin/app', './assets/app-admin.js')
     .addEntry('select2', './assets/js/admin/select2.js')
     .addEntry('admin/sidebar', './assets/js/admin/sidebar.js')
     .addEntry('admin/topbar', './assets/js/admin/topbar.js')
