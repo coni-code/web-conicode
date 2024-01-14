@@ -8,8 +8,9 @@ use App\Entity\Meeting;
 use App\Entity\User;
 use App\Form\MeetingType;
 use App\Repository\MeetingRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\MeetingService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/meeting', name: 'dev_')]
 class MeetingController extends AbstractController
 {
+    public function __construct(
+        private readonly MeetingService $service,
+    ) {
+    }
+
     #[Route('/', name: 'meeting_index', methods: ['GET'])]
     public function index(MeetingRepository $meetingRepository): Response
     {
@@ -26,7 +32,7 @@ class MeetingController extends AbstractController
     }
 
     #[Route('/new', name: 'meeting_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request): Response
     {
         $meeting = new Meeting();
         $form = $this->createForm(MeetingType::class, $meeting);
@@ -35,15 +41,7 @@ class MeetingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Meeting $meeting */
             $meeting = $form->getData();
-
-            /** @var User $user */
-            foreach ($meeting->getUsers() as $user) {
-                $user->addMeeting($meeting);
-                $entityManager->persist($user);
-            }
-
-            $entityManager->persist($meeting);
-            $entityManager->flush();
+            $this->service->handleFormData($meeting);
 
             return $this->redirectToRoute('dev_meeting_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -55,13 +53,16 @@ class MeetingController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'meeting_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Meeting $meeting, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Meeting $meeting): Response
     {
         $form = $this->createForm(MeetingType::class, $meeting);
         $form->handleRequest($request);
+        $subscribedServices = $this::getSubscribedServices();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            /** @var Meeting $meeting */
+            $meeting = $form->getData();
+            $this->service->handleFormData($meeting);
 
             return $this->redirectToRoute('dev_meeting_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -78,5 +79,18 @@ class MeetingController extends AbstractController
         return $this->render('admin/meeting/details.html.twig', [
             'meeting' => $meeting,
         ]);
+    }
+
+    #[Route('/{id}/toggle-user', methods: ['POST'])]
+    public function toggleUser(Meeting $meeting): JsonResponse
+    {
+        $user = $this->getUser();
+        if ($user instanceof User) {
+            $this->service->toggleUser($user, $meeting);
+
+            return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
+        }
+
+        return new JsonResponse(['status' => 'error'], Response::HTTP_BAD_REQUEST);
     }
 }

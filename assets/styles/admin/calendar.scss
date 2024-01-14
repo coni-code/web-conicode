@@ -1,6 +1,32 @@
 @import '../variables';
 
 #admin-layout {
+  .full-calendar-card {
+    display: flex;
+
+    #full-calendar {
+      width: 65%;
+    }
+
+    .full-calendar-details {
+      width: 35%;
+    }
+  }
+
+  @media screen and (width <= 1600px){
+    .full-calendar-card {
+      flex-direction: column;
+
+      #full-calendar {
+        width: 100%;
+      }
+
+      .full-calendar-details {
+        width: 100%;
+      }
+    }
+  }
+
   #full-calendar {
     max-width: 100%;
     margin: 10px;
@@ -63,6 +89,42 @@
 
     .fc-event-pending, .fc-event-dot-pending {
       background-color: $warning2-color;
+    }
+
+    .fc-event-main-frame {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .fc-event-main-content {
+        display: flex;
+        width: 100%;
+      }
+
+      .member-avatar-container {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: end;
+        width: 100%;
+        padding: 2px;
+      }
+
+      .member-sm-avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 2px;
+      }
+
+      .count-sm-avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        color: white;
+        font-weight: bolder;
+        text-align: center;
+        background-color: $primary-grey-background-color;
+      }
     }
 
     a {

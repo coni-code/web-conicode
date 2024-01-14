@@ -1,3 +1,5 @@
+import {handleDropdown} from '../dropdown';
+
 document.addEventListener('DOMContentLoaded', () => {
     const topbartoggle = document.querySelector('#admin-layout .toggle-dropdown');
     const dropdown = document.querySelector('#admin-layout .dropdown-menu');
@@ -13,4 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdown.classList.remove('show');
         }
     });
+
+    handleDropdown();
 });

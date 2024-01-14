@@ -4,4 +4,4 @@ flysystem:
         trello.storage:
             adapter: 'local'
             options:
-                directory: '%kernel.project_dir%/var/storage/trello'
+                directory: '%kernel.project_dir%/public/static/trello'

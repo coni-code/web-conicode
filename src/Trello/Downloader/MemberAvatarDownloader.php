@@ -38,7 +38,7 @@ class MemberAvatarDownloader
                 $response = $this->client->get(sprintf('%s/170.png', $avatarUrl));
                 if (200 === $response->getStatusCode()) {
                     $imageContent = $response->getBody()->getContents();
-                    $this->trelloStorage->write('avatars/' . $member->getAvatarHash() . '.png', $imageContent);
+                    $this->trelloStorage->write('avatar/' . $member->getAvatarHash() . '.png', $imageContent);
                 }
             } catch (GuzzleException $exception) {
                 throw new AvatarDownloadException($exception->getMessage(), $exception->getCode(), $exception);

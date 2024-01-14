@@ -235,7 +235,7 @@ class AddUserCommand extends Command
             $apiDatum = $this->fetcher->getMember($memberId);
             $member = $this->preparer->prepareOne($apiDatum);
         }
-        $user->setMember($member);
+        $member->setUser($user);
 
         return $member;
     }

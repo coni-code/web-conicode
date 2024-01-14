@@ -6,6 +6,7 @@ import {getLocale} from './locale';
 document.addEventListener('DOMContentLoaded', () => {
     const locale = getLocale();
     const calendarElement = document.getElementById('full-calendar');
+
     const calendar = new Calendar(calendarElement, {
         plugins: [dayGridPlugin, interactionPlugin],
         eventTimeFormat: {
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             minute: '2-digit',
             meridiem: false,
         },
-        displayEventTime: false,
+        displayEventTime: true,
         events(fetchInfo, successCallback, failureCallback) {
             fetchMeetings(fetchInfo, successCallback, failureCallback);
         },
@@ -21,8 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
             return handleEventStatus(event);
         },
         eventContent(arg) {
-            const editLink = `${arg.event.id}/edit`;
-            return {html: generateEventContent(arg, editLink, 'fa-edit')};
+            return {html: generateEventContent(arg, arg.event.id)};
+        },
+        eventDidMount(info) {
+            const eventElement = info.el;
+
+            const handleSpaceBarPress = function (event) {
+                if (event.code === 'Space') {
+                    assignUserToEvent(calendar, info.event.id);
+                    event.preventDefault();
+                    document.removeEventListener('keydown', handleSpaceBarPress);
+                }
+            };
+
+            eventElement.addEventListener('mouseenter', () => {
+                document.addEventListener('keydown', handleSpaceBarPress);
+            });
+
+            eventElement.addEventListener('mouseleave', () => {
+                document.removeEventListener('keydown', handleSpaceBarPress);
+            });
         },
     });
     calendar.render();
@@ -37,6 +56,7 @@ function prepareEventData(meetings) {
         end: meeting.endDate,
         extraParams: {
             status: meeting.status,
+            avatarUrl: meeting.avatarUrl,
         },
     }));
 }
@@ -64,15 +84,42 @@ function handleEventStatus(event) {
     return classNames;
 }
 
-function generateEventContent(arg, link, icon) {
+function generateEventContent(arg, id) {
+    let avatarsHtml = '';
+
+    const avatarUrls = arg.event.extendedProps.extraParams.avatarUrl;
+
+    if (avatarUrls) {
+        if (avatarUrls.length >= 6) {
+            avatarsHtml = `<span class="count-sm-avatar">${avatarUrls.length}</span>`;
+        } else {
+            for (const url of arg.event.extendedProps.extraParams.avatarUrl) {
+                avatarsHtml += `<img src="${url}" class="member-sm-avatar" alt="member-avatar">`;
+            }
+        }
+    }
+
     return `
-            <div class="fc-event-main-frame">
+        <div class="fc-event-main-frame">
+            <div class="fc-event-main-content">
                 <div class="fc-event-title-container">
                     <div class="fc-event-title">${arg.event.title}</div>
                 </div>
                 <div class="fc-event-details-link">
-                    <a href="${link}" class="fc-event-details-button"><i class="fas ${icon} m-1"></i></a>
+                    <a href="${id}/edit" class="fc-event-details-button"><i class="fas fa-edit m-1"></i></a>
                 </div>
             </div>
-        `;
+            <div class="member-avatar-container">${avatarsHtml}</div>
+        </div>
+    `;
+}
+
+function assignUserToEvent(calendar, id) {
+    fetch(`${id}/toggle-user`, {
+        method: 'POST',
+    }).then(() => {
+        calendar.refetchEvents();
+    }).catch(error => {
+        throw new Error(error);
+    });
 }

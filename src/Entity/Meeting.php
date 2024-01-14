@@ -48,7 +48,7 @@ class Meeting
     private MeetingStatusEnum $status = MeetingStatusEnum::STATUS_PENDING;
 
     /** @var Collection<User> */
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings', cascade: ['persist'])]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings', cascade: ['persist', 'remove'])]
     private Collection $users;
 
     public function __construct()

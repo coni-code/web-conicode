@@ -17,15 +17,42 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $user = UserFactory::createUser(
+        $superAdmin = UserFactory::createUser(
+            $this->passwordHasher,
+            'super@admin.pl',
+            'admin',
+            ['ROLE_ADMIN'],
+        );
+
+        $admin = UserFactory::createUser(
             $this->passwordHasher,
             'admin@admin.pl',
             'admin',
             ['ROLE_ADMIN'],
         );
 
-        $this->addReference('user_admin', $user);
+        $pm = UserFactory::createUser(
+            $this->passwordHasher,
+            'manager@manager.pl',
+            'manager',
+            ['ROLE_MANAGER'],
+        );
 
+        $user = UserFactory::createUser(
+            $this->passwordHasher,
+            'user@user.pl',
+            'user',
+            ['ROLE_USER'],
+        );
+
+        $this->addReference('user_super_admin', $superAdmin);
+        $this->addReference('user_admin', $admin);
+        $this->addReference('user_manager', $pm);
+        $this->addReference('user', $user);
+
+        $manager->persist($superAdmin);
+        $manager->persist($admin);
+        $manager->persist($pm);
         $manager->persist($user);
         $manager->flush();
     }

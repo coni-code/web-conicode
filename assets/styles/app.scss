@@ -28,4 +28,84 @@
     margin-bottom: 5px;
 }
 
+body {
+    background-color: $primary-background-color;
+    font-family: RobotoSlab, serif;
+    box-shadow: $body-box-sizing;
+    margin: $body-margin;
+    padding: $body-padding;
+    color: $font-color-white;
+    display: flex;
+    justify-content: center;
+}
 
+#home-layout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.main-container{
+    padding-top: 70px;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 15px;
+    z-index: 0;
+}
+
+.card-element{
+    position: relative;
+    border-radius: 20px;
+    background-color: $primary-background-color-low-opacity;
+    padding: 20px;
+
+    img{
+        max-width: 100%;
+    }
+}
+
+.card-desc{
+    color: $font-color-grey;
+    font-size: small;
+}
+
+.card-header{
+    color: $font-color-white;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-01{
+    text-align: center;
+    padding: 12px;
+    width: fit-content;
+    max-width: 100%;
+    background-color: $primary-red-color;
+    border-radius: 24px;
+    color: $font-color-white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 300ms;
+    border: 3px solid $primary-red-color;
+}
+
+.btn-01:hover {
+    background-color: $button-hover;
+    border-color: $button-hover;
+}
+
+.btn-01:active {
+    background-color: #0000;
+    color: $primary-red-color;
+    border-color: $primary-red-color;
+}
