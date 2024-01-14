@@ -35,3 +35,11 @@
   background-color: $primary-light-background-color;
   cursor: not-allowed;
 }
+
+.select2-container--default .select2-results__option--selected {
+  background-color: $primary-red-color;
+
+  &:hover {
+    background-color: $primary-red-color;
+  }
+}
