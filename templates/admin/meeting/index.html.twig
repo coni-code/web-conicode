@@ -2,13 +2,25 @@
 
 {% set header = 'admin.meeting.header.plural'|trans %}
 
+{% set member = app.user.member %}
+{% set avatar_template %}
+    {% if member and member.avatarHash %}
+        <img src="{{ asset('static/trello/avatar/' ~ member.avatarHash ~ '.png') }}"
+             alt="Default Avatar" class="member-sm-avatar">
+    {% else %}
+        <img src="{{ asset('static/avatar.png') }}" alt="Default Avatar" class="member-sm-avatar">
+    {% endif %}
+{% endset %}
+
 {% block body %}
     <div class="page">
         <div class="page-header d-flex align-items-center justify-content-between">
             <h1><span class="text-header">{{ header }}</span></h1>
 
             <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item"><a href="{{ path('dev_admin') }}">{{ 'admin.sidebar.link.dashboard'|trans }}</a></li>
+                <li class="breadcrumb-item">
+                    <a href="{{ path('dev_admin') }}">{{ 'admin.sidebar.link.dashboard'|trans }}</a>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ header }}</li>
             </ol>
         </div>
@@ -17,11 +29,14 @@
             <div class="card-header">
                 <h4>{{ header }}</h4>
                 <div class="card-header-buttons">
-                    <a class="btn btn-success" href="{{ path('dev_meeting_new') }}">{{ 'admin.meeting.add_new_meeting'|trans }}</a>
+                    <a class="btn btn-success" href="{{ path('dev_meeting_new') }}">
+                        {{ 'admin.meeting.add_new_meeting'|trans }}
+                    </a>
                 </div>
             </div>
-            <div class="card-body">
-                <div id="full-calendar"></div>
+            <div class="card-body full-calendar-card">
+                <div id="full-calendar" data-avatar-template="{{ avatar_template|e('html_attr') }}"></div>
+                <div class="full-calendar-details"></div>
             </div>
             <div class="card-footer"></div>
         </div>

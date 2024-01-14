@@ -1,44 +1,12 @@
 {{ form_start(form) }}
 <div class="card-body">
     <div class="row">
-        <div class="col-xxl-2">
+        <div class="col-xxl-3">
             <div class="form-group">
                 {{ form_label(form.title, 'admin.form.meeting.title'|trans) }}
                 {{ form_widget(form.title, {
                     'attr': {
                         'class': 'form-control'
-                    }
-                }) }}
-            </div>
-        </div>
-        <div class="col-xxl-2">
-            <div class="form-group">
-                {{ form_label(form.startDate, 'admin.form.meeting.start_date'|trans) }}
-                {{ form_widget(form.startDate, {
-                    'attr': {
-                        'class': 'form-control'
-                    }
-                }) }}
-            </div>
-        </div>
-        <div class="col-xxl-2">
-            <div class="form-group">
-                {{ form_label(form.endDate, 'admin.form.meeting.end_date'|trans) }}
-                {{ form_widget(form.endDate, {
-                    'attr': {
-                        'class': 'form-control'
-                    }
-                }) }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xxl-3">
-            <div class="form-group">
-                {{ form_label(form.status, 'admin.form.meeting.status'|trans) }}
-                {{ form_widget(form.status, {
-                    'attr': {
-                        'class': 'form-control form-select meeting-status-select select2-enable'
                     }
                 }) }}
             </div>
@@ -49,6 +17,28 @@
                 {{ form_widget(form.users, {
                     'attr': {
                         'class': 'form-control form-select meeting-users-select select2-enable',
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xxl-3">
+            <div class="form-group">
+                {{ form_label(form.startDate, 'admin.form.meeting.start_date'|trans) }}
+                {{ form_widget(form.startDate, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+        <div class="col-xxl-3">
+            <div class="form-group">
+                {{ form_label(form.endDate, 'admin.form.meeting.end_date'|trans) }}
+                {{ form_widget(form.endDate, {
+                    'attr': {
+                        'class': 'form-control'
                     }
                 }) }}
             </div>
