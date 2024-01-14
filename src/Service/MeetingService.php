@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service;
 
 use App\Entity\Meeting;
@@ -9,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class MeetingService
 {
-    const ASSIGNED_FOR_CONFIRMED_STATUS = 2;
+    public const ASSIGNED_FOR_CONFIRMED_STATUS = 2;
 
     public function __construct(
         private readonly ManagerRegistry $doctrine,
@@ -58,7 +60,7 @@ class MeetingService
 
     private function handleStatus(Meeting $meeting): void
     {
-        if (self::ASSIGNED_FOR_CONFIRMED_STATUS <=  $meeting->getUsers()->count()) {
+        if (self::ASSIGNED_FOR_CONFIRMED_STATUS <= $meeting->getUsers()->count()) {
             $meeting->setStatus(MeetingStatusEnum::STATUS_CONFIRMED);
         } else {
             $meeting->setStatus(MeetingStatusEnum::STATUS_PENDING);

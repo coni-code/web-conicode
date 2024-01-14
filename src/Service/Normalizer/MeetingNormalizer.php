@@ -20,14 +20,17 @@ class MeetingNormalizer implements NormalizerInterface
         $trelloAvatarsPath = '/static/trello/avatar';
         $defaultAvatar = '/static/avatar.png';
 
-        /** @var Meeting $object */
+        if (!$object instanceof Meeting) {
+            return [];
+        }
+
         foreach ($object->getUsers() as $user) {
             $avatarUrls[] = $user->getMember() ? sprintf(
-                   '%s/%s.%s',
-                   $trelloAvatarsPath,
-                   $user->getMember()->getAvatarHash(),
-                   'png'
-               ) : $defaultAvatar;
+                '%s/%s.%s',
+                $trelloAvatarsPath,
+                $user->getMember()->getAvatarHash(),
+                'png',
+            ) : $defaultAvatar;
         }
 
         return [

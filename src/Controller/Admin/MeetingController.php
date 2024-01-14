@@ -9,8 +9,6 @@ use App\Entity\User;
 use App\Form\MeetingType;
 use App\Repository\MeetingRepository;
 use App\Service\MeetingService;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class MeetingController extends AbstractController
 {
     public function __construct(
-        private readonly ManagerRegistry $doctrine,
         private readonly MeetingService $service,
     ) {
     }
@@ -45,6 +42,7 @@ class MeetingController extends AbstractController
             /** @var Meeting $meeting */
             $meeting = $form->getData();
             $this->service->handleFormData($meeting);
+
             return $this->redirectToRoute('dev_meeting_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -65,6 +63,7 @@ class MeetingController extends AbstractController
             /** @var Meeting $meeting */
             $meeting = $form->getData();
             $this->service->handleFormData($meeting);
+
             return $this->redirectToRoute('dev_meeting_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -88,6 +87,7 @@ class MeetingController extends AbstractController
         $user = $this->getUser();
         if ($user instanceof User) {
             $this->service->toggleUser($user, $meeting);
+
             return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
         }
 
