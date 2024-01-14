@@ -68,7 +68,7 @@ nav .links {
 }
 
 .links .nav-item.hovered .nav-link {
-    background-color: $primary-red-color;
+    border: 1px solid $button-hover;
     border-radius: 20px;
     transition: 150ms;
 }
@@ -112,7 +112,7 @@ nav .links {
     border-radius: 20px;
 }
 
-$glow-nav-effect-width: 560px;
+$glow-nav-effect-width: 500px;
 
 .glow-nav-effect {   
     position: fixed;

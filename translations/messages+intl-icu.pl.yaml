@@ -1,34 +1,34 @@
-form.send: 'Wyślij'
-form.contact.label.email: 'Email'
-form.contact.label.subject: 'Tytuł'
-form.contact.label.body: 'Treść'
-home.contact.header: 'Wyślij nam wiadomość:'
-home.navbar.element.home: 'Home'
-home.navbar.element.logo: 'Logo'
-home.navbar.element.team: 'Zespół'
-home.navbar.element.contact: 'Kontakt'
-home.navbar.element.portfolio: 'Portfolio'
-home.hero.subtitle: 'Dążąc do rozwoju'
-home.hero.content.title: 'Tworzymy, by zrobić wrażenie'
-home.hero.learn_more: 'Dowiedz się więcej'
-admin.form.meeting.status.pending: 'Oczekujące'
-admin.form.meeting.status.confirmed: 'Potwierdzone'
-admin.topbar.option.settings: 'Ustawienia'
-admin.topbar.option.logout: 'Wyloguj'
-admin.sidebar.link.dashboard: 'Dashboard'
-admin.sidebar.link.meetings: 'Spotkania'
-admin.sidebar.link.reports: 'Raporty'
-admin.meeting.header.singular: 'Spotkanie'
-admin.meeting.header.plural: 'Spotkania'
-admin.meeting.add_new_meeting: 'Dodaj spotkanie'
-admin.meeting.edit_meeting: 'Edytuj spotkanie'
-admin.form.meeting.title: 'Tytuł'
-admin.form.meeting.start_date: 'Data rozpoczęcia'
-admin.form.meeting.end_date: 'Data zakończenia'
-admin.form.meeting.status: 'Status'
-admin.form.meeting.users: 'Uczestnicy'
-admin.form.meeting.description: 'Opis'
-admin.form.save: 'Zapisz'
-admin.form.cancel: 'Anuluj'
-admin.meeting.details_meeting: 'Szczegóły spotkania'
-admin.form.back: 'Wstecz'
+form.send: "Wyślij"
+form.contact.label.email: "Email"
+form.contact.label.subject: "Tytuł"
+form.contact.label.body: "Treść"
+home.contact.header: "Wyślij nam wiadomość:"
+home.navbar.element.home: "Home"
+home.navbar.element.logo: "Logo"
+home.navbar.element.team: "Zespół"
+home.navbar.element.contact: "Kontakt"
+home.navbar.element.projects: "Projekty"
+home.hero.subtitle: "Dążąc do rozwoju"
+home.hero.content.title: "Tworzymy, by zrobić wrażenie"
+home.hero.learn_more: "Dowiedz się więcej"
+admin.form.meeting.status.pending: "Oczekujące"
+admin.form.meeting.status.confirmed: "Potwierdzone"
+admin.topbar.option.settings: "Ustawienia"
+admin.topbar.option.logout: "Wyloguj"
+admin.sidebar.link.dashboard: "Dashboard"
+admin.sidebar.link.meetings: "Spotkania"
+admin.sidebar.link.reports: "Raporty"
+admin.meeting.header.singular: "Spotkanie"
+admin.meeting.header.plural: "Spotkania"
+admin.meeting.add_new_meeting: "Dodaj spotkanie"
+admin.meeting.edit_meeting: "Edytuj spotkanie"
+admin.form.meeting.title: "Tytuł"
+admin.form.meeting.start_date: "Data rozpoczęcia"
+admin.form.meeting.end_date: "Data zakończenia"
+admin.form.meeting.status: "Status"
+admin.form.meeting.users: "Uczestnicy"
+admin.form.meeting.description: "Opis"
+admin.form.save: "Zapisz"
+admin.form.cancel: "Anuluj"
+admin.meeting.details_meeting: "Szczegóły spotkania"
+admin.form.back: "Wstecz"
