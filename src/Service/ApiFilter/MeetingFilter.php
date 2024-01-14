@@ -15,6 +15,7 @@ class MeetingFilter extends AbstractFilter
     private const USERS_PROPERTY = 'users';
     private const START_DATE_PROPERTY = 'startDate';
     private const END_DATE_PROPERTY = 'endDate';
+    private const AVATAR_PROPERTY = 'avatar';
 
     protected function filterProperty(
         string $property,
