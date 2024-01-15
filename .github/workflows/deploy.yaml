@@ -3,7 +3,7 @@ name: Staging deploy
 on:
   push:
     branches:
-      - deploy-cicd
+      - main
 
 jobs:
   build-and-deploy:
@@ -21,7 +21,7 @@ jobs:
             cd public_html
             source ~/.bashrc
             git checkout main
-            git pull
+            git pull origin main
             composer install
             npm install
             npx yarn build
