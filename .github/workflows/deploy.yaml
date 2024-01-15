@@ -20,7 +20,8 @@ jobs:
           script: |
             cd public_html
             source ~/.bashrc
-            git pull origin main
+            git checkout main
+            git pull
             composer install
             npm install
             npx yarn build
