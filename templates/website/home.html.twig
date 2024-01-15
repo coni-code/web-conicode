@@ -9,13 +9,13 @@
     <div class="main-container">
         {{ include('website/header/index.html.twig') }}
         {{ include('website/contact/index.html.twig') }}
-    </div>  
+    </div>
 </div>
 
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     {{ encore_entry_script_tags('particles') }}
 {% endblock %}
