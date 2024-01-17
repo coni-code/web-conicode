@@ -9,7 +9,6 @@
 import './styles/app.scss';
 import 'bootstrap';
 import "./styles/home/nav.scss"
-import '@fortawesome/fontawesome-free';
 
 import "./styles/home/default.scss";
 import "./styles/home/contact.scss";
