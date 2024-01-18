@@ -26,7 +26,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
 
         $member = MemberFactory::createMember(
             (string) $faker->numberBetween(10000, 99999),
-            $faker->hexColor(),
+            null,
             $faker->imageUrl(),
         );
         $this->addReference('trello_member', $member);

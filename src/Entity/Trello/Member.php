@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: MemberRepository::class)]
 class Member extends AbstractTrelloEntity implements TrelloEntity
 {
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?string $avatarHash = null;
 
     #[ORM\Column]
@@ -43,7 +43,7 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
         return $this->avatarHash;
     }
 
-    public function setAvatarHash(string $avatarHash): void
+    public function setAvatarHash(?string $avatarHash): void
     {
         $this->avatarHash = $avatarHash;
     }
