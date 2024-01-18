@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity\Trello;
 
 use App\Repository\Trello\CardRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Table(name: 'trello_card')]
 #[ORM\Entity(repositoryClass: CardRepository::class)]
@@ -106,6 +107,7 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
             return null;
         }
         preg_match('/### SUMMARY\n(.*)/s', $this->getDescription(), $matches);
+
         return $matches[1] ?? null;
     }
 }

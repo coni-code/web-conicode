@@ -1,43 +1,54 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiResource;
 use App\Enum\MeetingStatusEnum;
 use App\Repository\MeetingRepository;
+use App\Service\ApiFilter\MeetingFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
+#[ApiResource(stateless: false, normalizationContext: ['groups' => ['read']])]
+#[ApiFilter(MeetingFilter::class)]
 #[ORM\Entity(repositoryClass: MeetingRepository::class)]
 class Meeting
 {
+    #[Groups('read')]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups('read')]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    #[Groups('read')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $startDate = null;
 
+    #[Groups('read')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $endDate = null;
 
-    #[ORM\Column(
-        type: Types::STRING,
-        enumType: MeetingStatusEnum::class,
-        options: ["default"=>MeetingStatusEnum::STATUS_PENDING]
-    )]
+    #[Groups('read')]
+    #[ORM\Column(type: Types::STRING, enumType: MeetingStatusEnum::class, options: [
+        'default' => MeetingStatusEnum::STATUS_PENDING,
+    ])]
     private MeetingStatusEnum $status = MeetingStatusEnum::STATUS_PENDING;
 
     /** @var Collection<User> */
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings', cascade: ['persist'])]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings', cascade: ['persist', 'remove'])]
     private Collection $users;
 
     public function __construct()

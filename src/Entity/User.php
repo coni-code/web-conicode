@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Entity\Trello\Member;
@@ -26,12 +28,11 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private ?string $password = null;
 
     /** @var Collection<Meeting> */
-    #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist'])]
+    #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist', 'remove'])]
     #[ORM\JoinTable(name: 'users_meetings')]
     private Collection $meetings;
 
-    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
-    #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'id')]
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
     private ?Member $member = null;
 
     public function __construct()

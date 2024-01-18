@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Trello\Preparer;
 
+use App\Entity\Trello\TrelloEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -17,4 +20,6 @@ abstract class AbstractPreparer
 
         return $collection;
     }
+
+    abstract public function prepareOne(array $apiDatum): TrelloEntity;
 }

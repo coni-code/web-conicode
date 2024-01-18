@@ -1,20 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const statusSelect = document.querySelector('.meeting-status-select');
-    const usersSelect = document.querySelector('.meeting-users-select');
+    const statusSelect = $('.meeting-status-select').select2();
+    const usersSelect = $('.meeting-users-select').select2();
 
-    statusSelect.addEventListener('change', (event) => {
-        handleUserDisabling(event.target, usersSelect);
-    })
+    statusSelect.on('change', () => {
+        handleUserDisabling(statusSelect, usersSelect);
+    });
 
     handleUserDisabling(statusSelect, usersSelect);
-})
+});
 
 function handleUserDisabling(statusSelect, usersSelect) {
-    const numericValue = parseInt(statusSelect.value, 10);
+    const numericValue = parseInt(statusSelect.val(), 10);
     if (numericValue === 0) {
         usersSelect.disabled = true;
+        // eslint-disable-next-line no-return-assign
         Array.from(usersSelect.options).forEach(option => option.selected = false);
     } else {
-        usersSelect.disabled = false;
+        usersSelect.prop('disabled', false);
     }
 }

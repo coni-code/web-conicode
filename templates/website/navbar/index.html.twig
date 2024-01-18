@@ -3,37 +3,44 @@
 {% block body %}
     <nav>
         <ul class="links">
-            <li class="nav-item">
-                <a class="nav-link" href="#">{{'home.navbar.element.home'|trans}}</a>
+            <li class="nav-item" data-box="home-element">
+                <a class="nav-link" href="javascript:void(0)">{{'home.navbar.element.home'|trans}}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">{{'home.navbar.element.logo'|trans}}</a>
+            <li class="nav-item" data-box="team-element">
+                <a class="nav-link" href="javascript:void(0)">{{'home.navbar.element.team'|trans}}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">{{'home.navbar.element.team'|trans}}</a>
+            <li class="nav-item" data-box="contact-element">
+                <a class="nav-link" href="javascript:void(0)">{{'home.navbar.element.contact'|trans}}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">{{'home.navbar.element.contact'|trans}}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">{{'home.navbar.element.portfolio'|trans}}</a>
+            <li class="nav-item" data-box="projects-element">
+                <a class="nav-link" href="javascript:void(0)">{{'home.navbar.element.projects'|trans}}</a>
             </li>
             <li class="nav-lang">
                 {% if app.locale != 'pl' %}
-                    <a class="nav-lang-link" href="{{ path('app_language_changer', { '_locale':'pl' }) }}">
-                        <i class="fi fi-pl fis fi-lang"></i>
-                        <div class="tooltip">Polski</div>
-                    </a>
+                    <span class="nav-lang-link">
+                        <i class="fi fi-gb fis fi-lang"></i>
+                    </span>
                 {% endif %}
                 {% if app.locale != 'en' %}
-                    <a class="nav-lang-link" href="{{ path('app_language_changer', { '_locale':'en' }) }}">
-                        <i class="fi fi-gb fis fi-lang"></i>
-                        <div class="tooltip">English</div>       
-                    </a>
+                    <span class="nav-lang-link">
+                        <i class="fi fi-pl fis fi-lang"></i>
+                    </span>
                 {% endif %}
-            </li>          
+                <ul class="home-dropdown-menu">
+                    <li>
+                        <a class="nav-lang-link" href="{{ path('app_language_changer', { '_locale':'pl' }) }}">
+                        <i class="fi fi-pl fis fi-lang"></i>
+                        Polski
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-lang-link" href="{{ path('app_language_changer', { '_locale':'en' }) }}">
+                        <i class="fi fi-gb fis fi-lang"></i>
+                        English
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 {% endblock %}
-
-

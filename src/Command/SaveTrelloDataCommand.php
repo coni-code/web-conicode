@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command;
 
 use App\Trello\Executor\BoardExecutor;
@@ -36,6 +38,7 @@ class SaveTrelloDataCommand extends Command
         $this->memberExecutor->execute($input, $output);
         $this->boardListExecutor->execute($input, $output);
         $this->cardExecutor->execute($input, $output);
+
         return Command::SUCCESS;
     }
 }

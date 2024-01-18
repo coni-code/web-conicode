@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Factory;
 
 use App\Entity\User;
@@ -11,7 +13,7 @@ class UserFactory
         UserPasswordHasherInterface $passwordHasher,
         string $email,
         string $password,
-        array $roles
+        array $roles,
     ): User {
         $user = new User();
 

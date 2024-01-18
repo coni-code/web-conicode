@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html data-locale="{{ get_locale() }}">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}ConiCode{% endblock %}</title>
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('admin/app') }}
         {% endblock %}
     </head>
     <body>
@@ -23,5 +23,5 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('admin/sidebar') }}
     {{ encore_entry_script_tags('admin/topbar') }}
-    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('admin/app') }}
 {% endblock %}

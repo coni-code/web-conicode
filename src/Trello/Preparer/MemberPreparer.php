@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Trello\Preparer;
 
 use App\Entity\Trello\Board;
@@ -33,8 +35,6 @@ class MemberPreparer extends AbstractPreparer
     }
 
     /**
-     * @param Collection $members
-     * @param Board $board
      * @return Collection<Member>
      */
     public function addBoard(Collection $members, Board $board): Collection

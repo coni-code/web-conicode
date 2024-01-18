@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Trello\Preparer;
 
-use App\Entity\Trello\Board;
 use App\Entity\Trello\BoardList;
 use App\Repository\Trello\BoardListRepository;
 use App\Repository\Trello\BoardRepository;
-use App\Repository\Trello\OrganizationRepository;
 
 class BoardListPreparer extends AbstractPreparer
 {

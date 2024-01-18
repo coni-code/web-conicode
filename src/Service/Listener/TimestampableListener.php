@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service\Listener;
 
-use DateTime;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use ReflectionClass;
 
 class TimestampableListener implements EventSubscriber
 {
@@ -33,11 +31,11 @@ class TimestampableListener implements EventSubscriber
     private function updateTimestamps(LifecycleEventArgs $args, string $methodName): void
     {
         $entity = $args->getObject();
-        $reflectionClass = new ReflectionClass($entity);
+        $reflectionClass = new \ReflectionClass($entity);
 
         if ($reflectionClass->hasMethod($methodName)) {
             $method = $reflectionClass->getMethod($methodName);
-            $method->invoke($entity, new DateTime('now'));
+            $method->invoke($entity, new \DateTime('now'));
         }
     }
 }

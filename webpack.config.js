@@ -1,5 +1,4 @@
 const Encore = require('@symfony/webpack-encore');
-
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -21,13 +20,19 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('admin/app', './assets/app-admin.js')
+    .addEntry('select2', './assets/js/admin/select2.js')
     .addEntry('admin/sidebar', './assets/js/admin/sidebar.js')
     .addEntry('admin/topbar', './assets/js/admin/topbar.js')
     .addEntry('admin/calendar', './assets/js/admin/calendar.js')
-    .addEntry('admin/meeting-form', './assets/js/admin/meeting-form.js')    
+    .addEntry('admin/meeting-form', './assets/js/admin/meeting-form.js')
+    .addEntry('website/navbar', './assets/js/website/navbar.js')
+    .addEntry('particles', './assets/js/particles.js')    
     .addEntry('home/carousel', './assets/js/homepage/carousel.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
+    // Enable jquery
+    .autoProvidejQuery()
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -74,6 +79,11 @@ Encore
         to: 'images/[path][name].[ext]',
     })
 
+    .copyFiles({
+        from: './assets/libs/particles',
+        to: 'libs/particles/[name].[ext]',
+    })
+
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
@@ -89,3 +99,4 @@ Encore
 ;
 
 module.exports = Encore.getWebpackConfig();
+

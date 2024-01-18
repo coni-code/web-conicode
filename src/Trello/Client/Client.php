@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Trello\Client;
 
 use GuzzleHttp\ClientInterface;
@@ -8,7 +10,7 @@ use GuzzleHttp\Utils;
 
 class Client
 {
-    const BASE_API_URL = 'https://api.trello.com/1/';
+    public const BASE_API_URL = 'https://api.trello.com/1/';
 
     public function __construct(
         private readonly ClientInterface $client,
@@ -40,9 +42,9 @@ class Client
             $this->renderUrl(
                 $path,
                 ['{id}' => $id],
-                $fields
+                $fields,
             ),
-            $this->getAuthorizationOptions()
+            $this->getAuthorizationOptions(),
         );
 
         if (($statusCode = $response->getStatusCode()) !== 200) {

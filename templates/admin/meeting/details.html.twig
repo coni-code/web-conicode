@@ -1,0 +1,61 @@
+{% extends '/admin/base.html.twig' %}
+
+{% set header = 'admin.meeting.details_meeting'|trans %}
+
+{% block body %}
+    <div class="page">
+        <div class="page-header d-flex align-items-center justify-content-between">
+            <h1><span class="text-header">{{ header }}</span></h1>
+
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="{{ path('dev_admin') }}">{{ 'admin.sidebar.link.dashboard'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('dev_meeting_index') }}">{{ 'admin.meeting.header.plural'|trans }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ header }}</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4>{{ header }}</h4>
+            </div>
+            <div class="card-body">
+
+                <div class="col-xxl-6">
+                <table class="table table-borderless">
+                    <tbody>
+                    <tr>
+                        <th>{{ 'admin.form.meeting.title'|trans }}</th>
+                        <td>{{ meeting.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ 'admin.form.meeting.description'|trans }}</th>
+                        <td>{{ meeting.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ 'admin.form.meeting.status'|trans }}</th>
+                        <td>{{ meeting.status.value }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ 'admin.form.meeting.start_date'|trans }}</th>
+                        <td>{{ meeting.startDate.format('d-m-Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ 'admin.form.meeting.end_date'|trans }}</th>
+                        <td>{{ meeting.endDate.format('d-m-Y') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+
+
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-outline-info" href="{{ path('dev_meeting_index') }}">{{ 'admin.form.back'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+

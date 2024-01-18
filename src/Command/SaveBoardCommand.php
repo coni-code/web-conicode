@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command;
 
 use App\Trello\Executor\BoardExecutor;
@@ -23,6 +25,7 @@ class SaveBoardCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->executor->execute($input, $output);
+
         return Command::SUCCESS;
     }
 }

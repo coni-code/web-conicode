@@ -1,4 +1,32 @@
+@import '../variables';
+
 #admin-layout {
+  .full-calendar-card {
+    display: flex;
+
+    #full-calendar {
+      width: 65%;
+    }
+
+    .full-calendar-details {
+      width: 35%;
+    }
+  }
+
+  @media screen and (width <= 1600px){
+    .full-calendar-card {
+      flex-direction: column;
+
+      #full-calendar {
+        width: 100%;
+      }
+
+      .full-calendar-details {
+        width: 100%;
+      }
+    }
+  }
+
   #full-calendar {
     max-width: 100%;
     margin: 10px;
@@ -9,6 +37,10 @@
   .fc {
     color: white;
     border-color: #293949;
+
+    .fc-daygrid-event-dot {
+      display: none;
+    }
 
     .fc-scrollgrid {
       border:none;
@@ -29,30 +61,70 @@
     .fc-day-header {
       background-color: #1f2d38;
       color: white;
-      border-color: #11243a;
+      border-color: $primary-light-background-color;
     }
 
     .fc-day, .fc-day-top {
       color: white;
       background-color: #293949;
-      border: 2px solid #11243a!important;
+      border: 2px solid $primary-light-background-color!important;
     }
 
     .fc-day-other {
       color: #59697a;
       background-color: #1f2d38;
-      border: 1px solid #11243a;
+      border: 1px solid $primary-light-background-color;
     }
 
     .fc-day-today {
-      background-color: #BB004B;
+      background-color: $primary-red-color;
       color: white;
-      border: 1px solid #11243a;
+      border: 1px solid $primary-light-background-color;
     }
 
     .fc-event, .fc-event-dot {
       color: white;
-      background-color: #BB004B;
+      background-color: $success2-color;
+    }
+
+    .fc-event-pending, .fc-event-dot-pending {
+      background-color: $warning2-color;
+    }
+
+    .fc-event-main-frame {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .fc-event-main-content {
+        display: flex;
+        width: 100%;
+      }
+
+      .member-avatar-container {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: end;
+        width: 100%;
+        padding: 2px;
+      }
+
+      .member-sm-avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 2px;
+      }
+
+      .count-sm-avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        color: white;
+        font-weight: bolder;
+        text-align: center;
+        background-color: $primary-grey-background-color;
+      }
     }
 
     a {

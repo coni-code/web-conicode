@@ -1,4 +1,4 @@
-@import "../_variables";
+@import '../variables';
 
 #admin-layout {
   .content {
@@ -25,6 +25,12 @@
       }
 
       .breadcrumb {
+        a {
+          color: #aeb2b7;
+          text-decoration: none;
+
+        }
+
         &-item {
           font-size: 12px;
 
@@ -39,12 +45,6 @@
           a:hover {
             color: white;
           }
-        }
-
-        a {
-          color: #aeb2b7;
-          text-decoration: none;
-
         }
       }
     }

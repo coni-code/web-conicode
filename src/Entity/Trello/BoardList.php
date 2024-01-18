@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity\Trello;
 
 use App\Repository\Trello\BoardListRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Table(name: 'trello_list')]
 #[ORM\Entity(repositoryClass: BoardListRepository::class)]
@@ -88,6 +89,6 @@ class BoardList extends AbstractTrelloEntity implements TrelloEntity
 
     public function __toString(): string
     {
-        return $this->getTrelloId();
+        return $this->getId();
     }
 }
