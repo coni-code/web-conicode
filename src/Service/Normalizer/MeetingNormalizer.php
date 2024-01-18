@@ -17,15 +17,15 @@ class MeetingNormalizer implements NormalizerInterface
     public function normalize($object, string $format = null, array $context = []): array
     {
         $avatarUrls = [];
-        $trelloAvatarsPath = '/static/trello/avatar';
-        $defaultAvatar = '/static/avatar.png';
+        $trelloAvatarsPath = '/build/trello/avatar';
+        $defaultAvatar = '/build/images/default/avatar.png';
 
         if (!$object instanceof Meeting) {
             return [];
         }
 
         foreach ($object->getUsers() as $user) {
-            $avatarUrls[] = $user->getMember() ? sprintf(
+            $avatarUrls[] = $user->getMember() && $user->getMember()->getAvatarHash() ? sprintf(
                 '%s/%s.%s',
                 $trelloAvatarsPath,
                 $user->getMember()->getAvatarHash(),
