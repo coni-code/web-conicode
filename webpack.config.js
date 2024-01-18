@@ -77,6 +77,10 @@ Encore
         from: './assets/image',
         to: 'images/[path][name].[ext]',
     })
+    .copyFiles({
+        from: './assets/trello',
+        to: 'trello/[path][name].[ext]',
+    })
 
     .copyFiles({
         from: './assets/libs/particles',

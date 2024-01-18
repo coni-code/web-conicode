@@ -1,4 +1,4 @@
-/public/static/trello/
+/assets/trello/
 
 ###> symfony/framework-bundle ###
 /.env.prod
