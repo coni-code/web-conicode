@@ -57,7 +57,6 @@ class MeetingController extends AbstractController
     {
         $form = $this->createForm(MeetingType::class, $meeting);
         $form->handleRequest($request);
-        $subscribedServices = $this::getSubscribedServices();
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Meeting $meeting */
@@ -70,14 +69,6 @@ class MeetingController extends AbstractController
         return $this->render('admin/meeting/edit.html.twig', [
             'meeting' => $meeting,
             'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}/details', name: 'meeting_details', methods: ['GET'])]
-    public function details(Meeting $meeting): Response
-    {
-        return $this->render('admin/meeting/details.html.twig', [
-            'meeting' => $meeting,
         ]);
     }
 
