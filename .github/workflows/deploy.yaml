@@ -20,9 +20,12 @@ jobs:
           script: |
             cd public_html
             source ~/.bashrc
+            git fetch
+            git reset --hard origin/main
             git checkout main
             git pull origin main
             composer install
             npm install
+            npx yarn install
             npx yarn build
             php bin/console doctrine:migrations:migrate --no-interaction
