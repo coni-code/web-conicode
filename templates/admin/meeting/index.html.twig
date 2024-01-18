@@ -28,15 +28,18 @@
         <div class="card">
             <div class="card-header">
                 <h4>{{ header }}</h4>
-                <div class="card-header-buttons">
-                    <a class="btn btn-success" href="{{ path('dev_meeting_new') }}">
-                        {{ 'admin.meeting.add_new_meeting'|trans }}
-                    </a>
-                </div>
             </div>
             <div class="card-body full-calendar-card">
                 <div id="full-calendar" data-avatar-template="{{ avatar_template|e('html_attr') }}"></div>
-                <div class="full-calendar-details"></div>
+                <div class="full-calendar-section">
+                    <div class="full-calendar-section-buttons mt-2 mb-4">
+                        <a class="btn btn-success" href="{{ path('dev_meeting_new') }}">
+                            {{ 'admin.meeting.header.add_new_meeting'|trans }}
+                        </a>
+                        <button type="button" class="btn btn-secondary ">{{ 'form.filter'|trans }}</button>
+                    </div>
+                    {{ include('admin/meeting/sections/details.html.twig', {} ) }}
+                </div>
             </div>
             <div class="card-footer"></div>
         </div>
