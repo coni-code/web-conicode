@@ -1,9 +1,12 @@
 /assets/trello/
 
 ###> symfony/framework-bundle ###
+/.env.prod
 /.env.local
+/.env.prod.php
 /.env.local.php
 /.env.*.local
+/.env.*.prod
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
@@ -26,3 +29,8 @@ phpstan.neon
 /.php-cs-fixer.php
 /.php-cs-fixer.cache
 ###< friendsofphp/php-cs-fixer ###
+
+cgi-bin/
+r.php
+index.html
+/.htaccess

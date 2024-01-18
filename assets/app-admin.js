@@ -13,7 +13,6 @@ global.jQuery = $;
 
 import './styles/app.scss';
 import 'bootstrap';
-import './styles/home/nav.scss';
 import '@fortawesome/fontawesome-free';
 import 'select2/dist/css/select2.min.css';
 

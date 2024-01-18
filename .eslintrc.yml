@@ -10,3 +10,4 @@ rules:
 globals:
   $: readonly
   jQuery: readonly
+  Glide: readonly

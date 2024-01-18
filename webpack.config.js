@@ -27,7 +27,8 @@ Encore
     .addEntry('admin/calendar', './assets/js/admin/calendar.js')
     .addEntry('admin/meeting-form', './assets/js/admin/meeting-form.js')
     .addEntry('website/navbar', './assets/js/website/navbar.js')
-    .addEntry('particles', './assets/js/particles.js')
+    .addEntry('particles', './assets/js/particles.js')    
+    .addEntry('home/carousel', './assets/js/homepage/carousel.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
     // Enable jquery
@@ -76,6 +77,10 @@ Encore
     .copyFiles({
         from: './assets/image',
         to: 'images/[path][name].[ext]',
+    })
+    .copyFiles({
+        from: './assets/trello',
+        to: 'trello/[path][name].[ext]',
     })
 
     .copyFiles({

@@ -33,10 +33,15 @@
     transform: translate(-10%,15%);
 }
 
+.card-element.hovered{
+    box-shadow: 0 0 20px 2px $primary-red-color;
+    transition: 150ms;
+}
+
 @media screen and (width <= 500px) {
     .card-element.hovered{
-        box-shadow: 0 0 20px $primary-red-color;
-        transition: box-shadow 0.3s ease-in-out;
+        box-shadow: 0 0 20px 2px $primary-red-color;
+        transition: 150ms;
     }
 
     .first-node{
