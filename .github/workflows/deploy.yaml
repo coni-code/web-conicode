@@ -20,6 +20,8 @@ jobs:
           script: |
             cd public_html
             source ~/.bashrc
+            git fetch
+            git reset --hard origin/main
             git checkout main
             git pull origin main
             composer install
