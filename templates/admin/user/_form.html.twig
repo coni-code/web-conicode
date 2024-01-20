@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+<div class="card-body">
+    <div class="row">
+        <div class="col-xxl-6">
+            <div class="form-group">
+                {{ form_label(form.email, 'admin.form.user.email'|trans) }}
+                {{ form_widget(form.email, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xxl-6">
+            <div class="form-group">
+                {{ form_label(form.password, 'admin.form.user.password'|trans) }}
+                {{ form_widget(form.password, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-footer">
+    <a class="btn btn-danger" href="{{ path('dev_meeting_index') }}">{{ 'admin.form.cancel'|trans }}</a>
+    <button class="btn btn-success">{{ button_label|default('admin.form.save'|trans) }}</button>
+</div>
+{{ form_end(form) }}
