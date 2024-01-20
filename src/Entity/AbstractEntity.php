@@ -21,9 +21,9 @@ class AbstractEntity
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?string $id = null;
+    private ?int $id = null;
 
-    public function getId(): ?string
+    public function getId(): ?int
     {
         return $this->id;
     }
