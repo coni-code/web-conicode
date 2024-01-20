@@ -13,8 +13,9 @@ class UserExtension extends AbstractExtension
 {
     public function __construct(
         private readonly UserService $userService,
-    ){
+    ) {
     }
+
     /**
      * @return TwigFunction[]
      */

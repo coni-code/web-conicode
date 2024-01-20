@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service;
 
 use App\Entity\User;
@@ -14,7 +16,7 @@ class UserService
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly UserPasswordHasherInterface $passwordHasher,
-    ){
+    ) {
     }
 
     public function isAdmin(UserInterface $user): bool
@@ -22,7 +24,8 @@ class UserService
         if (!$user instanceof User) {
             return false;
         }
-        return in_array(RoleEnum::ROLE_ADMIN->name, $user->getRoles());
+
+        return in_array(RoleEnum::ROLE_ADMIN->name, $user->getRoles(), true);
     }
 
     public function handleForm(FormInterface $form): void

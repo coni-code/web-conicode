@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Security\Voter;
 
 use App\Entity\User;
@@ -11,7 +13,7 @@ class UserVoter extends Voter
 {
     public function __construct(
         private readonly UserService $userService,
-    ){
+    ) {
     }
 
     /**
@@ -19,7 +21,7 @@ class UserVoter extends Voter
      */
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return in_array($attribute, ['VIEW', 'EDIT']) && $subject instanceof User;
+        return in_array($attribute, ['VIEW', 'EDIT'], true) && $subject instanceof User;
     }
 
     /**

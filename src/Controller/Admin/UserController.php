@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\User;
@@ -15,7 +17,7 @@ class UserController extends AbstractController
 {
     public function __construct(
         private readonly UserService $userService,
-    ){
+    ) {
     }
 
     #[Route('/{id}/edit', name: 'user_edit')]

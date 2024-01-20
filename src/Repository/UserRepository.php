@@ -44,6 +44,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         $em = $this->registry->getManager();
         $em->persist($user);
-        $em->flush($user);
+        $em->flush();
     }
 }

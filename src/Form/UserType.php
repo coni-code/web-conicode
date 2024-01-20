@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Entity\Trello\Member;
 use App\Entity\User;
-use App\Enum\RoleEnum;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
