@@ -1,0 +1,48 @@
+{% extends "website/base.html.twig" %}
+
+{% block body %}
+
+<div class="card-element carusel-dark" id="team">
+    <div class="glide carusel">
+        <div class="glide__track carusel" data-glide-el="track">
+            <ul class="glide__slides carusel">
+                <li class="glide__slide carusel-element team-item">
+                    <img class="carusel-img team-image" src="{{asset('build/images/test/test-dog1.png') }}"/>
+                    <h4>Kivi</h4>
+                    <p class="team-title">Frontend developer</p>
+                    <p class="team-social">
+                        <a href="javascript:void(0)"><i class="fab fa-linkedin"></i></a>
+                        <a href="javascript:void(0)"><i class="fab fa-github"></i></a>
+                        <a href="javascript:void(0)"><i class="fa-regular fa-envelope"></i></a>
+                    </p>
+                </li>
+                <li class="glide__slide carusel-element team-item">
+                    <img class="carusel-img team-image" src="{{asset('build/images/test/test-cat2.png') }}"/>
+                    <h4>Josef</h4>
+                    <p class="team-title">Backend developer</p>
+                    <p class="team-social">
+                        <a href="javascript:void(0)"><i class="fab fa-linkedin"></i></a>
+                        <a href="javascript:void(0)"><i class="fab fa-github"></i></a>
+                        <a href="javascript:void(0)"><i class="fa-regular fa-envelope"></i></a>
+                    </p>
+                </li>
+                <li class="glide__slide carusel-element team-item">
+                    <img class="carusel-img team-image" src="{{asset('build/images/test/test-cat1.png') }}"/>
+                    <h4>Radmir</h4>
+                    <p class="team-title">Project manager</p>
+                    <p class="team-social">
+                        <a href="javascript:void(0)"><i class="fab fa-linkedin"></i></a>
+                        <a href="javascript:void(0)"><i class="fab fa-github"></i></a>
+                        <a href="javascript:void(0)"><i class="fa-regular fa-envelope"></i></a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('home/carousel') }}
+{% endblock %}
