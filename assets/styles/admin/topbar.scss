@@ -49,10 +49,13 @@
       display: none;
       position: absolute;
       top: 50px;
-      right: 0;
+      right: 20;
       background: #293949;
       box-shadow: 0 0 5px rgb(0 0 0 / 20%);
       z-index: 1;
+      border-radius: 20px;
+      padding: 1rem;
+
     }
 
     .dropdown-menu.show {
@@ -67,12 +70,52 @@
       display: block;
       padding: 8px 12px;
       text-decoration: none;
-      color: #fff;
-      transition: background-color 0.3s ease;
+      transition: 150ms;
+      color: $font-color-white;
     }
 
     .dropdown-menu a:hover {
       background-color: $primary-red-color;
+      border-radius: 20px;
     }
+  }
+
+  .nav-lang {
+    margin-left: 20px;
+  }
+
+  .home-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #293949;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    z-index: 1;
+    border-radius: 20px;
+    padding: 1rem;
+
+      .nav-lang-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+  }
+
+  .home-dropdown-menu li {
+    list-style: none;
+  }
+
+  .home-dropdown-menu a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition: 150ms;
+    color: $font-color-white;
+  }
+
+  .home-dropdown-menu a:hover {
+    background-color: $primary-red-color;
+    border-radius: 20px;
   }
 }

@@ -54,6 +54,8 @@ stylelint() {
 quality() {
     npx eslint assets/
     npx stylelint assets/styles/**/*.scss
+    php bin/console lint:twig templates
+    php bin/console doctrine:schema:validate
     vendor/bin/php-cs-fixer fix --diff --allow-risky=yes
-    vendor/bin/phpstan analyse
+    vendor/bin/phpstan analyse -c phpstan.dist.neon src
 }
