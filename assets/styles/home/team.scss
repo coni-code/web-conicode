@@ -31,3 +31,15 @@
 .team-social a{
     color: white;
 }
+
+.about-us-element{
+    grid-column: span 4;
+}
+
+.about-us-element h2, .about-us-element p{
+    text-align: center;
+}
+
+.about-us-element h2{
+    color: $primary-red-color;
+}
