@@ -1,0 +1,45 @@
+@import '../variables';
+
+#team{
+    grid-column: span 8;
+    height: 600px;
+    overflow: hidden;
+}
+
+.team-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.team-image{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.team-title{
+    color: $primary-blue-color;
+    text-align: center;
+}
+
+.team-social{
+    gap: 5px;
+}
+
+.team-social a{
+    color: white;
+}
+
+.about-us-element{
+    grid-column: span 4;
+}
+
+.about-us-element h2, .about-us-element p{
+    text-align: center;
+}
+
+.about-us-element h2{
+    color: $primary-red-color;
+}
