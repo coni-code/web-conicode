@@ -1,0 +1,107 @@
+@import '../variables';
+
+.meeting-modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.meeting-modal-content {
+  background-color: $secondary-background-color;
+  margin: 10% auto;
+  padding: 20px;
+  width: 70%;
+  max-width: 1000px;
+  display: flex;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+
+  .meeting-modal-left, .meeting-modal-right {
+    padding: 20px;
+  }
+
+  .meeting-modal-left {
+    flex: 1;
+  }
+
+  .meeting-modal-right {
+    border-left: 1px solid $secondary-secondary-background-color;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+  }
+
+  label {
+    color: $secondary-text-color;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid $secondary-secondary-background-color;
+    color: $secondary-text-color;
+    background-color: $primary-dark-background-color;
+  }
+
+  textarea {
+    height: 500px;
+  }
+
+  .btn-delete, .btn-join, .btn-quit, .btn-create {
+    background-color: $primary-red-color;
+    color: $secondary-text-color;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: darken($primary-red-color, 10%);
+    }
+  }
+
+  .btn-join {
+    background-color: $primary-blue-color;
+    &:hover {
+      background-color: darken($primary-blue-color, 10%);
+    }
+  }
+
+  .btn-quit {
+    background-color: $primary-yellow-color;
+    &:hover {
+      background-color: darken($primary-yellow-color, 10%);
+    }
+  }
+
+  .btn-create {
+    background-color: $primary-green-color;
+    &:hover {
+      background-color: darken($primary-green-color, 10%);
+    }
+  }
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -40,6 +40,7 @@ class MeetingNormalizer implements NormalizerInterface
             'endDate' => $object->getEndDate()->format('Y-m-d'),
             'status' => $object->getStatus(),
             'avatarUrl' => $avatarUrls,
+            'userIds' => array_map(fn ($user) => $user->getId(), $object->getUsers()->toArray()),
         ];
     }
 

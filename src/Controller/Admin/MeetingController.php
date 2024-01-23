@@ -19,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MeetingController extends AbstractController
 {
     public function __construct(
+        private readonly MeetingRepository $meetingRepository,
         private readonly MeetingService $service,
     ) {
     }
@@ -26,8 +27,15 @@ class MeetingController extends AbstractController
     #[Route('/', name: 'meeting_index', methods: ['GET'])]
     public function index(MeetingRepository $meetingRepository): Response
     {
+        $closestMeeting = null;
+        $user = $this->getUser();
+        if ($user instanceof User) {
+            $closestMeeting = $this->meetingRepository->findClosestMeetingForUser($user);
+        }
+
         return $this->render('admin/meeting/index.html.twig', [
             'meetings' => $meetingRepository->findAll(),
+            'closest_meeting' => $closestMeeting,
         ]);
     }
 

@@ -2,11 +2,16 @@ import {Calendar} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import {getLocale} from './locale';
+import {MeetingModal} from './meeting-modal';
 
 document.addEventListener('DOMContentLoaded', () => {
     const locale = getLocale();
     const calendarElement = document.getElementById('full-calendar');
+    const refreshCalendar = () => {
+        calendar.refetchEvents();
+    };
 
+    const meetingModal = new MeetingModal(refreshCalendar);
     const calendar = new Calendar(calendarElement, {
         plugins: [dayGridPlugin, interactionPlugin],
         eventTimeFormat: {
@@ -22,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return handleEventStatus(event);
         },
         eventContent(arg) {
-            return {html: generateEventContent(arg, arg.event.id)};
+            return {html: generateEventContent(arg)};
         },
         eventDidMount(info) {
             const eventElement = info.el;
@@ -43,38 +48,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.removeEventListener('keydown', handleSpaceBarPress);
             });
 
-            handleEvent(eventElement, info.event.id);
+            info.el.addEventListener('click', () => {
+                meetingModal.openExistingMeeting(info.event.id);
+            });
         },
     });
     calendar.render();
     calendar.setOption('locale', locale);
+
+    const meetingSaveBtn = document.querySelector('.btn-create');
+    const meetingDeleteBtn = document.querySelector('.btn-delete');
+
+    meetingSaveBtn.addEventListener('click', () => {
+        calendar.refetchEvents();
+        meetingModal.closeModal();
+    });
+
+    meetingDeleteBtn.addEventListener('click', () => {
+        calendar.refetchEvents();
+        meetingModal.closeModal();
+    });
 });
-
-function handleEvent(eventElement, id) {
-    eventElement.addEventListener('click', () => {
-        fetch(`/api/meetings/${id}`)
-            .then(response => response.json())
-            .then(data => {
-                showDetails(data);
-            })
-            .catch(error => {
-                throw new Error(error);
-            });
-    });
-}
-
-function showDetails(data) {
-    Object.keys(data).forEach(key => {
-        const field = document.getElementById(camelToSnakeCase(key));
-        if (field) {
-            field.innerHTML = data[key];
-        }
-    });
-}
-
-function camelToSnakeCase(str) {
-    return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
-}
 
 function prepareEventData(meetings) {
     return meetings.map(meeting => ({
@@ -128,7 +122,7 @@ function generateEventContent(arg) {
     }
 
     return `
-        <div class="fc-event-main-frame">
+        <div class="fc-event-main-frame" data-meeting-modal="${arg.event.id}">
             <div class="fc-event-main-content">
                 <div class="fc-event-title-container">
                     <div class="fc-event-title">${arg.event.title}</div>
