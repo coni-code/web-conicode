@@ -10,16 +10,10 @@
     height: 95%;
     border-radius: 10px;
     transition: 300ms;
-    opacity: 0.1;
-}
-
-.glide__slide--active{ /* stylelint-disable-line */
-    height: 100%;
-    opacity: 1;
 }
 
 .carusel-img{
-    width: 500px;
+    width: 50%;
 }
 
 .carusel-desc{

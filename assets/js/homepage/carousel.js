@@ -1,11 +1,19 @@
 import '@glidejs/glide/dist/glide.min.js';
 
-const glide = new Glide('#portfolio', {
+const {width} = screen.width;
+const portfolio = new Glide('#portfolio', {
     type: 'carousel',
     startAt: 0,
     perView: 1,
-    peek: 200,
     focusAt: 'center',
 });
 
-glide.mount();
+portfolio.mount();
+
+const team = new Glide('#team', {
+    type: 'carousel',
+    startAt: 1,
+    perView: width <= 900 ? width <= 600 ? 1 : 2 : 3,
+});
+
+team.mount();

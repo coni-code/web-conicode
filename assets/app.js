@@ -20,4 +20,5 @@ import './styles/home/nav.scss';
 import './styles/home/contact.scss';
 import './styles/home/header.scss';
 import './styles/home/portfolio.scss';
+import './styles/home/team.scss';
 import './styles/home/carousel.scss';

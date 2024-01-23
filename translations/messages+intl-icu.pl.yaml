@@ -40,3 +40,11 @@ admin.form.save: "Zapisz"
 admin.form.cancel: "Anuluj"
 admin.meeting.details_meeting: "Szczegóły spotkania"
 admin.form.back: "Wstecz"
+admin.user.header.singular: "Użytkownik"
+admin.user.header.plural: "Użytkownicy"
+admin.user.edit_user: "Zarządzaj kontem"
+admin.user.details_user: "Szczegóły konta"
+admin.form.user.email: 'Email'
+admin.form.user.password: 'Hasło'
+admin.form.user.role: 'Rola'
+admin.form.user.member: 'Trello ID'

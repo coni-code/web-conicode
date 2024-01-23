@@ -124,4 +124,9 @@ class Member extends AbstractTrelloEntity implements TrelloEntity
     {
         $this->user = $user;
     }
+
+    public function __toString(): string
+    {
+        return $this->getId();
+    }
 }
