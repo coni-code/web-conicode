@@ -64,6 +64,7 @@
     margin-top: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+
     &:hover {
       background-color: darken($primary-red-color, 10%);
     }
@@ -71,6 +72,7 @@
 
   .btn-join {
     background-color: $primary-blue-color;
+
     &:hover {
       background-color: darken($primary-blue-color, 10%);
     }
@@ -78,6 +80,7 @@
 
   .btn-quit {
     background-color: $primary-yellow-color;
+
     &:hover {
       background-color: darken($primary-yellow-color, 10%);
     }
@@ -85,6 +88,7 @@
 
   .btn-create {
     background-color: $primary-green-color;
+
     &:hover {
       background-color: darken($primary-green-color, 10%);
     }

@@ -7,7 +7,6 @@ namespace App\Repository;
 use App\Entity\Meeting;
 use App\Entity\User;
 use App\Enum\MeetingStatusEnum;
-use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -33,8 +32,8 @@ class MeetingRepository extends ServiceEntityRepository
             ->andWhere('m.startDate > :currentDateTime')
             ->andWhere('m.status = :status')
             ->setParameter('user', $user)
-            ->setParameter('currentDateTime', new DateTime())
-            ->setParameter('status',  MeetingStatusEnum::STATUS_CONFIRMED)
+            ->setParameter('currentDateTime', new \DateTime())
+            ->setParameter('status', MeetingStatusEnum::STATUS_CONFIRMED)
             ->orderBy('m.startDate', 'ASC')
             ->setMaxResults(1)
             ->getQuery()

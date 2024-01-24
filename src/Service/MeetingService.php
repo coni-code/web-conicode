@@ -35,7 +35,7 @@ class MeetingService
 
     public function updateUsers(Meeting $meeting, array $userIds): void
     {
-        /**@var User $user */
+        /** @var User $user */
         foreach ($meeting->getUsers()->toArray() as $user) {
             $user->removeMeeting($meeting);
         }
