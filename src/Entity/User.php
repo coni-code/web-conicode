@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trello\Member;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -11,7 +12,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Attribute\Groups;
 
+#[ApiResource(stateless: false, normalizationContext: ['groups' => ['read']])]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User extends AbstractEntity implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -136,6 +139,12 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
             $this->meetings->removeElement($meeting);
             $meeting->removeUser($this);
         }
+    }
+
+    #[Groups('read')]
+    public function getDisplayName(): string
+    {
+        return $this->__toString();
     }
 
     public function __toString(): string

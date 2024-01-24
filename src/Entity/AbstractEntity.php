@@ -9,6 +9,7 @@ use Gedmo\Blameable\Traits\BlameableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\MappedSuperclass]
 #[Gedmo\SoftDeleteable(fieldName: 'deletedAt', timeAware: true, hardDelete: false)]
@@ -18,6 +19,7 @@ class AbstractEntity
     use BlameableEntity;
     use TimestampableEntity;
 
+    #[Groups('read')]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
