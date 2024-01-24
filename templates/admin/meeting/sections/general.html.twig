@@ -59,12 +59,16 @@
         </div>
         <div class="meeting-modal-right">
             <label>
-                <input id="date-range" type="text" placeholder="Wybierz zakres dat" />
+                <input id="date-range" type="text" placeholder="{{ 'admin.form.meeting.date_range_placeholder'|trans }}" />
             </label>
-            <button class="btn-join w-100" >Weź udział</button>
-            <button class="btn-quit w-100" >Zrezygnuj z udziału</button>
-            <button class="btn-delete w-100">Usuń</button>
-            <button class="btn-create w-100" style="display: none;">Zapisz</button>
+            <label class="w-100">
+                <select id="select2" class="w-100 form-control form-select meeting-users-select select2-enable" multiple></select>
+            </label>
+            <button class="btn-delete w-100">{{ 'form.delete'|trans }}</button>
+            <button class="btn-create w-100" style="display: none;">{{ 'form.save'|trans }}</button>
         </div>
+    </div>
+    <div class="meeting-modal-loader">
+        <img src="{{ asset('build/images/default/loader.svg') }}" alt="loader">
     </div>
 </div>
