@@ -1,26 +1,32 @@
 import flatpickr from 'flatpickr';
+import {getLocale} from './locale';
 
 export class MeetingModal {
     constructor(refreshCalendar) {
+        this.dateRangeInput = document.getElementById('date-range');
+        this.initDatePicker();
         this.modal = document.getElementById('meeting-modal');
         this.titleInput = document.getElementById('title');
         this.descriptionInput = document.getElementById('description');
-        this.dateRangeInput = document.getElementById('date-range');
-        this.initDatePicker();
+        this.select2Input = document.querySelector('.meeting-users-select');
         this.addEventListeners();
         this.currentMeetingId = null;
         this.debounceTimer = null;
         this.currentMeetingStatus = null;
         this.refreshCalendar = refreshCalendar;
+        this.refreshModal = this.refreshModal.bind(this);
+        this.assignedUserIds = [];
     }
 
     initDatePicker() {
         this.datePicker = flatpickr(this.dateRangeInput, {
             mode: 'range',
+            altInput: true,
+            altFormat: 'M j, Y H:i',
             enableTime: true,
+            dateFormat: 'Y-m-d\\TH:i',
             // eslint-disable-next-line camelcase
             time_24hr: true,
-            dateFormat: 'Y-m-d H:i',
             onChange: () => this.debounceSaveChanges(),
         });
     }
@@ -43,26 +49,47 @@ export class MeetingModal {
 
         const deleteButton = document.querySelector('.btn-delete');
         deleteButton.addEventListener('click', () => {
-            this.deleteMeeting();
-            this.closeModal();
+            // eslint-disable-next-line no-alert
+            const isConfirmed = confirm('Do you really wish to permanently delete this meeting? This action cannot be undone.');
+            if (isConfirmed) {
+                this.deleteMeeting();
+                this.closeModal();
+            }
         });
 
         this.titleInput.addEventListener('input', () => this.debounceSaveChanges());
         this.descriptionInput.addEventListener('input', () => this.debounceSaveChanges());
 
+        $(this.select2Input).on('change', () => {
+            if (this.currentMeetingId) {
+                const selectedUserIds = $(this.select2Input).val();
+                this.updateUsers(this.currentMeetingId, selectedUserIds);
+                this.refreshCalendar();
+            }
+        });
         const saveButton = document.querySelector('.btn-create');
         saveButton.addEventListener('click', () => this.saveNewMeeting());
-
-        const joinBtn = document.querySelector('.btn-join');
-        joinBtn.addEventListener('click', () => {
-            this.assignUserToEvent(this.currentMeetingId);
-        });
     }
 
     saveNewMeeting() {
         if (this.isDataValid()) {
             this.createOrUpdateMeeting();
+            this.closeModal();
         }
+    }
+
+    showLoader() {
+        const loader = this.modal.querySelector('.meeting-modal-loader');
+        const content = this.modal.querySelector('.meeting-modal-content');
+        content.style.display = 'none';
+        loader.style.display = 'block';
+    }
+
+    hideLoader() {
+        const loader = this.modal.querySelector('.meeting-modal-loader');
+        const content = this.modal.querySelector('.meeting-modal-content');
+        loader.style.display = 'none';
+        content.style.display = 'flex';
     }
 
     deleteMeeting() {
@@ -75,8 +102,6 @@ export class MeetingModal {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-
-                    return response.json();
                 })
                 .then(() => {
                     this.closeModal();
@@ -93,14 +118,12 @@ export class MeetingModal {
         this.prepareModalData(this.currentMeetingId);
         this.modal.style.display = 'block';
         this.toggleSaveDeleteButtons(false);
+        this.refreshUserSelect();
     }
 
     toggleSaveDeleteButtons(isNewMeeting) {
         const deleteButton = document.querySelector('.btn-delete');
         const saveButton = document.querySelector('.btn-create');
-        if (deleteButton) {
-            return;
-        }
 
         if (isNewMeeting) {
             deleteButton.style.display = 'none';
@@ -116,29 +139,59 @@ export class MeetingModal {
     }
 
     prepareModalData(meetingId) {
+        this.showLoader();
         fetch(`/api/meetings/${meetingId}`)
             .then(response => response.json())
-            .then(data => this.populateModalFields(data))
-            .catch(error => console.error('Error fetching meeting data:', error));
+            .then(data => {
+                this.populateModalFields(data);
+            })
+            .then(() => {
+                this.hideLoader();
+            })
+            .catch(error => {
+                console.error('Error fetching meeting data:', error);
+                this.hideLoader();
+            });
     }
 
-    populateModalFields(data) {
-        console.log(data);
+    async populateModalFields(data) {
         this.titleInput.value = data.title ?? '';
         this.descriptionInput.innerHTML = data.description ?? '';
         this.currentMeetingStatus = data.status;
+        this.assignedUserIds = data.userIds;
 
         if (data.startDate && data.endDate) {
             this.datePicker.setDate([new Date(data.startDate), new Date(data.endDate)]);
         } else {
             this.datePicker.clear();
         }
+
+        this.isDataValid();
+    }
+
+    refreshUserSelect() {
+        fetch('/api/users')
+            .then(response => response.json())
+            .then(data => {
+                const users = data['hydra:member'].map(user => ({
+                    id: user.id,
+                    text: `${user.displayName}`,
+                    selected: Array.isArray(this.assignedUserIds) && this.assignedUserIds.includes(user.id),
+                }));
+
+                $(this.select2Input).empty().select2({data: users});
+            })
+            .catch(error => console.error('Error fetching users:', error));
     }
 
     resetFormFields() {
         this.titleInput.value = '';
-        this.descriptionInput.value = '';
+        this.descriptionInput.innerHTML = '';
+        this.datePicker.config.dateTime = true;
         this.datePicker.clear();
+
+        $(this.select2Input).val(null).trigger('change');
+        this.assignedUserIds = [];
     }
 
     debounceSaveChanges() {
@@ -152,9 +205,16 @@ export class MeetingModal {
         }
     }
 
+    saveChanges() {
+        if (this.currentMeetingId) {
+            if (this.isDataValid()) {
+                this.createOrUpdateMeeting();
+            }
+        }
+    }
+
     isDataValid() {
         let isValid = true;
-
         if (this.titleInput.value.trim() === '') {
             this.titleInput.classList.add('invalid-field');
             this.addValidationMessage(this.titleInput, 'Title is required');
@@ -195,6 +255,25 @@ export class MeetingModal {
         }
     }
 
+    updateUsers(meetingId, selectedUserIds) {
+        const locale = getLocale();
+        fetch(`/${locale}/admin/meeting/${meetingId}/update-users`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/ld+json'},
+            body: JSON.stringify({userIds: selectedUserIds}),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Error updating users:', error);
+            });
+    }
+
     prepareMeetingData() {
         const meetingData = {
             title: this.titleInput.value,
@@ -213,6 +292,7 @@ export class MeetingModal {
     createOrUpdateMeeting() {
         const method = this.currentMeetingId ? 'PUT' : 'POST';
         const apiPath = this.currentMeetingId ? `/api/meetings/${this.currentMeetingId}` : '/api/meetings';
+        const selectedUserIds = $(this.select2Input).val();
 
         fetch(apiPath, {
             method,
@@ -226,19 +306,13 @@ export class MeetingModal {
 
                 return response.json();
             })
-            // eslint-disable-next-line no-unused-vars
             .then(data => {
-                if (!this.currentMeetingId) {
-                    this.closeModal();
-                }
-
-                this.refreshCalendar();
+                this.currentMeetingId = data.id;
+                this.updateUsers(this.currentMeetingId, selectedUserIds);
             })
             // eslint-disable-next-line no-unused-vars
             .then(data => {
-                if (!this.currentMeetingId) {
-                    this.closeModal();
-                }
+                this.refreshCalendar();
             })
             .catch(error => {
                 console.error('Error saving meeting data:', error);
@@ -250,20 +324,12 @@ export class MeetingModal {
         this.resetFormFields();
         this.toggleSaveDeleteButtons(true);
         this.modal.style.display = 'block';
+        this.refreshUserSelect();
     }
 
-    assignUserToEvent(id) {
-        fetch(`${id}/toggle-user`, {
-            method: 'POST',
-        }).then(() => {
-            this.refreshCalendar();
-        }).catch(error => {
-            throw new Error(error);
-        });
+    refreshModal() {
+        if (this.currentMeetingId) {
+            this.prepareModalData(this.currentMeetingId);
+        }
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    // eslint-disable-next-line no-new
-    new MeetingModal();
-});

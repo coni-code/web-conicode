@@ -55,19 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     calendar.render();
     calendar.setOption('locale', locale);
-
-    const meetingSaveBtn = document.querySelector('.btn-create');
-    const meetingDeleteBtn = document.querySelector('.btn-delete');
-
-    meetingSaveBtn.addEventListener('click', () => {
-        calendar.refetchEvents();
-        meetingModal.closeModal();
-    });
-
-    meetingDeleteBtn.addEventListener('click', () => {
-        calendar.refetchEvents();
-        meetingModal.closeModal();
-    });
 });
 
 function prepareEventData(meetings) {
