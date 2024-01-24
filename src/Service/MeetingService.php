@@ -7,6 +7,7 @@ namespace App\Service;
 use App\Entity\Meeting;
 use App\Entity\User;
 use App\Enum\MeetingStatusEnum;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 class MeetingService
@@ -15,6 +16,7 @@ class MeetingService
 
     public function __construct(
         private readonly ManagerRegistry $doctrine,
+        private readonly UserRepository $userRepository,
     ) {
     }
 
@@ -26,6 +28,27 @@ class MeetingService
             $meeting->addUser($user);
         }
         $this->handleStatus($meeting);
+        $em = $this->doctrine->getManager();
+        $em->persist($meeting);
+        $em->flush();
+    }
+
+    public function updateUsers(Meeting $meeting, array $userIds): void
+    {
+        /** @var User $user */
+        foreach ($meeting->getUsers()->toArray() as $user) {
+            $user->removeMeeting($meeting);
+        }
+
+        foreach ($userIds as $userId) {
+            $user = $this->userRepository->findOneBy(['id' => $userId]);
+            if ($user) {
+                $meeting->addUser($user);
+            }
+        }
+
+        $this->handleStatus($meeting);
+
         $em = $this->doctrine->getManager();
         $em->persist($meeting);
         $em->flush();

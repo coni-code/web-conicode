@@ -1,0 +1,74 @@
+<div class="full-calendar-section-buttons mt-2 mb-4">
+    <button type="button" class="btn btn-secondary">{{ 'form.filter'|trans }}</button>
+    <button type="button" class="btn btn-success" id="new-meeting-button">
+        {{ 'admin.meeting.header.add_new_meeting'|trans }}
+    </button>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h3>{{ 'admin.form.meeting.closest_meeting'|trans }}</h3>
+    </div>
+    <div class="card-body mt-3">
+        {% if closest_meeting %}
+            <table class="base-table base-table-underlined">
+                <tbody>
+                <tr>
+                    <th>{{ 'admin.form.meeting.starts'|trans }}:</th>
+                    <td>
+                        {% set meetingStartTime = closest_meeting.startDate|date('U') %}
+                        {% set currentTime = "now"|date('U') %}
+                        {% if meetingStartTime > currentTime %}
+                            <span class="text-danger" id="meeting-start-countdown" data-start-date="{{ closest_meeting.startDate|date('Y-m-d H:i:s') }}"></span>
+                        {% else %}
+                            <span class="text-danger">{{ 'admin.form.meeting.has_started'|trans }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ 'admin.form.meeting.title'|trans }}:</th>
+                    <td>{{ closest_meeting.title }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'admin.form.meeting.start_date'|trans }}:</th>
+                    <td>{{ closest_meeting.startDate|date('d.m.Y H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'admin.form.meeting.end_date'|trans }}:</th>
+                    <td>{{ closest_meeting.endDate|date('d.m.Y H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-success" data-meeting-modal="{{ closest_meeting.id }}">{{ 'admin.form.meeting.open'|trans }}</button></td>
+                </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <h4>{{ 'admin.form.meeting.closest_not_found'|trans }}</h4>
+        {% endif %}
+    </div>
+</div>
+<div id="meeting-modal" class="meeting-modal">
+    <div class="meeting-modal-content">
+        <span class="close-button">&times;</span>
+        <div class="meeting-modal-left">
+            <label>
+                <input id="title" type="text" />
+            </label>
+            <label>
+                <textarea id="description"></textarea>
+            </label>
+        </div>
+        <div class="meeting-modal-right">
+            <label>
+                <input id="date-range" type="text" placeholder="{{ 'admin.form.meeting.date_range_placeholder'|trans }}" />
+            </label>
+            <label class="w-100">
+                <select id="select2" class="w-100 form-control form-select meeting-users-select select2-enable" multiple></select>
+            </label>
+            <button class="btn-delete w-100">{{ 'form.delete'|trans }}</button>
+            <button class="btn-create w-100" style="display: none;">{{ 'form.save'|trans }}</button>
+        </div>
+    </div>
+    <div class="meeting-modal-loader">
+        <img src="{{ asset('build/images/default/loader.svg') }}" alt="loader">
+    </div>
+</div>

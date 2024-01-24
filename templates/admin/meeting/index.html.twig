@@ -28,15 +28,12 @@
         <div class="card">
             <div class="card-header">
                 <h4>{{ header }}</h4>
-                <div class="card-header-buttons">
-                    <a class="btn btn-success" href="{{ path('dev_meeting_new') }}">
-                        {{ 'admin.meeting.add_new_meeting'|trans }}
-                    </a>
-                </div>
             </div>
             <div class="card-body full-calendar-card">
                 <div id="full-calendar" data-avatar-template="{{ avatar_template|e('html_attr') }}"></div>
-                <div class="full-calendar-details"></div>
+                <div class="full-calendar-section">
+                    {{ include('admin/meeting/sections/general.html.twig') }}
+                </div>
             </div>
             <div class="card-footer"></div>
         </div>
@@ -45,5 +42,13 @@
 {% block javascripts %}
     {{ parent() }}
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Calendar JS and Modal JS -->
+    {{ encore_entry_script_tags('select2') }}
+    {{ encore_entry_script_tags('admin/meeting-form') }}
+    {{ encore_entry_script_tags('admin/closest-meeting-timer') }}
+    {{ encore_entry_script_tags('admin/meeting-modal') }}
     {{ encore_entry_script_tags('admin/calendar') }}
 {% endblock %}

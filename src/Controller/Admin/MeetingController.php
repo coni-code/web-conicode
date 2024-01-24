@@ -19,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MeetingController extends AbstractController
 {
     public function __construct(
+        private readonly MeetingRepository $meetingRepository,
         private readonly MeetingService $service,
     ) {
     }
@@ -26,8 +27,15 @@ class MeetingController extends AbstractController
     #[Route('/', name: 'meeting_index', methods: ['GET'])]
     public function index(MeetingRepository $meetingRepository): Response
     {
+        $closestMeeting = null;
+        $user = $this->getUser();
+        if ($user instanceof User) {
+            $closestMeeting = $this->meetingRepository->findClosestMeetingForUser($user);
+        }
+
         return $this->render('admin/meeting/index.html.twig', [
             'meetings' => $meetingRepository->findAll(),
+            'closest_meeting' => $closestMeeting,
         ]);
     }
 
@@ -57,7 +65,6 @@ class MeetingController extends AbstractController
     {
         $form = $this->createForm(MeetingType::class, $meeting);
         $form->handleRequest($request);
-        $subscribedServices = $this::getSubscribedServices();
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Meeting $meeting */
@@ -73,14 +80,6 @@ class MeetingController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/details', name: 'meeting_details', methods: ['GET'])]
-    public function details(Meeting $meeting): Response
-    {
-        return $this->render('admin/meeting/details.html.twig', [
-            'meeting' => $meeting,
-        ]);
-    }
-
     #[Route('/{id}/toggle-user', methods: ['POST'])]
     public function toggleUser(Meeting $meeting): JsonResponse
     {
@@ -92,5 +91,15 @@ class MeetingController extends AbstractController
         }
 
         return new JsonResponse(['status' => 'error'], Response::HTTP_BAD_REQUEST);
+    }
+
+    #[Route('/{id}/update-users', methods: ['POST', 'GET'])]
+    public function updateUsers(Meeting $meeting, Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $userIds = $data['userIds'] ?? [];
+        $this->service->updateUsers($meeting, $userIds);
+
+        return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
     }
 }
