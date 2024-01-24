@@ -92,4 +92,14 @@ class MeetingController extends AbstractController
 
         return new JsonResponse(['status' => 'error'], Response::HTTP_BAD_REQUEST);
     }
+
+    #[Route('/{id}/update-users', methods: ['POST', 'GET'])]
+    public function updateUsers(Meeting $meeting, Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $userIds = $data['userIds'] ?? [];
+        $this->service->updateUsers($meeting, $userIds);
+
+        return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
+    }
 }
