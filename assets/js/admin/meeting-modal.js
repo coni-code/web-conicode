@@ -320,6 +320,7 @@ export class MeetingModal {
     }
 
     openNewMeeting() {
+        this.hideLoader();
         this.currentMeetingId = null;
         this.resetFormFields();
         this.toggleSaveDeleteButtons(true);
