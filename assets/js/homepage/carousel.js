@@ -1,6 +1,7 @@
 import '@glidejs/glide/dist/glide.min.js';
 
-const {width} = screen.width;
+const width = window.innerWidth;
+
 const portfolio = new Glide('#portfolio', {
     type: 'carousel',
     startAt: 0,
