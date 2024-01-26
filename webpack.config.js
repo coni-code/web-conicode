@@ -28,6 +28,7 @@ Encore
     .addEntry('admin/meeting-form', './assets/js/admin/meeting-form.js')
     .addEntry('admin/closest-meeting-timer', './assets/js/admin/closest-meeting-timer.js')
     .addEntry('admin/meeting-modal', './assets/js/admin/meeting-modal.js')
+    .addEntry('form-validator', './assets/js/admin/form-validator.js')
     .addEntry('website/navbar', './assets/js/website/navbar.js')
     .addEntry('particles', './assets/js/particles.js')
     .addEntry('home/carousel', './assets/js/homepage/carousel.js')
