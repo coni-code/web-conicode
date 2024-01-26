@@ -1,0 +1,13 @@
+input {
+  border: 1px transparent;
+}
+
+input.validation-failed {
+  border: 1px solid red!important;
+  background-color: #ffc1cb !important;
+}
+
+input.validation-succeed {
+  border: 1px solid green!important;
+  background-color: rgb(193, 255, 193) !important;
+}
