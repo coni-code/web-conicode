@@ -96,9 +96,7 @@ class MeetingController extends AbstractController
     #[Route('/{id}/update-users', methods: ['POST', 'GET'])]
     public function updateUsers(Meeting $meeting, Request $request): JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
-        $userIds = $data['userIds'] ?? [];
-        $this->service->updateUsers($meeting, $userIds);
+        $this->service->updateUsers($meeting, $request);
 
         return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
     }
