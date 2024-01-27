@@ -149,4 +149,14 @@ class Meeting
             $user->removeMeeting($this);
         }
     }
+
+    public function getSprint(): ?Sprint
+    {
+        return $this->sprint;
+    }
+
+    public function setSprint(?Sprint $sprint): void
+    {
+        $this->sprint = $sprint;
+    }
 }
