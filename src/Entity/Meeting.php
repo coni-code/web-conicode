@@ -9,7 +9,6 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Enum\MeetingStatusEnum;
 use App\Repository\MeetingRepository;
 use App\Service\ApiFilter\MeetingFilter;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -36,11 +35,11 @@ class Meeting
 
     #[Groups('read')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?DateTimeInterface $startDate = null;
+    private ?\DateTimeInterface $startDate = null;
 
     #[Groups('read')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?DateTimeInterface $endDate = null;
+    private ?\DateTimeInterface $endDate = null;
 
     #[Groups('read')]
     #[ORM\Column(type: Types::STRING, enumType: MeetingStatusEnum::class, options: [
@@ -90,24 +89,24 @@ class Meeting
         return $this;
     }
 
-    public function getStartDate(): ?DateTimeInterface
+    public function getStartDate(): ?\DateTimeInterface
     {
         return $this->startDate;
     }
 
-    public function setStartDate(DateTimeInterface $startDate): static
+    public function setStartDate(\DateTimeInterface $startDate): static
     {
         $this->startDate = $startDate;
 
         return $this;
     }
 
-    public function getEndDate(): ?DateTimeInterface
+    public function getEndDate(): ?\DateTimeInterface
     {
         return $this->endDate;
     }
 
-    public function setEndDate(DateTimeInterface $endDate): static
+    public function setEndDate(\DateTimeInterface $endDate): static
     {
         $this->endDate = $endDate;
 

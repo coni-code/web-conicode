@@ -10,7 +10,6 @@ use App\Trello\Executor\CardExecutor;
 use App\Trello\Executor\MemberExecutor;
 use App\Trello\Executor\OrganizationExecutor;
 use App\Trello\Executor\PluginDataExecutor;
-use Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,7 +34,7 @@ class SaveTrelloDataCommand extends Command
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

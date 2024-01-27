@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Trello\Client;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Utils;
 
@@ -35,6 +36,9 @@ class Client
         return [RequestOptions::HEADERS => ['Accept' => 'application/json']];
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function get(string $path, string $id, array $fields = ['all']): array
     {
         $response = $this->client->request(

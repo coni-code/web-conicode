@@ -9,7 +9,6 @@ use App\Repository\Trello\BoardListRepository;
 use App\Repository\Trello\CardRepository;
 use App\Repository\Trello\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 class CardPreparer extends AbstractPreparer
 {
@@ -54,7 +53,6 @@ class CardPreparer extends AbstractPreparer
 
         !$members->isEmpty() && $card->setMembers($members);
 
-
         return $card;
     }
 
@@ -64,8 +62,8 @@ class CardPreparer extends AbstractPreparer
             if ($pluginDatum['idPlugin'] !== $estimationPluginId) {
                 continue;
             }
-            $estimateJson = $pluginDatum['value'];
-            $card->setStoryPoints((string)json_decode($estimateJson)->estimate);
+            $estimation = (string) json_decode($pluginDatum['value'])->estimate;
+            $card->setStoryPoints($estimation);
         }
 
         return $card;

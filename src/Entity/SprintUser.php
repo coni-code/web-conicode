@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\SprintUserRepository;
@@ -12,11 +14,11 @@ class SprintUser extends AbstractEntity
     private ?float $availabilityInHours = null;
 
     #[ORM\ManyToOne(targetEntity: Sprint::class, inversedBy: 'sprintUsers')]
-    #[ORM\JoinColumn(name: 'sprint_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'sprint_id', referencedColumnName: 'id', onDelete: 'cascade')]
     private ?Sprint $sprint = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'sprintUsers')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: 'cascade')]
     private ?User $user = null;
 
     public function getAvailabilityInHours(): ?float

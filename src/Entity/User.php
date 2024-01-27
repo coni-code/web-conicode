@@ -44,7 +44,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
     private ?Member $member = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SprintUser::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SprintUser::class, cascade: ['persist', 'remove'])]
     private ?Collection $sprintUsers = null;
 
     public function __construct()
@@ -174,6 +174,22 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         $this->sprintUsers = $sprintUsers;
     }
 
+    public function addSprintUser(SprintUser $sprintUser): void
+    {
+        if (!$this->sprintUsers->contains($sprintUser)) {
+            $this->sprintUsers->add($sprintUser);
+            $sprintUser->setUser($this);
+        }
+    }
+
+    public function removeSprintUser(SprintUser $sprintUser): void
+    {
+        if ($this->sprintUsers->contains($sprintUser)) {
+            $this->sprintUsers->removeElement($sprintUser);
+            $sprintUser->setUser(null);
+        }
+    }
+
     #[Groups('read')]
     public function getDisplayName(): string
     {
@@ -190,6 +206,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
                 $this->getEmail(),
             );
         }
+
         return $this->getEmail();
     }
 }
