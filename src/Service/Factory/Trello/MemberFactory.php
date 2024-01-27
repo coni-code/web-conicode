@@ -10,7 +10,7 @@ class MemberFactory
 {
     public static function createMember(
         string $id,
-        string $avatarHash,
+        ?string $avatarHash,
         string $avatarUrl,
     ): Member {
         $member = new Member();

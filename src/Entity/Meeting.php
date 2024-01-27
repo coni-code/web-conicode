@@ -49,7 +49,7 @@ class Meeting
     private MeetingStatusEnum $status = MeetingStatusEnum::STATUS_PENDING;
 
     /** @var Collection<User> */
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings', cascade: ['persist'])]
     private Collection $users;
 
     #[ORM\ManyToOne(targetEntity: Sprint::class, inversedBy: 'meetings')]

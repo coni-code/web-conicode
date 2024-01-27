@@ -1,16 +1,12 @@
-{% extends "website/base.html.twig" %}
-
-{% block body %}
-
 <div class="first-node card-element logo-box">
     <img src="{{ asset('build/images/brand/logo.png') }}" class="logo" alt="box logo"/>
 </div>
-<div class="second-node card-element" data-box="home-element">
+<div class="second-node card-element">
     <h1 class="card-header">Witaj w ConiCode</h1>
     <p class="card-desc">Tworzymy Technologie z Pasją!</p>
     <img/>
 </div>
-<div class="third-node card-element" data-box="contact-element">
+<div class="third-node card-element">
     <h2 class="card-header">Na skróty</h2>
     <div class="short-cuts">
         <a class="shortcut-link" href="https://github.com/coni-code" target="_blank">
@@ -27,14 +23,3 @@
         </a>
     </div>
 </div>
-<div class="forth-node card-element hover-element" data-box="team-element">
-    <h2 class="card-header">Poznaj nas</h2>
-    <p class="card-desc">Tutaj będzie o naszym teamie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet iaculis neque, non sodales. </p>
-    <img/>
-</div>
-<div class="fifth-node card-element" data-box="projects-element">
-    <h2 class="card-header">Projekty</h2>
-    <p class="card-desc">Tu będzie jakiś tam projekt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet iaculis neque, non sodales. </p>
-    <img/>
-</div>
-{% endblock %}

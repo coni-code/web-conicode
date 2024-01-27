@@ -109,3 +109,40 @@ body {
     color: $primary-red-color;
     border-color: $primary-red-color;
 }
+
+.base-table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    color: white;
+}
+
+.base-table th,
+.base-table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid $primary-lighter-background-color;
+}
+
+.base-table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid $primary-lighter-background-color;
+}
+
+.base-table tbody + tbody {
+    border-top: 2px solid $primary-lighter-background-color;
+}
+
+.base-table-underlined {
+    border-collapse: collapse;
+}
+
+.base-table-underlined th,
+.base-table-underlined td {
+    border-top: none;
+}
+
+.base-table-underlined tr {
+    border-bottom: 1px solid $primary-lighter-background-color;
+}

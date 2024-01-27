@@ -18,14 +18,14 @@ class MeetingNormalizer implements NormalizerInterface
     {
         $avatarUrls = [];
         $trelloAvatarsPath = '/build/trello/avatar';
-        $defaultAvatar = '/build/image/default/avatar.png';
+        $defaultAvatar = '/build/images/default/avatar.png';
 
         if (!$object instanceof Meeting) {
             return [];
         }
 
         foreach ($object->getUsers() as $user) {
-            $avatarUrls[] = $user->getMember() ? sprintf(
+            $avatarUrls[] = $user->getMember() && $user->getMember()->getAvatarHash() ? sprintf(
                 '%s/%s.%s',
                 $trelloAvatarsPath,
                 $user->getMember()->getAvatarHash(),
@@ -40,6 +40,7 @@ class MeetingNormalizer implements NormalizerInterface
             'endDate' => $object->getEndDate()->format('Y-m-d'),
             'status' => $object->getStatus(),
             'avatarUrl' => $avatarUrls,
+            'userIds' => array_map(fn ($user) => $user->getId(), $object->getUsers()->toArray()),
         ];
     }
 

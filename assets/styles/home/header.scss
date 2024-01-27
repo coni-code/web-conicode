@@ -33,11 +33,6 @@
     transform: translate(-10%,15%);
 }
 
-.card-element.hovered{
-    box-shadow: 0 0 20px 2px $primary-red-color;
-    transition: 150ms;
-}
-
 .short-cuts {
     display: flex;
     flex-direction: column;
@@ -63,7 +58,7 @@
 }
 
 .shortcut-link i {
-    margin-right: 5px; 
+    margin-right: 5px;
     padding: 6px;
     border: 2px solid $button-hover;
     border-radius: 6px;
@@ -81,11 +76,6 @@
 
 
 @media screen and (width <= 500px) {
-    .card-element.hovered{
-        box-shadow: 0 0 20px 2px $primary-red-color;
-        transition: 150ms;
-    }
-
     .first-node{
         grid-row-start: 2;
         grid-column: span 4;

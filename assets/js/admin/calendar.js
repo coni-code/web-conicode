@@ -2,11 +2,16 @@ import {Calendar} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import {getLocale} from './locale';
+import {MeetingModal} from './meeting-modal';
 
 document.addEventListener('DOMContentLoaded', () => {
     const locale = getLocale();
     const calendarElement = document.getElementById('full-calendar');
+    const refreshCalendar = () => {
+        calendar.refetchEvents();
+    };
 
+    const meetingModal = new MeetingModal(refreshCalendar);
     const calendar = new Calendar(calendarElement, {
         plugins: [dayGridPlugin, interactionPlugin],
         eventTimeFormat: {
@@ -22,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return handleEventStatus(event);
         },
         eventContent(arg) {
-            return {html: generateEventContent(arg, arg.event.id)};
+            return {html: generateEventContent(arg)};
         },
         eventDidMount(info) {
             const eventElement = info.el;
@@ -41,6 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             eventElement.addEventListener('mouseleave', () => {
                 document.removeEventListener('keydown', handleSpaceBarPress);
+            });
+
+            info.el.addEventListener('click', () => {
+                meetingModal.openExistingMeeting(info.event.id);
             });
         },
     });
@@ -65,7 +74,7 @@ function fetchMeetings(fetchInfo, successCallback, failureCallback) {
     const startDate = fetchInfo.startStr;
     const endDate = fetchInfo.endStr;
 
-    fetch(`/api/meetings?startDate=${startDate}&endDate=${endDate}`)
+    fetch(`/api/meetings?startDate=${startDate}&endDate=${endDate}&avatar=1`)
         .then(response => response.json())
         .then(data => {
             successCallback(prepareEventData(data['hydra:member']));
@@ -84,7 +93,7 @@ function handleEventStatus(event) {
     return classNames;
 }
 
-function generateEventContent(arg, id) {
+function generateEventContent(arg) {
     let avatarsHtml = '';
 
     const avatarUrls = arg.event.extendedProps.extraParams.avatarUrl;
@@ -100,13 +109,10 @@ function generateEventContent(arg, id) {
     }
 
     return `
-        <div class="fc-event-main-frame">
+        <div class="fc-event-main-frame" data-meeting-modal="${arg.event.id}">
             <div class="fc-event-main-content">
                 <div class="fc-event-title-container">
                     <div class="fc-event-title">${arg.event.title}</div>
-                </div>
-                <div class="fc-event-details-link">
-                    <a href="${id}/edit" class="fc-event-details-button"><i class="fas fa-edit m-1"></i></a>
                 </div>
             </div>
             <div class="member-avatar-container">${avatarsHtml}</div>
