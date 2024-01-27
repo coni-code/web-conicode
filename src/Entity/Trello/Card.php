@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Trello;
 
+use App\Entity\Sprint;
 use App\Repository\Trello\CardRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -19,6 +20,9 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
     #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
+    #[ORM\Column(type: 'float', nullable: true)]
+    private ?float $storyPoints = null;
+
     #[ORM\Column]
     private ?string $url = null;
 
@@ -29,6 +33,10 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
     #[ORM\ManyToMany(targetEntity: Member::class, inversedBy: 'cards', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'trello_cards_members')]
     private Collection $members;
+
+    #[ORM\ManyToOne(targetEntity: Sprint::class, inversedBy: 'cards')]
+    #[ORM\JoinColumn(name: 'sprint_id', referencedColumnName: 'id')]
+    private ?Sprint $sprint = null;
 
     public function __construct()
     {
@@ -109,5 +117,25 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
         preg_match('/### SUMMARY\n(.*)/s', $this->getDescription(), $matches);
 
         return $matches[1] ?? null;
+    }
+
+    public function getStoryPoints(): ?float
+    {
+        return $this->storyPoints;
+    }
+
+    public function setStoryPoints(?float $storyPoints): void
+    {
+        $this->storyPoints = $storyPoints;
+    }
+
+    public function getSprint(): ?Sprint
+    {
+        return $this->sprint;
+    }
+
+    public function setSprint(?Sprint $sprint): void
+    {
+        $this->sprint = $sprint;
     }
 }

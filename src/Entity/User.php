@@ -27,6 +27,12 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 180)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 180)]
+    private ?string $surname = null;
+
     /** @var Collection<Meeting> */
     #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist', 'remove'])]
     #[ORM\JoinTable(name: 'users_meetings')]
@@ -34,6 +40,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
     private ?Member $member = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SprintUser::class)]
+    private ?Collection $sprintUsers = null;
 
     public function __construct()
     {
@@ -138,8 +147,46 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         }
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(?string $surname): void
+    {
+        $this->surname = $surname;
+    }
+
+    public function getSprintUsers(): ?Collection
+    {
+        return $this->sprintUsers;
+    }
+
+    public function setSprintUsers(?Collection $sprintUsers): void
+    {
+        $this->sprintUsers = $sprintUsers;
+    }
+
     public function __toString(): string
     {
+        if ($this->getName() && $this->getSurname()) {
+            return sprintf(
+                '%s %s (%s)',
+                $this->getName(),
+                $this->getSurname(),
+                $this->getEmail(),
+            );
+        }
         return $this->getEmail();
     }
 }
