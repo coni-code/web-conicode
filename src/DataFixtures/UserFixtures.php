@@ -7,6 +7,7 @@ namespace App\DataFixtures;
 use App\Service\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
@@ -17,9 +18,13 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create();
+
         $superAdmin = UserFactory::createUser(
             $this->passwordHasher,
             'super@admin.pl',
+            $faker->name(),
+            $faker->lastName(),
             'admin',
             ['ROLE_ADMIN'],
         );
@@ -27,6 +32,8 @@ class UserFixtures extends Fixture
         $admin = UserFactory::createUser(
             $this->passwordHasher,
             'admin@admin.pl',
+            $faker->name(),
+            $faker->lastName(),
             'admin',
             ['ROLE_ADMIN'],
         );
@@ -34,6 +41,8 @@ class UserFixtures extends Fixture
         $pm = UserFactory::createUser(
             $this->passwordHasher,
             'manager@manager.pl',
+            $faker->name(),
+            $faker->lastName(),
             'manager',
             ['ROLE_MANAGER'],
         );
@@ -41,6 +50,8 @@ class UserFixtures extends Fixture
         $user = UserFactory::createUser(
             $this->passwordHasher,
             'user@user.pl',
+            $faker->name(),
+            $faker->lastName(),
             'user',
             ['ROLE_USER'],
         );

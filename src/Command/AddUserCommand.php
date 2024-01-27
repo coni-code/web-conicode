@@ -126,6 +126,8 @@ class AddUserCommand extends Command
         $user = UserFactory::createUser(
             $this->passwordHasher,
             $email,
+            null,
+            null,
             password_hash($password, PASSWORD_DEFAULT),
             [$role],
         );
