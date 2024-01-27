@@ -51,6 +51,10 @@ class Meeting
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'meetings', cascade: ['persist'])]
     private Collection $users;
 
+    #[ORM\ManyToOne(targetEntity: Sprint::class, inversedBy: 'meetings')]
+    #[ORM\JoinColumn(name: 'sprint_id', referencedColumnName: 'id')]
+    private ?Sprint $sprint = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -143,5 +147,15 @@ class Meeting
             $this->users->removeElement($user);
             $user->removeMeeting($this);
         }
+    }
+
+    public function getSprint(): ?Sprint
+    {
+        return $this->sprint;
+    }
+
+    public function setSprint(?Sprint $sprint): void
+    {
+        $this->sprint = $sprint;
     }
 }

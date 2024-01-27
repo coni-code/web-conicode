@@ -6,19 +6,19 @@ namespace App\Trello\Fetcher;
 
 use GuzzleHttp\Exception\GuzzleException;
 
-class OrganizationFetcher extends AbstractFetcher
+class PluginDataFetcher extends AbstractFetcher
 {
-    private const ORGANIZATION = 'organizations/{id}';
+    private const PLUGIN_DATA = 'cards/{id}/pluginData';
 
     /**
      * @return array<string>
      *
      * @throws GuzzleException
      */
-    public function getOrganization(string $id): array
+    public function getPluginDataFromCard(string $id): array
     {
         return $this->client->get(
-            self::ORGANIZATION,
+            self::PLUGIN_DATA,
             $id,
         );
     }

@@ -30,6 +30,12 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $surname = null;
+
     /** @var Collection<Meeting> */
     #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist'])]
     #[ORM\JoinTable(name: 'users_meetings')]
@@ -37,6 +43,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Member::class, cascade: ['persist'])]
     private ?Member $member = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SprintUser::class, cascade: ['persist', 'remove'])]
+    private ?Collection $sprintUsers = null;
 
     public function __construct()
     {
@@ -48,11 +57,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): void
     {
         $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -76,11 +83,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): static
+    public function setRoles(array $roles): void
     {
         $this->roles = $roles;
-
-        return $this;
     }
 
     /**
@@ -91,11 +96,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): void
     {
         $this->password = $password;
-
-        return $this;
     }
 
     /**
@@ -141,6 +144,52 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         }
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(?string $surname): void
+    {
+        $this->surname = $surname;
+    }
+
+    public function getSprintUsers(): ?Collection
+    {
+        return $this->sprintUsers;
+    }
+
+    public function setSprintUsers(?Collection $sprintUsers): void
+    {
+        $this->sprintUsers = $sprintUsers;
+    }
+
+    public function addSprintUser(SprintUser $sprintUser): void
+    {
+        if (!$this->sprintUsers->contains($sprintUser)) {
+            $this->sprintUsers->add($sprintUser);
+            $sprintUser->setUser($this);
+        }
+    }
+
+    public function removeSprintUser(SprintUser $sprintUser): void
+    {
+        if ($this->sprintUsers->contains($sprintUser)) {
+            $this->sprintUsers->removeElement($sprintUser);
+            $sprintUser->setUser(null);
+        }
+    }
+
     #[Groups('read')]
     public function getDisplayName(): string
     {
@@ -149,6 +198,15 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 
     public function __toString(): string
     {
+        if ($this->getName() && $this->getSurname()) {
+            return sprintf(
+                '%s %s (%s)',
+                $this->getName(),
+                $this->getSurname(),
+                $this->getEmail(),
+            );
+        }
+
         return $this->getEmail();
     }
 }

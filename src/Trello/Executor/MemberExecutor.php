@@ -11,6 +11,7 @@ use App\Trello\Client\Config;
 use App\Trello\Downloader\MemberAvatarDownloader;
 use App\Trello\Fetcher\MemberFetcher;
 use App\Trello\Preparer\MemberPreparer;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -28,6 +29,7 @@ class MemberExecutor extends AbstractExecutor
     /**
      * @throws AvatarDownloadException
      * @throws TrelloStorageException
+     * @throws GuzzleException
      */
     public function doExecute(?InputInterface $input, ?OutputInterface $output): void
     {

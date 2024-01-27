@@ -55,4 +55,17 @@ class CardPreparer extends AbstractPreparer
 
         return $card;
     }
+
+    public function prepareCardEstimation(Card $card, array $pluginData, string $estimationPluginId): ?Card
+    {
+        foreach ($pluginData as $pluginDatum) {
+            if ($pluginDatum['idPlugin'] !== $estimationPluginId) {
+                continue;
+            }
+            $estimation = (string) json_decode($pluginDatum['value'])->estimate;
+            $card->setStoryPoints($estimation);
+        }
+
+        return $card;
+    }
 }

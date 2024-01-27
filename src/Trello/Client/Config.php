@@ -11,6 +11,7 @@ class Config
         private readonly string $token,
         private readonly string $boardId,
         private readonly string $organizationId,
+        private readonly string $estimationPluginId,
     ) {
     }
 
@@ -32,5 +33,10 @@ class Config
     public function getBoardId(): string
     {
         return $this->boardId;
+    }
+
+    public function getEstimationPluginId(): string
+    {
+        return $this->estimationPluginId;
     }
 }

@@ -7,6 +7,7 @@ namespace App\Trello\Executor;
 use App\Trello\Client\Config;
 use App\Trello\Fetcher\BoardListFetcher;
 use App\Trello\Preparer\BoardListPreparer;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -19,6 +20,9 @@ class BoardListExecutor extends AbstractExecutor
     ) {
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function doExecute(?InputInterface $input, ?OutputInterface $output): void
     {
         if (!$boardId = $this->config->getBoardId()) {
