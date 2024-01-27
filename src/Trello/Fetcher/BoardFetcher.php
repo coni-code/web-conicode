@@ -12,6 +12,7 @@ class BoardFetcher extends AbstractFetcher
 
     /**
      * @return array<string>
+     *
      * @throws GuzzleException
      */
     public function getBoard(string $id): array

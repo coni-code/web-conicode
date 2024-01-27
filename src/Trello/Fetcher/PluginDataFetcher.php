@@ -12,6 +12,7 @@ class PluginDataFetcher extends AbstractFetcher
 
     /**
      * @return array<string>
+     *
      * @throws GuzzleException
      */
     public function getPluginDataFromCard(string $id): array

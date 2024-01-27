@@ -13,6 +13,7 @@ class MemberFetcher extends AbstractFetcher
 
     /**
      * @return array<string>
+     *
      * @throws GuzzleException
      */
     public function getMember(string $id): array
@@ -25,6 +26,7 @@ class MemberFetcher extends AbstractFetcher
 
     /**
      * @return array<string>
+     *
      * @throws GuzzleException
      */
     public function getMembersIdFromBoard(string $id): array
@@ -38,6 +40,7 @@ class MemberFetcher extends AbstractFetcher
 
     /**
      * @return array<string>
+     *
      * @throws GuzzleException
      */
     public function getMembersFromBoard(string $id): array

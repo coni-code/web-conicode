@@ -13,6 +13,7 @@ class CardFetcher extends AbstractFetcher
 
     /**
      * @return array<string>
+     *
      * @throws GuzzleException
      */
     public function getCardsFromBoard(string $id): array

@@ -12,6 +12,7 @@ class OrganizationFetcher extends AbstractFetcher
 
     /**
      * @return array<string>
+     *
      * @throws GuzzleException
      */
     public function getOrganization(string $id): array
