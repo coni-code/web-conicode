@@ -7,6 +7,7 @@ namespace App\Trello\Fetcher;
 class CardFetcher extends AbstractFetcher
 {
     private const CARDS = 'boards/{id}/cards';
+    private const PLUGIN_DATA = 'cards/{id}/pluginData';
 
     /**
      * @return array<string>
@@ -16,6 +17,13 @@ class CardFetcher extends AbstractFetcher
         return $this->client->get(
             self::CARDS,
             $id,
+        );
+    }
+    public function getCardPluginData(string $id): array
+    {
+        return $this->client->get(
+        self::PLUGIN_DATA,
+            $id
         );
     }
 }
