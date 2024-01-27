@@ -13,9 +13,9 @@ nav {
 
 .links {
     background-color: $navbarColor;
-    background-image: radial-gradient(circle, 
-        transparent, 
-        rgb(255 255 255 / 0%) 75%, 
+    background-image: radial-gradient(circle,
+        transparent,
+        rgb(255 255 255 / 0%) 75%,
         rgb(252 176 69 / 0%) 75%);
     border-radius:20px;
     padding: 4px 12px;
@@ -67,12 +67,6 @@ nav .links {
     border-radius: 20px;
 }
 
-.links .nav-item.hovered .nav-link {
-    border: 1px solid $button-hover;
-    border-radius: 20px;
-    transition: 150ms;
-}
-
 .nav-lang span {
     cursor: pointer;
 }
@@ -114,7 +108,7 @@ nav .links {
 
 $glow-nav-effect-width: 500px;
 
-.glow-nav-effect {   
+.glow-nav-effect {
     position: fixed;
     top: -1px;
     left: calc(50% - ($glow-nav-effect-width/2));
