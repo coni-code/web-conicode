@@ -9,6 +9,8 @@ use App\Trello\Executor\BoardListExecutor;
 use App\Trello\Executor\CardExecutor;
 use App\Trello\Executor\MemberExecutor;
 use App\Trello\Executor\OrganizationExecutor;
+use App\Trello\Executor\PluginDataExecutor;
+use Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,10 +29,14 @@ class SaveTrelloDataCommand extends Command
         private readonly MemberExecutor $memberExecutor,
         private readonly BoardListExecutor $boardListExecutor,
         private readonly CardExecutor $cardExecutor,
+        private readonly PluginDataExecutor $pluginDataExecutor,
     ) {
         parent::__construct();
     }
 
+    /**
+     * @throws Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->organizationExecutor->execute($input, $output);
@@ -38,6 +44,7 @@ class SaveTrelloDataCommand extends Command
         $this->memberExecutor->execute($input, $output);
         $this->boardListExecutor->execute($input, $output);
         $this->cardExecutor->execute($input, $output);
+        $this->pluginDataExecutor->execute($input, $output);
 
         return Command::SUCCESS;
     }

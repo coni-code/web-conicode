@@ -28,12 +28,6 @@ class CardExecutor extends AbstractExecutor
         $cardData = $this->fetcher->getCardsFromBoard($boardId);
         $cards = $this->preparer->prepare($cardData);
 
-        foreach ($cards as $card) {
-            $pluginData = $this->fetcher->getCardPluginData($card->getId());
-            $estimate = $this->preparer->prepareEstimates($pluginData);
-            $card->setStoryPoints($estimate);
-        }
-
         $this->save($cards);
     }
 }

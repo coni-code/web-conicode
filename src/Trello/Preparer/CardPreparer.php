@@ -57,12 +57,17 @@ class CardPreparer extends AbstractPreparer
 
         return $card;
     }
-    public function prepareEstimates(array $pluginData): ?float
+
+    public function prepareCardEstimation(Card $card, array $pluginData, string $estimationPluginId): ?Card
     {
-        if (!($pluginData[0]['idPlugin'] == '597cbecff4fe5f1d91d4b614')) {
-            return null;
+        foreach ($pluginData as $pluginDatum) {
+            if ($pluginDatum['idPlugin'] !== $estimationPluginId) {
+                continue;
+            }
+            $estimateJson = $pluginDatum['value'];
+            $card->setStoryPoints((string)json_decode($estimateJson)->estimate);
         }
-        $estimateJson = $pluginData[0]['value'];
-        return (float)json_decode($estimateJson)->estimate;
+
+        return $card;
     }
 }

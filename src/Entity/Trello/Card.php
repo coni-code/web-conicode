@@ -20,8 +20,8 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
     #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'float', nullable: true)]
-    private ?float $storyPoints = null;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $storyPoints = null;
 
     #[ORM\Column]
     private ?string $url = null;
@@ -119,12 +119,12 @@ class Card extends AbstractTrelloEntity implements TrelloEntity
         return $matches[1] ?? null;
     }
 
-    public function getStoryPoints(): ?float
+    public function getStoryPoints(): ?string
     {
         return $this->storyPoints;
     }
 
-    public function setStoryPoints(?float $storyPoints): void
+    public function setStoryPoints(?string $storyPoints): void
     {
         $this->storyPoints = $storyPoints;
     }

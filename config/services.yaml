@@ -3,6 +3,7 @@ parameters:
     token: '%env(TRELLO_API_SECRET)%'
     board_id: '%env(TRELLO_BOARD_ID)%'
     organization_id: '%env(TRELLO_ORGANIZATION_ID)%'
+    estimation_plugin_id: '%env(TRELLO_ESTIMATION_PLUGIN_ID)%'
 services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -28,6 +29,7 @@ services:
             $token: '%token%'
             $boardId: '%board_id%'
             $organizationId: '%organization_id%'
+            $estimationPluginId: '%estimation_plugin_id%'
 
     gedmo.listener.softdeleteable:
         class: Gedmo\SoftDeleteable\SoftDeleteableListener
