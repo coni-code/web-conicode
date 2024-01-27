@@ -7,15 +7,8 @@
 }
 
 .carusel-element{
-    height: 95%;
-    border-radius: 10px;
+    height: 100%;
+    width: 100%;
     transition: 300ms;
-}
-
-.carusel-img{
-    width: 50%;
-}
-
-.carusel-desc{
-    width: 200px;
+    position: relative;
 }

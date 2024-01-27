@@ -1,0 +1,15 @@
+<svg 
+    id="visual" 
+    viewBox="0 0 900 600" 
+    width="900" 
+    height="600" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    version="1.1">
+        <g transform="translate(-65 -116.95000000000013)">
+            <path 
+                d="M750 58.5C750 351.3 375 702.7 32.5 702.7C-310 702.7 -620 351.3 -620 58.5C-620 -234.4 -310 -468.8 32.5 -468.8C375 -468.8 750 -234.4 750 58.5" 
+                fill="#152031">
+            </path>
+        </g>
+</svg>
