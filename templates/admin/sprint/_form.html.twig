@@ -1,0 +1,42 @@
+{{ form_start(form) }}
+<div class="card-body">
+    <div class="row">
+        <div class="col-xxl-6">
+            <div class="form-group">
+                {{ form_label(form.title, 'admin.form.meeting.title'|trans) }}
+                {{ form_widget(form.title, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xxl-3">
+            <div class="form-group">
+                {{ form_label(form.startDate, 'admin.form.meeting.start_date'|trans) }}
+                {{ form_widget(form.startDate, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+        <div class="col-xxl-3">
+            <div class="form-group">
+                {{ form_label(form.endDate, 'admin.form.meeting.end_date'|trans) }}
+                {{ form_widget(form.endDate, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-footer">
+    <a class="btn btn-danger" href="{{ path('dev_sprint_index') }}">{{ 'admin.form.cancel'|trans }}</a>
+    <button class="btn btn-success">{{ button_label|default('admin.form.save'|trans) }}</button>
+</div>
+{{ form_end(form) }}

@@ -9,6 +9,9 @@
             <li {% if currentPath == path('dev_admin') %} class="active" {% endif %}>
                 <a href="{{ path('dev_admin') }}"><span>{{ 'admin.sidebar.link.dashboard'|trans }}</span></a>
             </li>
+            <li class="sub-menu {% if currentPath starts with '/sprint' %} active {% endif %}">
+                <a class="sub-header" href="{{ path('dev_sprint_index') }}"><span>{{ 'admin.sprint.header.plural'|trans }}</span></a>
+            </li>
             <li class="sub-menu {% if currentPath starts with '/meeting' %} active {% endif %}">
                 <a class="sub-header" href="{{ path('dev_meeting_index') }}"><span>{{ 'admin.meeting.header.plural'|trans }}</span></a>
             </li>

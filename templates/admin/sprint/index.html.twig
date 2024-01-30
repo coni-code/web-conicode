@@ -1,0 +1,57 @@
+{% extends '/admin/base.html.twig' %}
+
+{% set header = 'admin.sprint.header.plural'|trans %}
+
+{% block body %}
+    <div class="page">
+        <div class="page-header d-flex align-items-center justify-content-between">
+            <h1><span class="text-header">{{ header }}</span></h1>
+
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('dev_admin') }}">{{ 'admin.sidebar.link.dashboard'|trans }}</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{ header }}</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4>{{ header }}</h4>
+                <a type="button" class="btn btn-success" href="{{ path('dev_sprint_new') }}">
+                    {{ 'admin.sprint.header.add_new_sprint'|trans }}
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="base-table">
+                    <thead>
+                        <tr>
+                            <th>{{ 'admin.form.sprint.title'|trans }}</th>
+                            <th>{{ 'admin.form.sprint.start_date'|trans }}</th>
+                            <th>{{ 'admin.form.sprint.end_date'|trans }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sprint in sprints %}
+                        <tr>
+                            <td>{{ sprint.title }}</td>
+                            <td>{{ sprint.startDate|date('Y-m-d') }}</td>
+                            <td>{{ sprint.endDate|date('Y-m-d') }}</td>
+                            <td>
+                                <a href="{{ path('dev_sprint_edit', { 'id': sprint.id }) }}" class="btn btn-secondary">
+                                    {{ 'form.edit'|trans }}
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
