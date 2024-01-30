@@ -11,7 +11,7 @@ use App\Repository\SprintRepository;
 class SprintService
 {
     public function __construct(
-       private readonly SprintRepository $sprintRepository,
+        private readonly SprintRepository $sprintRepository,
     ) {
     }
 

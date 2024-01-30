@@ -6,7 +6,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Meeting;
 use App\Entity\User;
-use App\Form\MeetingType;
 use App\Repository\MeetingRepository;
 use App\Service\MeetingService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,47 +35,6 @@ class MeetingController extends AbstractController
         return $this->render('admin/meeting/index.html.twig', [
             'meetings' => $meetingRepository->findAll(),
             'closest_meeting' => $closestMeeting,
-        ]);
-    }
-
-    #[Route('/new', name: 'meeting_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
-    {
-        $meeting = new Meeting();
-        $form = $this->createForm(MeetingType::class, $meeting);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Meeting $meeting */
-            $meeting = $form->getData();
-            $this->service->handleFormData($meeting);
-
-            return $this->redirectToRoute('dev_meeting_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('admin/meeting/new.html.twig', [
-            'meeting' => $meeting,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'meeting_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Meeting $meeting): Response
-    {
-        $form = $this->createForm(MeetingType::class, $meeting);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Meeting $meeting */
-            $meeting = $form->getData();
-            $this->service->handleFormData($meeting);
-
-            return $this->redirectToRoute('dev_meeting_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('admin/meeting/edit.html.twig', [
-            'meeting' => $meeting,
-            'form' => $form,
         ]);
     }
 

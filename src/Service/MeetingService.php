@@ -58,33 +58,6 @@ class MeetingService
         $em->flush();
     }
 
-    public function handleFormData(Meeting $meeting): void
-    {
-        $em = $this->doctrine->getManager();
-        $this->updateMeetingUsers($meeting);
-        $this->handleStatus($meeting);
-
-        $em->persist($meeting);
-        $em->flush();
-    }
-
-    private function updateMeetingUsers(Meeting $meeting): void
-    {
-        $userRepository = $this->doctrine->getRepository(User::class);
-        $originalUsers = $userRepository->findAll();
-        $currentUsers = $meeting->getUsers();
-
-        foreach ($currentUsers as $user) {
-            $user->addMeeting($meeting);
-        }
-
-        foreach ($originalUsers as $user) {
-            if (!$currentUsers->contains($user)) {
-                $user->removeMeeting($meeting);
-            }
-        }
-    }
-
     private function handleStatus(Meeting $meeting): void
     {
         if (self::ASSIGNED_FOR_CONFIRMED_STATUS <= $meeting->getUsers()->count()) {

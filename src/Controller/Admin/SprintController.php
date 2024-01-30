@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\Sprint;
@@ -7,7 +9,6 @@ use App\Exception\NotFoundException;
 use App\Form\SprintType;
 use App\Repository\SprintRepository;
 use App\Service\SprintService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +38,7 @@ class SprintController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->service->save($sprint);
+
             return $this->redirectToRoute('dev_sprint_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -54,6 +56,7 @@ class SprintController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->service->save($sprint);
+
             return $this->redirectToRoute('dev_sprint_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -66,7 +69,7 @@ class SprintController extends AbstractController
     #[Route('/{id}', name: 'sprint_delete', methods: ['POST'])]
     public function delete(Request $request, string $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$id, $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
             try {
                 $this->service->delete($id);
             } catch (NotFoundException $e) {
