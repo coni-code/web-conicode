@@ -1,5 +1,7 @@
 @import "@glidejs/glide/src/assets/sass/glide.core";
 @import "@glidejs/glide/src/assets/sass/glide.theme";
+@import '../variables';
+
 
 .carusel{
     width: 100%;
@@ -11,4 +13,30 @@
     width: 100%;
     transition: 300ms;
     position: relative;
+}
+
+.arrow{
+    background-color: #0000;
+    color: white;
+    border: none;
+    font-size: x-large;
+    transition: 200ms;
+    transform: translate(0, -50%);
+}
+
+.arrow:hover{
+    color: $primary-red-color;
+    font-size: xx-large;
+}
+
+.arrow-left{
+    position: absolute;
+    top: 50%;
+    left: 12px;
+}
+
+.arrow-right{
+    position: absolute;
+    top: 50%;
+    right: 12px;
 }
