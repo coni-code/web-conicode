@@ -1,6 +1,6 @@
 {% extends '/admin/base.html.twig' %}
 
-{% set header = 'admin.meeting.edit_meeting'|trans %}
+{% set header = 'admin.sprint.header.add_new_sprint'|trans %}
 
 {% block body %}
     <div class="page">
@@ -9,7 +9,7 @@
 
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a href="{{ path('dev_admin') }}">{{ 'admin.sidebar.link.dashboard'|trans }}</a></li>
-                <li class="breadcrumb-item"><a href="{{ path('dev_meeting_index') }}">{{ 'admin.meeting.header.plural'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('dev_sprint_index') }}">{{ 'admin.sprint.header.plural'|trans }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ header }}</li>
             </ol>
         </div>
@@ -18,11 +18,10 @@
             <div class="card-header">
                 <h4>{{ header }}</h4>
             </div>
-            {{ include('admin/meeting/_form.html.twig') }}
+            {{ include('admin/sprint/_form.html.twig') }}
         </div>
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('select2') }}
 {% endblock %}

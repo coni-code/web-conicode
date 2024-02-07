@@ -1,22 +1,12 @@
 {{ form_start(form) }}
 <div class="card-body">
     <div class="row">
-        <div class="col-xxl-3">
+        <div class="col-xxl-6">
             <div class="form-group">
                 {{ form_label(form.title, 'admin.form.meeting.title'|trans) }}
                 {{ form_widget(form.title, {
                     'attr': {
                         'class': 'form-control'
-                    }
-                }) }}
-            </div>
-        </div>
-        <div class="col-xxl-3">
-            <div class="form-group">
-                {{ form_label(form.users, 'admin.form.meeting.users'|trans) }}
-                {{ form_widget(form.users, {
-                    'attr': {
-                        'class': 'form-control form-select meeting-users-select select2-enable',
                     }
                 }) }}
             </div>
@@ -44,21 +34,9 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xxl-6">
-            <div class="form-group">
-                {{ form_label(form.description, 'admin.form.meeting.description'|trans) }}
-                {{ form_widget(form.description, {
-                    'attr': {
-                        'class': 'form-control'
-                    }
-                }) }}
-            </div>
-        </div>
-    </div>
 </div>
 <div class="card-footer">
-    <a class="btn btn-danger" href="{{ path('dev_meeting_index') }}">{{ 'admin.form.cancel'|trans }}</a>
+    <a class="btn btn-danger" href="{{ path('dev_sprint_index') }}">{{ 'admin.form.cancel'|trans }}</a>
     <button class="btn btn-success">{{ button_label|default('admin.form.save'|trans) }}</button>
 </div>
 {{ form_end(form) }}

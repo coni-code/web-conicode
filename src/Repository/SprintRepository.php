@@ -22,4 +22,22 @@ class SprintRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Sprint::class);
     }
+
+    public function save(Sprint $sprint): bool
+    {
+        $em = $this->getEntityManager();
+        $em->persist($sprint);
+        $em->flush();
+
+        return true;
+    }
+
+    public function delete(Sprint $sprint): bool
+    {
+        $em = $this->getEntityManager();
+        $em->remove($sprint);
+        $em->flush();
+
+        return true;
+    }
 }
