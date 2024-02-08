@@ -1,4 +1,4 @@
-import {handleDropdown} from '../dropdown';
+import { handleDropdown } from '../dropdown';
 
 document.addEventListener('DOMContentLoaded', () => {
     const topbartoggle = document.querySelector('#admin-layout .toggle-dropdown');
