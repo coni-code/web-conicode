@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let isHome = false;
         cardItems.forEach(cardItem => {
             const cardDataBox = cardItem.getAttribute('data-box');
-            let top = window.scrollY;
-            let offset = cardItem.offsetTop - 180;
-            let height = cardItem.offsetHeight;
+            const top = window.scrollY;
+            const offset = cardItem.offsetTop - 180;
+            const height = cardItem.offsetHeight;
 
-            if ((top >= offset && top < offset + height) || (top === 0 && cardDataBox === 'home') || (top + window.innerHeight) >= document.body.offsetHeight && cardDataBox === 'contact') {
+            if ((top >= offset && top < offset + height) || (top === 0 && cardDataBox === 'home') || ((top + window.innerHeight) >= document.body.offsetHeight && cardDataBox === 'contact')) {
                 navLinks.forEach(navLink => {
                     const navDataBox = navLink.getAttribute('data-box');
                     if (cardDataBox === navDataBox) {
