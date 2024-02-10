@@ -4,27 +4,70 @@ document.addEventListener('DOMContentLoaded', () => {
     handleDropdown();
 
     const navItems = document.querySelectorAll('.nav-item');
-    const teamId = document.getElementById('team');
-    const homeId = document.getElementById('home');
-    const portfolioId = document.getElementById('portfolio');
-    const contactId = document.getElementById('contact');
-    const teamDataBox = teamId.getAttribute('data-box');
-    const homeDataBox = homeId.getAttribute('data-box');
-    const portfolioDataBox = portfolioId.getAttribute('data-box');
-    const contactDataBox = contactId.getAttribute('data-box');
+    const cardItems = document.querySelectorAll('.card-element');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    const dataBoxTab = [teamDataBox, homeDataBox, portfolioDataBox, contactDataBox];
+    const setDefaultActiveTab = () => {
+        navLinks.forEach(navLink => {
+            if (navLink.getAttribute('data-box') === 'home') {
+                navLink.classList.add('active');
+            } else {
+                navLink.classList.remove('active');
+            }
+        });
+    };
+
+    setDefaultActiveTab();
 
     navItems.forEach(navItem => {
         navItem.addEventListener('click', () => {
             const navDataBox = navItem.getAttribute('data-box');
-            for (let i = 0; i < dataBoxTab.length; i++) {
-                if (navDataBox === dataBoxTab[i]) {
-                    const sectionId = dataBoxTab[i];
-                    const section = document.getElementById(sectionId);
-                    section.scrollIntoView({ behavior: 'smooth' });
+            cardItems.forEach(cardItem => {
+                const cardDataBox = cardItem.getAttribute('data-box');
+                if (navDataBox === cardDataBox && navDataBox === 'home') {
+                    cardItem.scrollIntoView({ behavior: 'smooth' });
+                    window.scrollBy(0, -2000);
+                } else if (navDataBox === cardDataBox) {
+                    cardItem.scrollIntoView({ behavior: 'smooth' });
                 }
-            }
+            });
+            navLinks.forEach(item => item.blur());
         });
     });
+
+    window.onscroll = () => {
+        let isHome = false;
+        cardItems.forEach(cardItem => {
+            const cardDataBox = cardItem.getAttribute('data-box');
+            let top = window.scrollY;
+            let offset = cardItem.offsetTop - 180;
+            let height = cardItem.offsetHeight;
+
+            if ((top >= offset && top < offset + height) || (top === 0 && cardDataBox === 'home') || (top + window.innerHeight) >= document.body.offsetHeight && cardDataBox === 'contact') {
+                navLinks.forEach(navLink => {
+                    const navDataBox = navLink.getAttribute('data-box');
+                    if (cardDataBox === navDataBox) {
+                        navLink.classList.add('active');
+                        if (cardDataBox === 'home') {
+                            isHome = true;
+                        }
+                    } else {
+                        navLink.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        if (isHome) {
+            navLinks.forEach(navLink => {
+                if (navLink.getAttribute('data-box') === 'home') {
+                    navLink.classList.add('active');
+                } else {
+                    navLink.classList.remove('active');
+                }
+            });
+        }
+
+        navLinks.forEach(item => item.blur());
+    };
 });
