@@ -1,4 +1,4 @@
-import { handleDropdown } from '../dropdown';
+import {handleDropdown} from '../dropdown';
 
 document.addEventListener('DOMContentLoaded', () => {
     handleDropdown();
@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
             cardItems.forEach(cardItem => {
                 const cardDataBox = cardItem.getAttribute('data-box');
                 if (navDataBox === cardDataBox && navDataBox === 'home') {
-                    cardItem.scrollIntoView({ behavior: 'smooth' });
+                    cardItem.scrollIntoView({behavior: 'smooth'});
                     window.scrollBy(0, -2000);
                 } else if (navDataBox === cardDataBox) {
-                    cardItem.scrollIntoView({ behavior: 'smooth' });
+                    cardItem.scrollIntoView({behavior: 'smooth'});
                 }
             });
             navLinks.forEach(item => item.blur());
