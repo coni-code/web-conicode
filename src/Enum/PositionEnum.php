@@ -23,18 +23,18 @@ enum PositionEnum: string
     public static function getChoices(): array
     {
         return [
-            self::LEAD_BACKEND_DEVELOPER->name => self::LEAD_BACKEND_DEVELOPER->value,
-            self::JUNIOR_BACKEND_DEVELOPER->name => self::JUNIOR_BACKEND_DEVELOPER->value,
-            self::ENTRY_BACKEND_DEVELOPER->name => self::ENTRY_BACKEND_DEVELOPER->value,
-            self::JUNIOR_FRONTEND_DEVELOPER->name => self::JUNIOR_FRONTEND_DEVELOPER->value,
-            self::ENTRY_FRONTEND_DEVELOPER->name => self::ENTRY_FRONTEND_DEVELOPER->value,
-            self::INTERN_DEVELOPER->name => self::INTERN_DEVELOPER->value,
-            self::TEAM_LEADER->name => self::TEAM_LEADER->value,
-            self::PROJECT_MANAGER->name => self::PROJECT_MANAGER->value,
-            self::BUSINESS_ANALYST->name => self::BUSINESS_ANALYST->value,
-            self::GRAPHIC_DESIGNER->name => self::GRAPHIC_DESIGNER->value,
-            self::HR->name => self::HR->value,
-            self::TRAINEE->name => self::TRAINEE->value,
+            self::LEAD_BACKEND_DEVELOPER->value => self::LEAD_BACKEND_DEVELOPER,
+            self::JUNIOR_BACKEND_DEVELOPER->value => self::JUNIOR_BACKEND_DEVELOPER,
+            self::ENTRY_BACKEND_DEVELOPER->value => self::ENTRY_BACKEND_DEVELOPER,
+            self::JUNIOR_FRONTEND_DEVELOPER->value => self::JUNIOR_FRONTEND_DEVELOPER,
+            self::ENTRY_FRONTEND_DEVELOPER->value => self::ENTRY_FRONTEND_DEVELOPER,
+            self::INTERN_DEVELOPER->value => self::INTERN_DEVELOPER,
+            self::TEAM_LEADER->value => self::TEAM_LEADER,
+            self::PROJECT_MANAGER->value => self::PROJECT_MANAGER,
+            self::BUSINESS_ANALYST->value => self::BUSINESS_ANALYST,
+            self::GRAPHIC_DESIGNER->value => self::GRAPHIC_DESIGNER,
+            self::HR->value => self::HR,
+            self::TRAINEE->value => self::TRAINEE,
         ];
     }
 }

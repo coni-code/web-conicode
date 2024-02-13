@@ -38,7 +38,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $surname = null;
 
-    #[ORM\Column(nullable: true, enumType: PositionEnum::class)]
+    #[ORM\Column(nullable: false)]
     private array $positions = [];
 
     #[ORM\Column(length: 255, nullable: true)]
