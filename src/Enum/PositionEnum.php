@@ -19,7 +19,6 @@ enum PositionEnum: string
     case HR = 'HR';
     case TRAINEE = 'Trainee';
 
-
     public static function getChoices(): array
     {
         return [

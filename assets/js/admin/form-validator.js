@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     submitButton.addEventListener('click', event => {
         validation = true;
         passwordInputs.forEach(input => {
-
             if (input.value.length >= 1) {
                 validatePassword(input);
             }
