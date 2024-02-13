@@ -1,10 +1,18 @@
 @import '../variables';
 
-.first-node{
+.logo-node{
     grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.second-node{
+.logo-image{
+    width: 100%;
+}
+
+.fill-node{
     grid-column: span 4;
 }
 
