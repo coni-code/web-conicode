@@ -4,7 +4,7 @@
     <div id="leftside-navigation" class="nano">
         <ul class="nano-content">
             <li class="text-center m-0 logo-container">
-                <img class="sidebar-logo" src="{{ asset('build/images/brand/logo-white.png') }}" alt="user avatar" height="150" width="150">
+                <img class="sidebar-logo" src="{{ asset('build/images/brand/logo.svg') }}" alt="user avatar" height="150" width="150">
             </li>
             <li {% if currentPath == path('dev_admin') %} class="active" {% endif %}>
                 <a href="{{ path('dev_admin') }}"><span>{{ 'admin.sidebar.link.dashboard'|trans }}</span></a>
