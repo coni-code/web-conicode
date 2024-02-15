@@ -43,18 +43,13 @@
     margin-bottom: 5px;
   }
 
-  input[type="text"], textarea {
+  input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid $secondary-secondary-background-color;
     color: $secondary-text-color;
     background-color: $primary-dark-background-color;
-  }
-
-  textarea {
-    height: 500px;
-    visibility: hidden;
   }
 
   .btn-delete, .btn-join, .btn-quit, .btn-create {

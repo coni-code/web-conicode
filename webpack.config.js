@@ -32,6 +32,7 @@ Encore
     .addEntry('website/navbar', './assets/js/website/navbar.js')
     .addEntry('particles', './assets/js/particles.js')
     .addEntry('home/carousel', './assets/js/homepage/carousel.js')
+    .addEntry('ckeditor/script', './assets/js/admin/ckeditor.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
     // Enable jquery
@@ -86,13 +87,8 @@ Encore
     })
 
     .copyFiles({
-        from: './assets/libs/particles',
-        to: 'libs/particles/[name].[ext]',
-    })
-
-    .copyFiles({
-        from: './assets/libs/ckeditor',
-        to: 'libs/ckeditor/[path][name].[ext]',
+        from: './assets/libs',
+        to: 'libs/[path][name].[ext]',
     })
 
     // uncomment if you use TypeScript

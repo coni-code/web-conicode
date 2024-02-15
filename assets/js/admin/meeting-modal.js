@@ -1,5 +1,5 @@
 import flatpickr from 'flatpickr';
-import {getLocale} from './locale';
+import { getLocale } from './locale';
 
 export class MeetingModal {
     constructor(refreshCalendar) {
@@ -7,7 +7,7 @@ export class MeetingModal {
         this.initDatePicker();
         this.modal = document.getElementById('meeting-modal');
         this.titleInput = document.getElementById('title');
-        this.descriptionInput = document.getElementById('description');
+        this.descriptionInput = document.getElementById('hiddenContent');
         this.select2Input = document.querySelector('.meeting-users-select');
         this.addEventListeners();
         this.currentMeetingId = null;
@@ -96,7 +96,7 @@ export class MeetingModal {
         if (this.currentMeetingId) {
             fetch(`/api/meetings/${this.currentMeetingId}`, {
                 method: 'DELETE',
-                headers: {'Content-Type': 'application/ld+json'},
+                headers: { 'Content-Type': 'application/ld+json' },
             })
                 .then(response => {
                     if (!response.ok) {
@@ -179,7 +179,7 @@ export class MeetingModal {
                     selected: Array.isArray(this.assignedUserIds) && this.assignedUserIds.includes(user.id),
                 }));
 
-                $(this.select2Input).empty().select2({data: users});
+                $(this.select2Input).empty().select2({ data: users });
             })
             .catch(error => console.error('Error fetching users:', error));
     }
@@ -259,8 +259,8 @@ export class MeetingModal {
         const locale = getLocale();
         fetch(`/${locale}/admin/meeting/${meetingId}/update-users`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/ld+json'},
-            body: JSON.stringify({userIds: selectedUserIds}),
+            headers: { 'Content-Type': 'application/ld+json' },
+            body: JSON.stringify({ userIds: selectedUserIds }),
         })
             .then(response => {
                 if (!response.ok) {
@@ -296,7 +296,7 @@ export class MeetingModal {
 
         fetch(apiPath, {
             method,
-            headers: {'Content-Type': 'application/ld+json'},
+            headers: { 'Content-Type': 'application/ld+json' },
             body: JSON.stringify(this.prepareMeetingData()),
         })
             .then(response => {
