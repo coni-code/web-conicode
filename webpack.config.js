@@ -31,6 +31,7 @@ Encore
     .addEntry('form-validator', './assets/js/admin/form-validator.js')
     .addEntry('website/navbar', './assets/js/website/navbar.js')
     .addEntry('particles', './assets/js/particles.js')
+    .addEntry('particles-ini', './assets/libs/particles.js/particles.js')
     .addEntry('home/carousel', './assets/js/homepage/carousel.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
@@ -86,8 +87,8 @@ Encore
     })
 
     .copyFiles({
-        from: './assets/libs/particles',
-        to: 'libs/particles/[name].[ext]',
+        from: './assets/libs/particles.js',
+        to: 'libs/particles.js/[name].[ext]',
     })
 
     // uncomment if you use TypeScript
@@ -105,4 +106,3 @@ Encore
 ;
 
 module.exports = Encore.getWebpackConfig();
-
