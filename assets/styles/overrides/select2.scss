@@ -37,7 +37,7 @@
 }
 
 .select2-container--default .select2-results__option--selected {
-  background-color: $primary-red-color;
+  background-color: $primary-red-color!important;
 
   &:hover {
     background-color: $primary-red-color;
