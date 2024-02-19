@@ -10,6 +10,7 @@ use App\Enum\PositionEnum;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -37,8 +38,8 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $surname = null;
 
-    #[ORM\Column(nullable: false)]
-    private array $positions = [];
+    #[ORM\Column(nullable: true)]
+    private ?array $positions = [];
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $githubLink = null;
@@ -147,12 +148,12 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         $this->surname = $surname;
     }
 
-    public function getPositions(): array
+    public function getPositions(): ?array
     {
         return $this->positions;
     }
 
-    public function setPositions(array $positions): void
+    public function setPositions(?array $positions): void
     {
         $this->positions = $positions;
     }

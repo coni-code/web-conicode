@@ -16,12 +16,12 @@ class UserFactory
         ?string $surname,
         string $password,
         array $roles,
-        array $positions,
-        ?string $githubLink,
-        ?string $gitlabLink,
-        ?string $linkedinLink,
-        ?string $websiteLink,
-        ?string $youtubeLink,
+        ?array $positions = null,
+        ?string $githubLink = null,
+        ?string $gitlabLink = null,
+        ?string $linkedinLink = null,
+        ?string $websiteLink = null,
+        ?string $youtubeLink = null,
     ): User {
         $user = new User();
 
