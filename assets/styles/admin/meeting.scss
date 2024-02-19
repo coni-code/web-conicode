@@ -26,7 +26,7 @@
   }
 
   .meeting-modal-left {
-    flex: 1;
+    width: 60%;
   }
 
   .meeting-modal-right {
@@ -34,7 +34,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: fit-content;
+    width: 40%;
+
+    > *{
+      width: 100% !important;
+    }
+
   }
 
   label {
