@@ -38,7 +38,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private ?string $surname = null;
 
     #[ORM\Column(nullable: true)]
-    private array $positions = [];
+    private ?array $positions = [];
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $githubLink = null;
@@ -147,12 +147,12 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         $this->surname = $surname;
     }
 
-    public function getPositions(): array
+    public function getPositions(): ?array
     {
         return $this->positions;
     }
 
-    public function setPositions(array $positions): void
+    public function setPositions(?array $positions): void
     {
         $this->positions = $positions;
     }

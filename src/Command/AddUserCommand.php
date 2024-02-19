@@ -132,11 +132,6 @@ class AddUserCommand extends Command
             password_hash($password, PASSWORD_DEFAULT),
             [$role],
             [PositionEnum::TRAINEE],
-            null,
-            null,
-            null,
-            null,
-            null,
         );
 
         $member = $this->askTrelloMember($io, $helper, $input, $output, $user);

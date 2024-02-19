@@ -47,8 +47,6 @@ class UserFixtures extends Fixture
             $faker->imageUrl(),
             null,
             $faker->imageUrl(),
-            null,
-            null,
         );
 
         $pm = UserFactory::createUser(
@@ -78,7 +76,6 @@ class UserFixtures extends Fixture
             null,
             $faker->imageUrl(),
             $faker->imageUrl(),
-            null,
         );
 
         $this->addReference('user_super_admin', $superAdmin);
