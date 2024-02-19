@@ -32,7 +32,10 @@ class UserService
     {
         /** @var User $user */
         $user = $form->getData();
-        $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+
+        if ($form['password']->getData()) {
+            $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+        }
         $this->userRepository->save($user);
     }
 }

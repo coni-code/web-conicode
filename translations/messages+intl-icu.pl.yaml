@@ -47,6 +47,7 @@ admin.user.edit_user: "Zarządzaj kontem"
 admin.user.details_user: "Szczegóły konta"
 admin.form.user.email: 'Email'
 admin.form.user.password: 'Hasło'
+admin.form.user.repeat-password: 'Powtórz Hasło'
 admin.form.user.role: 'Rola'
 admin.form.user.member: 'Trello ID'
 admin.form.meeting.date_range_placeholder: 'Wybierz zakres dat'
@@ -57,3 +58,12 @@ admin.sprint.header.edit_sprint: "Edytuj sprint"
 admin.form.sprint.title: "Tytuł"
 admin.form.sprint.start_date: "Data rozpoczęcia"
 admin.form.sprint.end_date: "Data zakończenia"
+admin.form.user.name: "Imię"
+admin.form.user.surname: "Nazwisko"
+admin.form.user.position.plural: "Stanowiska"
+admin.form.user.position.singular: "Stanowisko"
+admin.form.user.github: "GitHub"
+admin.form.user.gitlab: "GitLab"
+admin.form.user.linkedin: "LinkedIn"
+admin.form.user.youtube: "YouTube"
+admin.form.user.website: "Strona Internetowa"

@@ -1,32 +1,140 @@
 {{ form_start(form) }}
-<div class="card-body">
-    <div class="row">
-        <div class="col-xxl-6">
-            <div class="form-group">
-                {{ form_label(form.email, 'admin.form.user.email'|trans) }}
-                {{ form_widget(form.email, {
-                    'attr': {
-                        'class': 'form-control email-input'
-                    }
-                }) }}
+<div class="card-body row">
+    <div class="col-sm">
+        <div class="row">
+            <div class="col-xxl-6">
+                <div class="form-group">
+                    {{ form_label(form.name, 'admin.form.user.name'|trans) }}
+                    {{ form_widget(form.name, {
+                        'attr': {
+                            'class': 'form-control text-input'
+                        }
+                    }) }}
+                </div>
+            </div>
+            <div class="col-xxl-6">
+                <div class="form-group">
+                    {{ form_label(form.surname, 'admin.form.user.surname'|trans) }}
+                    {{ form_widget(form.surname, {
+                        'attr': {
+                            'class': 'form-control text-input'
+                        }
+                    }) }}
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="form-group">
+                    {{ form_label(form.email, 'admin.form.user.email'|trans) }}
+                    {{ form_widget(form.email, {
+                        'attr': {
+                            'class': 'form-control email-input'
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="form-group">
+                    {{ form_label(form.password, 'admin.form.user.password'|trans) }}
+                    {{ form_widget(form.password, {
+                        'attr': {
+                            'class': 'form-control password-input'
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+        {% if is_admin(user) %}
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="form-group">
+                    {{ form_label(form.positions, 'admin.form.user.position.plural'|trans) }}
+                    {{ form_widget(form.positions, {
+                        'attr': {
+                            'class': 'form-control area-input'
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
-    <div class="row">
-        <div class="col-xxl-6">
-            <div class="form-group">
-                {{ form_label(form.password, 'admin.form.user.password'|trans) }}
-                {{ form_widget(form.password, {
-                    'attr': {
-                        'class': 'form-control password-input'
-                    }
-                }) }}
+
+
+
+    <div class="col-sm">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="form-group">
+                    {{ form_label(form.githubLink, 'admin.form.user.github'|trans) }}
+                    {{ form_widget(form.githubLink, {
+                        'attr': {
+                            'class': 'form-control url-input'
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="form-group">
+                    {{ form_label(form.gitlabLink, 'admin.form.user.gitlab'|trans) }}
+                    {{ form_widget(form.gitlabLink, {
+                        'attr': {
+                            'class': 'form-control url-input'
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="form-group">
+                    {{ form_label(form.linkedinLink, 'admin.form.user.linkedin'|trans) }}
+                    {{ form_widget(form.linkedinLink, {
+                        'attr': {
+                            'class': 'form-control url-input'
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="form-group">
+                    {{ form_label(form.websiteLink, 'admin.form.user.website'|trans) }}
+                    {{ form_widget(form.websiteLink, {
+                        'attr': {
+                            'class': 'form-control url-input'
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="form-group">
+                    {{ form_label(form.youtubeLink, 'admin.form.user.youtube'|trans) }}
+                    {{ form_widget(form.youtubeLink, {
+                        'attr': {
+                            'class': 'form-control url-input'
+                        }
+                    }) }}
+                </div>
             </div>
         </div>
     </div>
 </div>
 <div class="card-footer">
     <a class="btn btn-danger" href="{{ path('dev_meeting_index') }}">{{ 'admin.form.cancel'|trans }}</a>
-    <button class="btn btn-success">{{ button_label|default('admin.form.save'|trans) }}</button>
+    {{ form_widget(form.submit, {
+        'label': 'admin.form.save'|trans,
+        'id': 'submit-form-button',
+        'attr': {
+            'class': 'btn btn-success'        }
+    }) }}
 </div>
 {{ form_end(form) }}

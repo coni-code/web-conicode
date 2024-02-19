@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,7 +26,11 @@ class UserController extends AbstractController
     {
         $this->denyAccessUnlessGranted('VIEW', $user);
 
-        $form = $this->createForm(UserType::class, $user);
+        $isAdmin = $this->userService->isAdmin($user);
+        $form = $this->createForm(UserType::class, $user, ['isAdmin' => $isAdmin]);
+
+        $form->add('submit', SubmitType::class);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

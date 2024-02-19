@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trello\Member;
+use App\Enum\PositionEnum;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -35,6 +36,24 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $surname = null;
+
+    #[ORM\Column(nullable: false)]
+    private array $positions = [];
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $githubLink = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $gitlabLink = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $linkedinLink = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $websiteLink = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $youtubeLink = null;
 
     /** @var Collection<Meeting> */
     #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist'])]
@@ -108,6 +127,96 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     {
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(?string $surname): void
+    {
+        $this->surname = $surname;
+    }
+
+    public function getPositions(): array
+    {
+        return $this->positions;
+    }
+
+    public function setPositions(array $positions): void
+    {
+        $this->positions = $positions;
+    }
+
+    public function addPosition(PositionEnum $position): void
+    {
+        $this->positions[] = $position;
+    }
+
+    public function removePosition(array $positions, $position): void
+    {
+        unset($positions[array_search($position, $positions, true)]);
+    }
+
+    public function getGithubLink(): ?string
+    {
+        return $this->githubLink;
+    }
+
+    public function setGithubLink(?string $githubLink): void
+    {
+        $this->githubLink = $githubLink;
+    }
+
+    public function getGitlabLink(): ?string
+    {
+        return $this->gitlabLink;
+    }
+
+    public function setGitlabLink(?string $gitlabLink): void
+    {
+        $this->gitlabLink = $gitlabLink;
+    }
+
+    public function getLinkedinLink(): ?string
+    {
+        return $this->linkedinLink;
+    }
+
+    public function setLinkedinLink(?string $linkedinLink): void
+    {
+        $this->linkedinLink = $linkedinLink;
+    }
+
+    public function getWebsiteLink(): ?string
+    {
+        return $this->websiteLink;
+    }
+
+    public function setWebsiteLink(?string $websiteLink): void
+    {
+        $this->websiteLink = $websiteLink;
+    }
+
+    public function getYoutubeLink(): ?string
+    {
+        return $this->youtubeLink;
+    }
+
+    public function setYoutubeLink(?string $youtubeLink): void
+    {
+        $this->youtubeLink = $youtubeLink;
+    }
+
     public function getMember(): ?Member
     {
         return $this->member;
@@ -142,26 +251,6 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
             $this->meetings->removeElement($meeting);
             $meeting->removeUser($this);
         }
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): void
-    {
-        $this->name = $name;
-    }
-
-    public function getSurname(): ?string
-    {
-        return $this->surname;
-    }
-
-    public function setSurname(?string $surname): void
-    {
-        $this->surname = $surname;
     }
 
     public function getSprintUsers(): ?Collection
