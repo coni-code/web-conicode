@@ -156,7 +156,7 @@ export class MeetingModal {
 
     async populateModalFields(data) {
         this.titleInput.value = data.title ?? '';
-        this.descriptionInput.innerHTML = data.description ?? '';
+        this.descriptionInput.value = data.description ?? '';
         this.currentMeetingStatus = data.status;
         this.assignedUserIds = data.userIds;
 
@@ -186,7 +186,7 @@ export class MeetingModal {
 
     resetFormFields() {
         this.titleInput.value = '';
-        this.descriptionInput.innerHTML = '';
+        this.descriptionInput.value = '';
         this.datePicker.config.dateTime = true;
         this.datePicker.clear();
 
