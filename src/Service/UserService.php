@@ -38,4 +38,9 @@ class UserService
         }
         $this->userRepository->save($user);
     }
+
+    public function getAll(): array
+    {
+        return $this->userRepository->findAll();
+    }
 }
