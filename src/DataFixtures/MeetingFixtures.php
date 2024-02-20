@@ -7,15 +7,18 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use App\Enum\MeetingStatusEnum;
 use App\Service\Factory\MeetingFactory;
+use DateInterval;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Exception;
 use Faker;
 
 class MeetingFixtures extends Fixture implements DependentFixtureInterface
 {
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function load(ObjectManager $manager): void
     {
@@ -29,7 +32,7 @@ class MeetingFixtures extends Fixture implements DependentFixtureInterface
         $users = array_map(fn ($userReference) => $this->getReference($userReference), $userArray);
 
         $faker = Faker\Factory::create();
-        $startDay = new \DateTime('first day of this month');
+        $startDay = new DateTime('first day of this month');
 
         $user = $this->getReference('user_admin');
         if (!$user instanceof User) {
@@ -37,12 +40,12 @@ class MeetingFixtures extends Fixture implements DependentFixtureInterface
         }
 
         for ($i = 0; $i < 10; ++$i) {
-            $endDay = new \DateTime($startDay->format('Y-m-d'));
-            $startDay = new \DateTime($startDay->format('Y-m-d'));
+            $endDay = new DateTime($startDay->format('Y-m-d'));
+            $startDay = new DateTime($startDay->format('Y-m-d'));
             $offset = $faker->numberBetween(1, 3);
-            $startDay->add(\DateInterval::createFromDateString($offset . ' days'));
+            $startDay->add(DateInterval::createFromDateString($offset . ' days'));
             $offset += $faker->numberBetween(0, 3);
-            $endDay->add(\DateInterval::createFromDateString($offset . ' days'));
+            $endDay->add(DateInterval::createFromDateString($offset . ' days'));
 
             $randomEvent = $faker->randomElement(['Coding', 'Brainstorming', 'Marketing', 'Retrospective', 'Planning']);
             $meeting = MeetingFactory::createMeeting(
