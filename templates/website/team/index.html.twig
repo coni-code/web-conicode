@@ -2,36 +2,38 @@
     <div class="glide carusel">
         <div class="glide__track carusel" data-glide-el="track">
             <ul class="glide__slides carusel">
+            {% if users %}
+                {% for user in users %}
+                {% if user.member and user.member.avatarHash and user.name %}
                 <li class="glide__slide carusel-element team-item">
-                    <img class="carusel-img team-image" src="{{asset('build/images/test/test-dog1.png') }}"/>
-                    <h4>Kivi</h4>
-                    <p class="team-title">Frontend developer</p>
-                    <p class="team-social">
-                        <a href="javascript:void(0)"><i class="fab fa-linkedin"></i></a>
-                        <a href="javascript:void(0)"><i class="fab fa-github"></i></a>
-                        <a href="javascript:void(0)"><i class="fa-regular fa-envelope"></i></a>
-                    </p>
-                </li>
-                <li class="glide__slide carusel-element team-item">
-                    <img class="carusel-img team-image" src="{{asset('build/images/test/test-cat2.png') }}"/>
-                    <h4>Josef</h4>
-                    <p class="team-title">Backend developer</p>
-                    <p class="team-social">
-                        <a href="javascript:void(0)"><i class="fab fa-linkedin"></i></a>
-                        <a href="javascript:void(0)"><i class="fab fa-github"></i></a>
-                        <a href="javascript:void(0)"><i class="fa-regular fa-envelope"></i></a>
-                    </p>
-                </li>
-                <li class="glide__slide carusel-element team-item">
-                    <img class="carusel-img team-image" src="{{asset('build/images/test/test-cat1.png') }}"/>
-                    <h4>Radmir</h4>
-                    <p class="team-title">Project manager</p>
-                    <p class="team-social">
-                        <a href="javascript:void(0)"><i class="fab fa-linkedin"></i></a>
-                        <a href="javascript:void(0)"><i class="fab fa-github"></i></a>
-                        <a href="javascript:void(0)"><i class="fa-regular fa-envelope"></i></a>
-                    </p>
-                </li>
+                        {% set avatarUrl = "build/trello/avatar" ~ user.member.avatarHash ~ ".png" %}
+                        <img class="carusel-img team-image" src='{{asset(avatarUrl) }}'/>
+                        <h4>{{user.name}} {{user.surname}}</h4>
+                        <p class="team-title">Member</p>
+                        <p class="team-social">
+                            {% if user.githubLink %}
+                                <a href="{{user.githubLink}}"><i class="fab fa-github"></i></a>
+                            {% endif %}
+                            {% if user.gitlabLink %}
+                                <a href="{{user.gitlabLink}}"><i class="fab fa-gitlab"></i></a>
+                            {% endif %}
+                            {% if user.linkedinLink %}
+                                <a href="{{user.linkedinLink}}"><i class="fab fa-linkedin"></i></a>
+                            {% endif %}
+                            {% if user.websiteLink %}
+                                <a href="{{user.websiteLink}}"><i class="fa-solid fa-globe"></i></a>
+                            {% endif %}
+                            {% if user.youtubeLink %}
+                                <a href="{{user.youtubeLink}}"><i class="fab fa-youtube"></i></a>
+                            {% endif %}
+                            {% if user.email %}
+                                <a href="mailto:{{user.email}}"><i class="fa-solid fa-mail"></i></a>
+                            {% endif %}
+                        </p>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
             </ul>
         </div>
         {{ include('website/carousel/controls/_controls.html.twig')}}
