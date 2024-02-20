@@ -6,7 +6,7 @@
                 {% for user in users %}
                 {% if user.member and user.member.avatarHash and user.name %}
                 <li class="glide__slide carusel-element team-item">
-                        {% set avatarUrl = "build/trello/avatar" ~ user.member.avatarHash ~ ".png" %}
+                        {% set avatarUrl = "build/trello/avatar/" ~ user.member.avatarHash ~ ".png" %}
                         <img class="carusel-img team-image" src='{{asset(avatarUrl) }}'/>
                         <h4>{{user.name}} {{user.surname}}</h4>
                         <p class="team-title">Member</p>
@@ -27,7 +27,7 @@
                                 <a href="{{user.youtubeLink}}"><i class="fab fa-youtube"></i></a>
                             {% endif %}
                             {% if user.email %}
-                                <a href="mailto:{{user.email}}"><i class="fa-solid fa-mail"></i></a>
+                                <a href="mailto:{{user.email}}"><i class="fa-regular fa-envelope"></i></a>
                             {% endif %}
                         </p>
                     </li>
