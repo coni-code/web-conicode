@@ -12,11 +12,6 @@
     border-radius: 5px;
 }
 
-.fi-lang{
-    font-size: 20px;
-    border-radius: 50%;
-}
-
 .form-group {
     display: flex;
     flex-direction: column;
@@ -61,28 +56,6 @@ body {
     grid-template-columns: repeat(8, 1fr);
     gap: 15px;
     z-index: 0;
-}
-
-.card-element{
-    position: relative;
-    border-radius: 20px;
-    background-color: $primary-background-color-low-opacity;
-    padding: 20px;
-
-    img{
-        max-width: 100%;
-    }
-}
-
-.card-desc{
-    color: $font-color-grey;
-    font-size: small;
-}
-
-.card-header{
-    color: $font-color-white;
-    padding: 0;
-    margin: 0;
 }
 
 .btn-01{
