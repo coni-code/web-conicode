@@ -32,13 +32,26 @@
     overflow: hidden;
 }
 
-.logo{
-    filter: grayscale(90%);
-    opacity: 60%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    transform: translate(-10%,15%);
+.card-element{
+    position: relative;
+    border-radius: 20px;
+    background-color: $primary-background-color-low-opacity;
+    padding: 20px;
+
+    img{
+        max-width: 100%;
+    }
+}
+
+.card-desc{
+    color: $font-color-grey;
+    font-size: small;
+}
+
+.card-header{
+    color: $font-color-white;
+    padding: 0;
+    margin: 0;
 }
 
 .short-cuts {
@@ -82,28 +95,255 @@
     margin: 8px 0;
 }
 
+.shortcut-desc2 {
+    display: none;
+}
 
-@media screen and (width <= 500px) {
-    .first-node{
-        grid-row-start: 2;
-        grid-column: span 4;
+.about-us-element{
+    grid-column: span 4;
+}
+
+.about-us-element h2, .about-us-element p{
+    text-align: center;
+}
+
+.about-us-element h2{
+    color: $primary-red-color;
+}
+
+
+
+@media screen and (width <= 550px) {
+    .logo-node,
+    .fill-node,
+    .third-node {
+        grid-column: span 12; 
     }
 
-    .second-node{
-        grid-row-start: 1;
-        grid-column: span 8;
+    .first-node,
+    .fill-node {
+        grid-column: span 12; 
+        grid-row-start: auto; 
     }
 
-    .third-node{
-        grid-row-start: 2;
-        grid-column: span 4;
+    .card-element{
+        position: relative;
+        border-radius: 20px;
+        background-color: $primary-background-color-low-opacity;
+        padding: 12px;
+    
+        img{
+            max-width: 50%;
+        }
     }
 
-    .forth-node{
-        grid-column: span 8;
+    .shortcut-link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: $font-color-grey;
+        font-size: 12px;
     }
 
-    .fifth-node{
-        grid-column: span 8;
+    .shortcut-link i {
+        margin-right: 3px;
+        padding: 5px;
+        border: 1px solid $button-hover;
+        border-radius: 6px;
+    }
+
+    .card-header{
+        color: $font-color-white;
+        padding: 0;
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .shortcut-desc {
+        margin: 6px 0;
+    }
+
+    .about-us-element{
+        grid-column: span 12;
+    }
+    
+    .about-us-element , .about-us-element p{
+        text-align: center;
+        font-size: 12px;
+    }
+    
+    .about-us-element h2{
+        color: $primary-red-color;
+        font-size: 20px;
+    }
+}
+
+@media screen and (550px <= width) and (width <= 770px) {
+    .logo-node,
+    .third-node {
+        grid-column: span 12; 
+    }
+
+    .fill-node {
+        grid-column: span 12; 
+        grid-row-start: auto; 
+    }
+
+    .card-element{
+        position: relative;
+        border-radius: 20px;
+        background-color: $primary-background-color-low-opacity;
+        padding: 12px;
+    
+        img{
+            max-width: 60%;
+        }
+    }
+
+    .short-cuts {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        justify-content: center;
+    }
+
+    .shortcut-desc{
+       display: none;
+    }
+
+    .shortcut-desc2 {
+        margin: 8px 0;
+        display: block;
+    }
+
+    .shortcut-link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: $font-color-grey;
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .shortcut-link i {
+        margin-right: 5px;
+        padding: 6px;
+        border: 1px solid $button-hover;
+        border-radius: 6px;
+    }
+
+    .card-header{
+        color: $font-color-white;
+        padding: 0;
+        margin-bottom: 4px;
+        font-size: 22px;
+    }
+
+    .about-us-element{
+        grid-column: span 12;
+    }
+    
+    .about-us-element , .about-us-element p{
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    .about-us-element h2{
+        color: $primary-red-color;
+        font-size: 22px;
+    }
+}
+
+@media screen and (770px <= width) and (width <= 900px) {
+    .logo-node,
+    .third-node {
+        grid-column: span 12; 
+    }
+
+    .fill-node {
+        grid-column: span 12; 
+        grid-row-start: auto; 
+    }
+
+    .card-element{
+        position: relative;
+        border-radius: 20px;
+        background-color: $primary-background-color-low-opacity;
+        padding: 12px;
+    
+        img{
+            max-width: 60%;
+        }
+    }
+
+    .short-cuts {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        justify-content: center;
+    }
+
+    .shortcut-desc{
+        margin: 6px 0;
+    }
+
+    .shortcut-link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: $font-color-grey;
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .shortcut-link i {
+        margin-right: 5px;
+        padding: 6px;
+        border: 1px solid $button-hover;
+        border-radius: 6px;
+    }
+
+    .card-header{
+        color: $font-color-white;
+        padding: 0;
+        margin-bottom: 4px;
+        font-size: 22px;
+    }
+
+    .about-us-element{
+        grid-column: span 12;
+    }
+    
+    .about-us-element , .about-us-element p{
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    .about-us-element h2{
+        color: $primary-red-color;
+        font-size: 22px;
+    }
+}
+
+@media screen and (900px <= width) and (width <= 1400px) {
+    .shortcut-desc2 {
+        margin: 8px 0;
+        display: block;
+    }
+
+    .shortcut-desc {
+        display: none;
+    }
+
+    .shortcut-link:hover .shortcut-desc2{
+        color: $font-color-white;
+        text-shadow: 0 0 10px $primary-red-color,
+                     0 0 20px $primary-red-color,
+                     0 0 40px $primary-red-color,
+                     0 0 80px $primary-red-color,
+                     0 0 120px $primary-red-color;
+        transition: 125ms;
     }
 }
