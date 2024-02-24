@@ -115,7 +115,7 @@
     font-family: Quintessential-Regural;
     font-size: 2rem;
     width: 100%;
-    transform: translate(5%, 5%);
+    transform: translate(2%, 25%);
 }
 
 .fill-node .autograph {
@@ -196,6 +196,14 @@
     .about-us-element h2{
         font-size: 20px;
     }
+
+    .quote {
+        font-family: Quintessential-Regural;
+        font-size: 22px;
+        width: 100%;
+        transform: translate(2%, 5%);
+        margin-right: 10px;
+    }
 }
 
 @media screen and (550px <= width) and (width <= 770px) {
@@ -272,6 +280,14 @@
     .about-us-element h2{
         font-size: 22px;
     }
+
+    .quote {
+        font-family: Quintessential-Regural;
+        font-size: 26px;
+        width: 100%;
+        transform: translate(2%, 5%);
+        margin-right: 10px;
+    }
 }
 
 @media screen and (770px <= width) and (width <= 900px) {
@@ -342,6 +358,13 @@
     
     .about-us-element h2{
         font-size: 22px;
+    }
+
+    .quote {
+        font-family: Quintessential-Regural;
+        font-size: 30px;
+        width: 100%;
+        transform: translate(2%, 5%);
     }
 }
 
