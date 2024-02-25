@@ -30,6 +30,7 @@ Encore
     .addEntry('admin/meeting-modal', './assets/js/admin/meeting-modal.js')
     .addEntry('form-validator', './assets/js/admin/form-validator.js')
     .addEntry('website/navbar', './assets/js/website/navbar.js')
+    .addEntry('website/mainbox', './assets/js/website/mainbox.js')
     .addEntry('particles', './assets/js/particles.js')
     .addEntry('particles-ini', './assets/libs/particles.js/particles.js')
     .addEntry('home/carousel', './assets/js/homepage/carousel.js')

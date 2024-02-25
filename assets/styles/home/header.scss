@@ -14,6 +14,10 @@
 
 .fill-node{
     grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: right;
 }
 
 .third-node{
@@ -111,28 +115,49 @@
     color: $primary-red-color;
 }
 
-.quote {
-    font-family: Quintessential-Regural;
+.fill-node .quote {
+    font-family: Quintessential-Regural, sans-serif;
     font-size: 2rem;
+    margin-top: 15px;
     width: 100%;
-    transform: translate(2%, 25%);
+    overflow: hidden;
+    animation: 
+        typing 5s steps(40, end);
 }
 
 .fill-node .autograph {
-    font-family: Quintessential-Regural;
+    font-family: Quintessential-Regural, sans-serif;
     font-size: 1rem;
     color: $font-color-grey;
-    width: 40%;
     white-space: nowrap;
     overflow: hidden;
-    margin-left: 40px;
+    margin-left: auto;
+    opacity: 0;
     animation: 
-        typing 3s steps(40),
+        typing2 2s steps(40) forwards;
+        animation-delay: 8s;
 }
 
 @keyframes typing {
-    from { width: 0; }
+    from { 
+        width: 0; 
+    }
+
+    to {
+        width: 100%;
+    }
 }
+
+@keyframes typing2 {
+    from { 
+        opacity: 0; 
+    }
+    
+    to {
+        opacity: 1;
+    }
+}
+
 
 @media screen and (width <= 550px) {
     .logo-node,
@@ -197,12 +222,13 @@
         font-size: 20px;
     }
 
-    .quote {
-        font-family: Quintessential-Regural;
-        font-size: 22px;
+    .fill-node .quote {
+        font-family: Quintessential-Regural, sans-serif;
+        font-size: 20px;
         width: 100%;
-        transform: translate(2%, 5%);
-        margin-right: 10px;
+        overflow: hidden;
+        animation: 
+            typing 5s steps(40, end);
     }
 }
 
@@ -281,13 +307,15 @@
         font-size: 22px;
     }
 
-    .quote {
-        font-family: Quintessential-Regural;
-        font-size: 26px;
+    .fill-node .quote {
+        font-family: Quintessential-Regural, sans-serif;
+        font-size: 22px;
         width: 100%;
-        transform: translate(2%, 5%);
-        margin-right: 10px;
+        overflow: hidden;
+        animation: 
+            typing 5s steps(40, end);
     }
+
 }
 
 @media screen and (770px <= width) and (width <= 900px) {
@@ -360,12 +388,15 @@
         font-size: 22px;
     }
 
-    .quote {
-        font-family: Quintessential-Regural;
-        font-size: 30px;
+    .fill-node .quote {
+        font-family: Quintessential-Regural, sans-serif;
+        font-size: 25px;
         width: 100%;
-        transform: translate(2%, 5%);
+        overflow: hidden;
+        animation: 
+            typing 5s steps(40, end);
     }
+
 }
 
 @media screen and (900px <= width) and (width <= 1400px) {
@@ -386,5 +417,14 @@
                      0 0 80px $primary-red-color,
                      0 0 120px $primary-red-color;
         transition: 125ms;
+    }
+
+    .fill-node .quote {
+        font-family: Quintessential-Regural, sans-serif;
+        font-size: 25px;
+        width: 100%;
+        overflow: hidden;
+        animation: 
+            typing 5s steps(40, end);
     }
 }
