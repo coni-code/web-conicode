@@ -14,6 +14,10 @@
 
 .fill-node{
     grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: right;
 }
 
 .third-node{
@@ -111,6 +115,48 @@
     color: $primary-red-color;
 }
 
+.fill-node .quote {
+    font-family: Quintessential-Regural, sans-serif;
+    font-size: 2rem;
+    margin-top: 15px;
+    width: 100%;
+    overflow: hidden;
+    animation: 
+        typing 5s steps(40, end);
+}
+
+.fill-node .autograph {
+    font-family: Quintessential-Regural, sans-serif;
+    font-size: 1rem;
+    color: $font-color-grey;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: auto;
+    opacity: 0;
+    animation: 
+        typing2 2s steps(40) forwards;
+        animation-delay: 8s;
+}
+
+@keyframes typing {
+    from { 
+        width: 0; 
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes typing2 {
+    from { 
+        opacity: 0; 
+    }
+    
+    to {
+        opacity: 1;
+    }
+}
 
 
 @media screen and (width <= 550px) {
@@ -173,8 +219,16 @@
     }
     
     .about-us-element h2{
-        color: $primary-red-color;
         font-size: 20px;
+    }
+
+    .fill-node .quote {
+        font-family: Quintessential-Regural, sans-serif;
+        font-size: 20px;
+        width: 100%;
+        overflow: hidden;
+        animation: 
+            typing 5s steps(40, end);
     }
 }
 
@@ -250,9 +304,18 @@
     }
     
     .about-us-element h2{
-        color: $primary-red-color;
         font-size: 22px;
     }
+
+    .fill-node .quote {
+        font-family: Quintessential-Regural, sans-serif;
+        font-size: 22px;
+        width: 100%;
+        overflow: hidden;
+        animation: 
+            typing 5s steps(40, end);
+    }
+
 }
 
 @media screen and (770px <= width) and (width <= 900px) {
@@ -322,9 +385,18 @@
     }
     
     .about-us-element h2{
-        color: $primary-red-color;
         font-size: 22px;
     }
+
+    .fill-node .quote {
+        font-family: Quintessential-Regural, sans-serif;
+        font-size: 25px;
+        width: 100%;
+        overflow: hidden;
+        animation: 
+            typing 5s steps(40, end);
+    }
+
 }
 
 @media screen and (900px <= width) and (width <= 1400px) {
@@ -345,5 +417,14 @@
                      0 0 80px $primary-red-color,
                      0 0 120px $primary-red-color;
         transition: 125ms;
+    }
+
+    .fill-node .quote {
+        font-family: Quintessential-Regural, sans-serif;
+        font-size: 25px;
+        width: 100%;
+        overflow: hidden;
+        animation: 
+            typing 5s steps(40, end);
     }
 }
