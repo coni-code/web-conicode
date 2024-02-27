@@ -138,6 +138,11 @@
         animation-delay: 8s;
 }
 
+#trans-quote {
+    display: none;
+    visibility: hidden;
+}
+
 @keyframes typing {
     from { 
         width: 0; 

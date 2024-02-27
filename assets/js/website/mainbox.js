@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const text = 'Programowanie to nie tylko pisanie kodu, to budowanie mostów między ludźmi.';
+    const text = document.getElementById('trans-quote').textContent;
     const typingDiv = document.getElementById('quote1');
 
     function typeWriter(text, i) {
