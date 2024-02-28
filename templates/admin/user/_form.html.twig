@@ -50,14 +50,6 @@
         {% if is_admin(user) %}
         <div class="row">
             <div class="col-xxl-12">
-                <div class="form-group">
-                    {{ form_label(form.positions, 'admin.form.user.position.plural'|trans) }}
-                    {{ form_widget(form.positions, {
-                        'attr': {
-                            'class': 'form-control area-input'
-                        }
-                    }) }}
-                </div>
             </div>
         </div>
         {% endif %}

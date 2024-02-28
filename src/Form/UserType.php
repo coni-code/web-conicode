@@ -45,14 +45,9 @@ class UserType extends AbstractType
             ->add('youtubeLink', UrlType::class, ['required' => false])
         ;
 
-        if ($options['isAdmin']) {
-            $builder
-                ->add('positions', ChoiceType::class, [
-                    'choices' => PositionEnum::getChoices(),
-                    'multiple' => true,
-                ])
-            ;
-        }
+//        if ($options['isAdmin']) {
+//
+//        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
