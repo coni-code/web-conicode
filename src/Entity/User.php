@@ -42,20 +42,8 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\JoinTable(name: 'users_positions')]
     private Collection $positions;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $githubLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $gitlabLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $linkedinLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $websiteLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $youtubeLink = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLink::class)]
+    private Collection $links;
 
     /** @var Collection<Meeting> */
     #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist'])]
@@ -72,6 +60,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     {
         $this->meetings = new ArrayCollection();
         $this->positions = new ArrayCollection();
+        $this->links = new ArrayCollection();
     }
 
     public function getEmail(): ?string
@@ -176,54 +165,30 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         }
     }
 
-    public function getGithubLink(): ?string
+    public function getLinks(): Collection
     {
-        return $this->githubLink;
+        return $this->links;
     }
 
-    public function setGithubLink(?string $githubLink): void
+    public function setLinks(Collection $links): void
     {
-        $this->githubLink = $githubLink;
+        $this->links = $links;
     }
 
-    public function getGitlabLink(): ?string
+    public function addLink(UserLink $link): void
     {
-        return $this->gitlabLink;
+        if (!$this->links->contains($link)) {
+            $this->links->add($link);
+            $link->setUser($this);
+        }
     }
 
-    public function setGitlabLink(?string $gitlabLink): void
+    public function removeLink(UserLink $link): void
     {
-        $this->gitlabLink = $gitlabLink;
-    }
-
-    public function getLinkedinLink(): ?string
-    {
-        return $this->linkedinLink;
-    }
-
-    public function setLinkedinLink(?string $linkedinLink): void
-    {
-        $this->linkedinLink = $linkedinLink;
-    }
-
-    public function getWebsiteLink(): ?string
-    {
-        return $this->websiteLink;
-    }
-
-    public function setWebsiteLink(?string $websiteLink): void
-    {
-        $this->websiteLink = $websiteLink;
-    }
-
-    public function getYoutubeLink(): ?string
-    {
-        return $this->youtubeLink;
-    }
-
-    public function setYoutubeLink(?string $youtubeLink): void
-    {
-        $this->youtubeLink = $youtubeLink;
+        if ($this->links->contains($link)) {
+            $this->links->removeElement($link);
+            $link->setUser(null);
+        }
     }
 
     public function getMember(): ?Member
