@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use App\Entity\Dictionary\PositionDictionary;
 use App\Entity\Trello\Member;
-use App\Enum\PositionEnum;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,7 +26,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private array $roles = [];
 
     /**
-     * @var string The hashed password
+     * @var ?string The hashed password
      */
     #[ORM\Column]
     private ?string $password = null;
@@ -37,8 +37,10 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $surname = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $positions = [];
+    /** @var Collection<PositionDictionary> */
+    #[ORM\ManyToMany(targetEntity: PositionDictionary::class, inversedBy: 'users', cascade: ['persist'])]
+    #[ORM\JoinTable(name: 'users_positions')]
+    private Collection $positions;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $githubLink = null;
@@ -69,6 +71,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     public function __construct()
     {
         $this->meetings = new ArrayCollection();
+        $this->positions = new ArrayCollection();
     }
 
     public function getEmail(): ?string
@@ -147,24 +150,30 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         $this->surname = $surname;
     }
 
-    public function getPositions(): ?array
+    public function getPositions(): Collection
     {
         return $this->positions;
     }
 
-    public function setPositions(?array $positions): void
+    public function setPositions(Collection $positions): void
     {
         $this->positions = $positions;
     }
 
-    public function addPosition(PositionEnum $position): void
+    public function addPosition(PositionDictionary $position): void
     {
-        $this->positions[] = $position;
+        if (!$this->positions->contains($position)) {
+            $this->positions->add($position);
+            $position->addUser($this);
+        }
     }
 
-    public function removePosition(array $positions, $position): void
+    public function removePosition(PositionDictionary $position): void
     {
-        unset($positions[array_search($position, $positions, true)]);
+        if ($this->positions->contains($position)) {
+            $this->positions->removeElement($position);
+            $position->removeUser($this);
+        }
     }
 
     public function getGithubLink(): ?string
