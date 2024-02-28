@@ -7,33 +7,27 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use App\Enum\MeetingStatusEnum;
 use App\Service\Factory\MeetingFactory;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Faker;
+use Exception;
+use Faker\Factory;
+use RuntimeException;
 
 class MeetingFixtures extends Fixture implements DependentFixtureInterface
 {
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function load(ObjectManager $manager): void
     {
-        $userArray = [
-            'user_super_admin',
-            'user_admin',
-            'user_manager',
-            'user',
-        ];
-
-        $users = array_map(fn ($userReference) => $this->getReference($userReference), $userArray);
-
-        $faker = Faker\Factory::create();
-        $startDay = new \DateTime('first day of this month');
+        $faker = Factory::create();
+        $startDay = new DateTime('first day of this month');
 
         $user = $this->getReference('user_admin');
         if (!$user instanceof User) {
-            throw new \RuntimeException(sprintf('Invalid %s reference', 'user_admin'));
+            throw new RuntimeException(sprintf('Invalid %s reference', 'user_admin'));
         }
 
         for ($i = 0; $i < 10; ++$i) {
