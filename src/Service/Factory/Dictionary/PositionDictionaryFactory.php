@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Service\Factory;
+declare(strict_types=1);
+
+namespace App\Service\Factory\Dictionary;
 
 use App\Entity\Dictionary\PositionDictionary;
 

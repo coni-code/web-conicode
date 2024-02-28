@@ -28,11 +28,6 @@ class UserFixtures extends Fixture
             $faker->lastName(),
             'admin',
             ['ROLE_ADMIN'],
-            $faker->imageUrl(),
-            $faker->imageUrl(),
-            $faker->imageUrl(),
-            $faker->imageUrl(),
-            null,
         );
 
         $admin = UserFactory::createUser(
@@ -42,9 +37,6 @@ class UserFixtures extends Fixture
             $faker->lastName(),
             'admin',
             ['ROLE_ADMIN'],
-            $faker->imageUrl(),
-            null,
-            $faker->imageUrl(),
         );
 
         $pm = UserFactory::createUser(
@@ -54,11 +46,6 @@ class UserFixtures extends Fixture
             $faker->lastName(),
             'manager',
             ['ROLE_MANAGER'],
-            null,
-            null,
-            $faker->imageUrl(),
-            $faker->imageUrl(),
-            $faker->imageUrl(),
         );
 
         $user = UserFactory::createUser(
@@ -68,10 +55,6 @@ class UserFixtures extends Fixture
             $faker->lastName(),
             'user',
             ['ROLE_USER'],
-            $faker->imageUrl(),
-            null,
-            $faker->imageUrl(),
-            $faker->imageUrl(),
         );
 
         $this->addReference('user_super_admin', $superAdmin);
