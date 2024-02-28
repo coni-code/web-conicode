@@ -24,22 +24,15 @@
     text-align: center;
 }
 
-.team-social{
-    gap: 5px;
-}
-
 .team-social a{
     color: white;
+    margin: 0 4px;
 }
 
-.about-us-element{
-    grid-column: span 4;
-}
-
-.about-us-element h2, .about-us-element p{
-    text-align: center;
-}
-
-.about-us-element h2{
-    color: $primary-red-color;
+@media (width <= 900px) {
+    #team{
+        grid-column: span 12;
+        height: 600px;
+        overflow: hidden;
+    }
 }

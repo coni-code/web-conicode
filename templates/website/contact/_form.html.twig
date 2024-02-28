@@ -1,6 +1,6 @@
 {{form_start(form)}}
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-sm-12">
             <div class="form-group">
                 {{ form_label(form.email, 'form.contact.label.email'|trans) }}
                 {{ form_widget(form.email, {
@@ -11,7 +11,7 @@
                 }) }}
             </div>
         </div>
-        <div class="col-xl-6">
+        <div class="col-sm-12">
             <div class="form-group">
                 {{ form_label(form.subject, 'form.contact.label.subject'|trans) }}
                 {{ form_widget(form.subject, {

@@ -19,7 +19,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    {{ encore_entry_script_tags('particles-ini') }}
     {{ encore_entry_script_tags('particles') }}
     {{ encore_entry_script_tags('home/carousel') }}
 {% endblock %}

@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cardDataBox = cardItem.getAttribute('data-box');
                 if (navDataBox === cardDataBox && navDataBox === 'home') {
                     cardItem.scrollIntoView({behavior: 'smooth'});
-                    window.scrollBy(0, -2000);
+                    window.scrollBy(0, -9999);
                 } else if (navDataBox === cardDataBox) {
                     cardItem.scrollIntoView({behavior: 'smooth'});
                 }
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const offset = cardItem.offsetTop - 180;
             const height = cardItem.offsetHeight;
 
-            if ((top >= offset && top < offset + height) || (top === 0 && cardDataBox === 'home') || ((top + window.innerHeight) >= document.body.offsetHeight && cardDataBox === 'contact')) {
+            if ((top >= offset && top < offset + height) || (top >= 0 && cardDataBox === 'home' && top < 500) || ((top + window.innerHeight) >= document.body.offsetHeight && cardDataBox === 'contact')) {
                 navLinks.forEach(navLink => {
                     const navDataBox = navLink.getAttribute('data-box');
                     if (cardDataBox === navDataBox) {
