@@ -120,11 +120,10 @@
     font-family: Quintessential-Regural, sans-serif;
     font-size: 2rem;
     margin-top: 15px;
-    width: 100%;
+    min-width: 100%;
     overflow: hidden;
-    white-space: pre-wrap;
     animation: 
-        typing 10s steps(79, end);
+            typing 10s steps(40, end);
 }
 
 .fill-node .autograph {
