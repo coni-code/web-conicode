@@ -7,6 +7,7 @@ namespace App\Entity\Dictionary;
 use App\Entity\AbstractEntity;
 use App\Entity\User;
 use App\Repository\PositionDictionaryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +21,11 @@ class PositionDictionary extends AbstractEntity
     /** @var Collection<User> */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'positions', cascade: ['persist'])]
     private Collection $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getName(): ?string
     {
