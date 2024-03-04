@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: right;
-    align-items: right;
+    align-items: flex-end;
     width: 100%;
 }
 
@@ -120,10 +120,15 @@
     font-family: Quintessential-Regural, sans-serif;
     font-size: 2rem;
     margin-top: 15px;
-    width: 100%;
+    min-width: 100%;
     overflow: hidden;
+<<<<<<< HEAD
     white-space: pre-wrap;
     animation: typing 10s steps(79, end);
+=======
+    animation:
+            typing 10s steps(40, end);
+>>>>>>> f1d95224c58941e23869fe78fcba6558781488f8
 }
 
 .fill-node .autograph {
