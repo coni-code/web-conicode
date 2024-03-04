@@ -10,11 +10,11 @@ const portfolio = new Glide('#portfolio', {
 });
 
 portfolio.mount();
-
+const count = document.getElementById('team-count').attributes.getNamedItem('data').value;
 const team = new Glide('#team', {
     type: 'carousel',
     startAt: 1,
-    perView: width <= 900 ? width <= 600 ? 1 : 2 : 3,
+    perView: width <= 900 ? width <= 600 ? 1 : Math.min(count, 2) : Math.min(count, 3),
 });
 
 team.mount();
