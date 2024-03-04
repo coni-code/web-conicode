@@ -123,8 +123,7 @@
     width: 100%;
     overflow: hidden;
     white-space: pre-wrap;
-    animation: 
-        typing 10s steps(79, end);
+    animation: typing 10s steps(79, end);
 }
 
 .fill-node .autograph {
@@ -135,9 +134,8 @@
     overflow: hidden;
     margin-left: auto;
     opacity: 0;
-    animation: 
-        typing2 2s steps(40) forwards;
-        animation-delay: 10s;
+    animation: typing2 2s steps(40) forwards;
+    animation-delay: 10s;
 }
 
 #trans-quote {
@@ -146,8 +144,8 @@
 }
 
 @keyframes typing {
-    from { 
-        width: 0; 
+    from {
+        width: 0;
     }
 
     to {
@@ -156,10 +154,10 @@
 }
 
 @keyframes typing2 {
-    from { 
-        opacity: 0; 
+    from {
+        opacity: 0;
     }
-    
+
     to {
         opacity: 1;
     }
@@ -170,13 +168,13 @@
     .logo-node,
     .fill-node,
     .third-node {
-        grid-column: span 12; 
+        grid-column: span 12;
     }
 
     .first-node,
     .fill-node {
-        grid-column: span 12; 
-        grid-row-start: auto; 
+        grid-column: span 12;
+        grid-row-start: auto;
     }
 
     .card-element{
@@ -184,7 +182,7 @@
         border-radius: 20px;
         background-color: $primary-background-color-low-opacity;
         padding: 12px;
-    
+
         img{
             max-width: 50%;
         }
@@ -219,12 +217,12 @@
     .about-us-element{
         grid-column: span 12;
     }
-    
+
     .about-us-element , .about-us-element p{
         text-align: center;
         font-size: 12px;
     }
-    
+
     .about-us-element h2{
         font-size: 20px;
     }
@@ -234,20 +232,19 @@
         font-size: 20px;
         width: 100%;
         overflow: hidden;
-        animation: 
-            typing 5s steps(40, end);
+        animation: typing 5s steps(40, end);
     }
 }
 
 @media screen and (550px <= width) and (width <= 770px) {
     .logo-node,
     .third-node {
-        grid-column: span 12; 
+        grid-column: span 12;
     }
 
     .fill-node {
-        grid-column: span 12; 
-        grid-row-start: auto; 
+        grid-column: span 12;
+        grid-row-start: auto;
     }
 
     .card-element{
@@ -255,7 +252,7 @@
         border-radius: 20px;
         background-color: $primary-background-color-low-opacity;
         padding: 12px;
-    
+
         img{
             max-width: 60%;
         }
@@ -304,12 +301,12 @@
     .about-us-element{
         grid-column: span 12;
     }
-    
+
     .about-us-element , .about-us-element p{
         text-align: center;
         font-size: 14px;
     }
-    
+
     .about-us-element h2{
         font-size: 22px;
     }
@@ -319,8 +316,7 @@
         font-size: 22px;
         width: 100%;
         overflow: hidden;
-        animation: 
-            typing 5s steps(40, end);
+        animation: typing 5s steps(40, end);
     }
 
 }
@@ -328,12 +324,12 @@
 @media screen and (770px <= width) and (width <= 900px) {
     .logo-node,
     .third-node {
-        grid-column: span 12; 
+        grid-column: span 12;
     }
 
     .fill-node {
-        grid-column: span 12; 
-        grid-row-start: auto; 
+        grid-column: span 12;
+        grid-row-start: auto;
     }
 
     .card-element{
@@ -341,7 +337,7 @@
         border-radius: 20px;
         background-color: $primary-background-color-low-opacity;
         padding: 12px;
-    
+
         img{
             max-width: 60%;
         }
@@ -385,12 +381,12 @@
     .about-us-element{
         grid-column: span 12;
     }
-    
+
     .about-us-element , .about-us-element p{
         text-align: center;
         font-size: 14px;
     }
-    
+
     .about-us-element h2{
         font-size: 22px;
     }
@@ -400,8 +396,7 @@
         font-size: 25px;
         width: 100%;
         overflow: hidden;
-        animation: 
-            typing 5s steps(40, end);
+        animation: typing 5s steps(40, end);
     }
 
 }
@@ -418,11 +413,12 @@
 
     .shortcut-link:hover .shortcut-desc2{
         color: $font-color-white;
-        text-shadow: 0 0 10px $primary-red-color,
-                     0 0 20px $primary-red-color,
-                     0 0 40px $primary-red-color,
-                     0 0 80px $primary-red-color,
-                     0 0 120px $primary-red-color;
+        text-shadow:
+            0 0 10px $primary-red-color,
+            0 0 20px $primary-red-color,
+            0 0 40px $primary-red-color,
+            0 0 80px $primary-red-color,
+            0 0 120px $primary-red-color;
         transition: 125ms;
     }
 
@@ -431,7 +427,6 @@
         font-size: 25px;
         width: 100%;
         overflow: hidden;
-        animation: 
-            typing 5s steps(40, end);
+        animation: typing 5s steps(40, end);
     }
 }
