@@ -32,6 +32,7 @@ Encore
     .addEntry('website/navbar', './assets/js/website/navbar.js')
     .addEntry('website/mainbox', './assets/js/website/mainbox.js')
     .addEntry('particles', './assets/js/particles.js')
+    .addEntry('ckeditor-ini', './assets/js/ckeditor.js')
     .addEntry('particles-ini', './assets/libs/particles.js/particles.js')
     .addEntry('home/carousel', './assets/js/homepage/carousel.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')

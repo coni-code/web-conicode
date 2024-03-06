@@ -125,3 +125,17 @@
     width: 60px;
   }
 }
+
+#description {
+  visibility: hidden;
+  display: none;
+}
+
+.ck-editor__editable {
+  min-height: 300px;
+  color: black;
+}
+
+.ck-editor__editable {
+  cursor: auto;
+}
