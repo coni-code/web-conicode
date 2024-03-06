@@ -20,6 +20,7 @@ export class MeetingModal {
     }
 
     initCKEditor() {
+        // eslint-disable-next-line
         this.editor = ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {

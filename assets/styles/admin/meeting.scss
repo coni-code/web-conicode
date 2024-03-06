@@ -131,11 +131,10 @@
   display: none;
 }
 
+/* stylelint-disable */
 .ck-editor__editable {
   min-height: 300px;
   color: black;
-}
-
-.ck-editor__editable {
   cursor: auto;
 }
+/* stylelint-enable */
