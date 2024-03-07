@@ -9,8 +9,10 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4);
+  /* stylelint-disable */
   overflow-x: hidden;
   overflow-y: auto;
+  /* stylelint-enable */
 }
 
 .meeting-modal-content {
