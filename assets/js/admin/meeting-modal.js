@@ -16,6 +16,26 @@ export class MeetingModal {
         this.refreshCalendar = refreshCalendar;
         this.refreshModal = this.refreshModal.bind(this);
         this.assignedUserIds = [];
+        this.initCKEditor();
+    }
+
+    initCKEditor() {
+        // eslint-disable-next-line
+        this.editor = ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                this.ckeditor = editor;
+                this.ckeditor.model.document.on('change:data', () => {
+                    this.descriptionInput.value = this.ckeditor.getData();
+                });
+
+                this.descriptionInput.addEventListener('input', () => {
+                    this.ckeditor.setData(this.descriptionInput.value);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     initDatePicker() {
@@ -159,6 +179,7 @@ export class MeetingModal {
         this.descriptionInput.value = data.description ?? '';
         this.currentMeetingStatus = data.status;
         this.assignedUserIds = data.userIds;
+        this.ckeditor.setData(this.descriptionInput.value);
 
         if (data.startDate && data.endDate) {
             this.datePicker.setDate([new Date(data.startDate), new Date(data.endDate)]);
@@ -326,6 +347,7 @@ export class MeetingModal {
         this.toggleSaveDeleteButtons(true);
         this.modal.style.display = 'block';
         this.refreshUserSelect();
+        this.ckeditor.setData('');
     }
 
     refreshModal() {
