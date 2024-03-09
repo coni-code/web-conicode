@@ -36,6 +36,7 @@ class MeetingNormalizer implements NormalizerInterface
         return [
             'id' => $object->getId(),
             'title' => $object->getTitle(),
+            'description' => $object->getDescription(),
             'startDate' => $object->getStartDate()->format('Y-m-d'),
             'endDate' => $object->getEndDate()->format('Y-m-d'),
             'status' => $object->getStatus(),
