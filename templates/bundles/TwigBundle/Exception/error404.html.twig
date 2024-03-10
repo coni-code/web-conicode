@@ -1,0 +1,18 @@
+{% extends "website/base.html.twig" %}
+
+{% block body %}
+<div class="exception-field">
+    <div id="particles-js"></div>
+    <div class="card-element exception-box">
+        <h2>Error 404: Page not found</h2>
+        <a href="{{path('app_home')}}">Back to homepage</a>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('particles-ini') }}
+    {{ encore_entry_script_tags('particles') }}
+{% endblock %}
