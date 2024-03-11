@@ -1,0 +1,18 @@
+{% extends "website/base.html.twig" %}
+
+{% block body %}
+<div class="exception-field">
+    <div id="particles-js"></div>
+    <div class="card-element exception-box">
+        <h2>{{ 'home.exception.error404'|trans }}</h2>
+        <a href="{{path('app_home')}}">{{ 'home.exception.backlink'|trans }}</a>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('particles-ini') }}
+    {{ encore_entry_script_tags('particles') }}
+{% endblock %}
