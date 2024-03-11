@@ -63,18 +63,15 @@
             </div>
         {% endif %}
         {% for link in form.links %}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    {{ form_label(link, 'link') }}
-                    {{ form_widget(link, {
-                        'attr': {
-                            'class': 'form-control'
-                        }
-                    }) }}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {% set typeTranslation = 'admin.form.user.' ~ link.vars.data.type.value %}
+                        {{ form_label(link.url, typeTranslation|trans) }}
+                        {{ form_widget(link.url, {'attr': {'class': 'form-control'}}) }}
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </div>
