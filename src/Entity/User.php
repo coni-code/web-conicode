@@ -42,7 +42,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\JoinTable(name: 'users_positions')]
     private Collection $positions;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLink::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLink::class, cascade: ['persist'])]
     private Collection $links;
 
     /** @var Collection<Meeting> */

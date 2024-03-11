@@ -18,10 +18,7 @@ class UserLink extends AbstractEntity
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $url = null;
 
-    #[ORM\Column(type: Types::STRING, length: 255)]
-    private ?string $iconPath = null;
-
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'links')]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist'], inversedBy: 'links')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $user = null;
 
@@ -43,16 +40,6 @@ class UserLink extends AbstractEntity
     public function setUrl(string $url): void
     {
         $this->url = $url;
-    }
-
-    public function getIconPath(): ?string
-    {
-        return $this->iconPath;
-    }
-
-    public function setIconPath(string $iconPath): void
-    {
-        $this->iconPath = $iconPath;
     }
 
     public function getUser(): ?User
