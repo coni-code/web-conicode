@@ -1,7 +1,7 @@
 {% extends "website/base.html.twig" %}
 
 {% block body %}
-<span id="home" data-box="home"/>
+<span id="home" data-box="home"></span>
 <div id="home-layout">
     <div class="glow-nav-effect"></div>
     <div id="particles-js"></div>
@@ -14,9 +14,7 @@
         {{ include('website/contact/index.html.twig') }}
     </div>
 </div>
-
 {% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('particles-ini') }}

@@ -1,8 +1,8 @@
 {{ form_start(form) }}
 <div class="card-body row">
-    <div class="col-sm">
+    <div class="col-lg-6">
         <div class="row">
-            <div class="col-xxl-6">
+            <div class="col-md-6">
                 <div class="form-group">
                     {{ form_label(form.name, 'admin.form.user.name'|trans) }}
                     {{ form_widget(form.name, {
@@ -12,7 +12,7 @@
                     }) }}
                 </div>
             </div>
-            <div class="col-xxl-6">
+            <div class="col-md-6">
                 <div class="form-group">
                     {{ form_label(form.surname, 'admin.form.user.surname'|trans) }}
                     {{ form_widget(form.surname, {
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xxl-12">
+            <div class="col-md-6">
                 <div class="form-group">
                     {{ form_label(form.email, 'admin.form.user.email'|trans) }}
                     {{ form_widget(form.email, {
@@ -34,9 +34,7 @@
                     }) }}
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xxl-12">
+            <div class="col-md-6">
                 <div class="form-group">
                     {{ form_label(form.password, 'admin.form.user.password'|trans) }}
                     {{ form_widget(form.password, {
@@ -47,77 +45,37 @@
                 </div>
             </div>
         </div>
-        {% if is_admin(user) %}
-        <div class="row">
-            <div class="col-xxl-12">
-            </div>
-        </div>
-        {% endif %}
     </div>
-
-
-
-    <div class="col-sm">
+    <div class="col-lg-6">
+        {% if is_admin(user) %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_label(form.positions, 'admin.form.user.position.plural'|trans) }}
+                        {{ form_widget(form.positions, {
+                            'id': 'select2',
+                            'attr': {
+                                'class': 'form-control form-select select2-enable',
+                            }
+                        }) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% for link in form.links %}
         <div class="row">
-            <div class="col-xxl-12">
+            <div class="col-md-12">
                 <div class="form-group">
-                    {{ form_label(form.githubLink, 'admin.form.user.github'|trans) }}
-                    {{ form_widget(form.githubLink, {
+                    {{ form_label(link, 'link') }}
+                    {{ form_widget(link, {
                         'attr': {
-                            'class': 'form-control url-input'
+                            'class': 'form-control'
                         }
                     }) }}
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xxl-12">
-                <div class="form-group">
-                    {{ form_label(form.gitlabLink, 'admin.form.user.gitlab'|trans) }}
-                    {{ form_widget(form.gitlabLink, {
-                        'attr': {
-                            'class': 'form-control url-input'
-                        }
-                    }) }}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xxl-12">
-                <div class="form-group">
-                    {{ form_label(form.linkedinLink, 'admin.form.user.linkedin'|trans) }}
-                    {{ form_widget(form.linkedinLink, {
-                        'attr': {
-                            'class': 'form-control url-input'
-                        }
-                    }) }}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xxl-12">
-                <div class="form-group">
-                    {{ form_label(form.websiteLink, 'admin.form.user.website'|trans) }}
-                    {{ form_widget(form.websiteLink, {
-                        'attr': {
-                            'class': 'form-control url-input'
-                        }
-                    }) }}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xxl-12">
-                <div class="form-group">
-                    {{ form_label(form.youtubeLink, 'admin.form.user.youtube'|trans) }}
-                    {{ form_widget(form.youtubeLink, {
-                        'attr': {
-                            'class': 'form-control url-input'
-                        }
-                    }) }}
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 <div class="card-footer">
@@ -126,7 +84,8 @@
         'label': 'admin.form.save'|trans,
         'id': 'submit-form-button',
         'attr': {
-            'class': 'btn btn-success'        }
+            'class': 'btn btn-success'
+        },
     }) }}
 </div>
 {{ form_end(form) }}
