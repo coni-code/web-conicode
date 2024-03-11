@@ -26,7 +26,7 @@ class UserController extends AbstractController
     {
         $this->denyAccessUnlessGranted('VIEW', $user);
 
-        $isAdmin = $this->userService->isAdmin($user);
+        $isAdmin = $this->userService->isAdmin($this->getUser());
         $form = $this->createForm(UserType::class, $user, ['isAdmin' => $isAdmin]);
 
         $form->add('submit', SubmitType::class);
@@ -40,8 +40,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('admin/user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 }

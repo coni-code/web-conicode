@@ -44,7 +44,7 @@ class PositionController extends AbstractController
 
         return $this->render('admin/dictionary/position/new.html.twig', [
             'position' => $position,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -62,7 +62,7 @@ class PositionController extends AbstractController
 
         return $this->render('admin/dictionary/position/edit.html.twig', [
             'position' => $position,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

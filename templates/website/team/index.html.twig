@@ -1,22 +1,30 @@
-{% if users|filter(user => user.member and user.member.avatarHash and user.name)|length > 0 %}
+{% if users|filter(user => user.member and user.member.avatarHash)|length > 0 %}
 <div class="card-element carusel-dark" id="team" data-box="team">
     {% set count = 0 %}
     <div class="glide carusel">
         <div class="glide__track carusel" data-glide-el="track">
             <ul class="glide__slides carusel">
             {% for user in users %}
-                {% if user.member and user.member.avatarHash and user.name %}
+                {% if user.member and user.member.avatarHash %}
                     <li class="glide__slide carusel-element team-item">
                         {% set avatarUrl = "build/trello/avatar/" ~ user.member.avatarHash ~ ".png" %}
                             <img class="carusel-img team-image" src='{{asset(avatarUrl) }}' alt="member avatar"/>
-                            <h4>{{ user.name }} {{ user.surname }}</h4>
+                            <h4>
+                                {% if user.name %} {{ user.name }} {% endif %}
+                                {% if user.surname %} {{ user.surname }} {% endif %}
+                                {% if user.name is null and user.surname is null %}
+                                    {{ user.email }}
+                                {% endif %}
+                            </h4>
                             <p class="team-title">{{ user.positions|map(position => position.name)|join(', ') }}</p>
                             <p class="team-social">
                                 {% for link in user.links %}
-                                    {% if link.type.value == 'website' %}
-                                        <a href="{{ link.url }}" target="_blank"><i class="fa-solid fa-globe"></i></a>
-                                    {% else %}
-                                        <a href="{{ link.url }}" target="_blank"><i class="fab fa-{{ link.type.value }}"></i></a>
+                                    {% if link.url|length > 0 %}
+                                        {% if link.type.value == 'website' %}
+                                            <a href="{{ link.url }}" target="_blank"><i class="fa-solid fa-globe"></i></a>
+                                        {% else %}
+                                            <a href="{{ link.url }}" target="_blank"><i class="fab fa-{{ link.type.value }}"></i></a>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
                                 {% if user.email %}
