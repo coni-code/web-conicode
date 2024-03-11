@@ -23,6 +23,7 @@ class UserLinkType extends AbstractType
         $builder
             ->add('url', TextType::class, [
                 'required' => false,
+                'empty_data' => '',
             ])
             ->add('type', HiddenType::class)
         ;

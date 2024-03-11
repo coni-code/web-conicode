@@ -35,6 +35,8 @@ class UserType extends AbstractType
             ->add('links', CollectionType::class, [
                 'entry_type' => UserLinkType::class,
                 'by_reference' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
                 'entry_options' => [
                     'label' => false,
                 ],
@@ -51,7 +53,6 @@ class UserType extends AbstractType
         }
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this->linkListener, 'onPreSetData']);
-        $builder->addEventListener(FormEvents::POST_SUBMIT, [$this->linkListener, 'onPostSubmit']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -34,16 +34,4 @@ class UserLinkListener
             }
         }
     }
-
-    public function onPostSubmit(FormEvent $event): void
-    {
-        /** @var User $user */
-        $user = $event->getData();
-
-        foreach ($user->getLinks() as $link) {
-            if (!$link->getUrl() || !trim($link->getUrl())) {
-                $user->removeLink($link);
-            }
-        }
-    }
 }
