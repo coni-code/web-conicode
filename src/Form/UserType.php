@@ -6,6 +6,7 @@ namespace App\Form;
 
 use App\Entity\Dictionary\PositionDictionary;
 use App\Entity\User;
+use App\Enum\LinkTypeEnum;
 use App\Form\Listener\UserLinkListener;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -34,9 +35,11 @@ class UserType extends AbstractType
             ->add('surname', TextType::class)
             ->add('links', CollectionType::class, [
                 'entry_type' => UserLinkType::class,
-                'allow_add' => true,
                 'by_reference' => false,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                ],
+                'label' => false,
             ])
         ;
 
@@ -49,7 +52,7 @@ class UserType extends AbstractType
         }
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this->linkListener, 'onPreSetData']);
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this->linkListener, 'onPreSubmit']);
+        $builder->addEventListener(FormEvents::POST_SUBMIT, [$this->linkListener, 'onPostSubmit']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

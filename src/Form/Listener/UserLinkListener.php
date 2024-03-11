@@ -35,20 +35,16 @@ class UserLinkListener
         }
     }
 
-    public function onPreSubmit(FormEvent $event): void
+    public function onPostSubmit(FormEvent $event): void
     {
-        $data = $event->getData();
-        if (!isset($data['links']) || !is_array($data['links'])) {
-            return;
+        /** @var User $user */
+        $user = $event->getData();
+
+        foreach ($user->getLinks() as $link) {
+            if (!$link->getUrl() || !trim($link->getUrl())) {
+                $user->removeLink($link);
+            }
         }
-
-        $filteredLinks = array_filter($data['links'], function ($link) {
-            return isset($link['url']) && strlen(trim($link['url'])) > 0;
-        });
-
-        $data['links'] = array_values($filteredLinks);
-
-        $event->setData($data);
     }
 }
 
