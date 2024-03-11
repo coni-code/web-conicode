@@ -9,24 +9,16 @@
                     <li class="glide__slide carusel-element team-item">
                         {% set avatarUrl = "build/trello/avatar/" ~ user.member.avatarHash ~ ".png" %}
                             <img class="carusel-img team-image" src='{{asset(avatarUrl) }}' alt="member avatar"/>
-                            <h4>{{user.name}} {{user.surname}}</h4>
+                            <h4>{{ user.name }} {{ user.surname }}</h4>
                             <p class="team-title">Member</p>
                             <p class="team-social">
-                                {% if user.githubLink %}
-                                    <a href="{{user.githubLink}}"><i class="fab fa-github"></i></a>
-                                {% endif %}
-                                {% if user.gitlabLink %}
-                                    <a href="{{user.gitlabLink}}"><i class="fab fa-gitlab"></i></a>
-                                {% endif %}
-                                {% if user.linkedinLink %}
-                                    <a href="{{user.linkedinLink}}"><i class="fab fa-linkedin"></i></a>
-                                {% endif %}
-                                {% if user.websiteLink %}
-                                    <a href="{{user.websiteLink}}"><i class="fa-solid fa-globe"></i></a>
-                                {% endif %}
-                                {% if user.youtubeLink %}
-                                    <a href="{{user.youtubeLink}}"><i class="fab fa-youtube"></i></a>
-                                {% endif %}
+                                {% for link in user.links %}
+                                    {% if link.type.value == 'website' %}
+                                        <a href="{{ link.url }}"><i class="fa-solid fa-globe"></i></a>
+                                    {% else %}
+                                        <a href="{{ link.url }}"><i class="fab fa-{{ link.type.value }}"></i></a>
+                                    {% endif %}
+                                {% endfor %}
                                 {% if user.email %}
                                     <a href="mailto:{{user.email}}"><i class="fa-regular fa-envelope"></i></a>
                                 {% endif %}
