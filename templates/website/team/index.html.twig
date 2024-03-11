@@ -10,7 +10,7 @@
                         {% set avatarUrl = "build/trello/avatar/" ~ user.member.avatarHash ~ ".png" %}
                             <img class="carusel-img team-image" src='{{asset(avatarUrl) }}' alt="member avatar"/>
                             <h4>{{ user.name }} {{ user.surname }}</h4>
-                            <p class="team-title">Member</p>
+                            <p class="team-title">{{ user.positions|map(position => position.name)|join(', ') }}</p>
                             <p class="team-social">
                                 {% for link in user.links %}
                                     {% if link.type.value == 'website' %}

@@ -14,37 +14,39 @@ class PositionDictionaryFixtures extends Fixture implements DependentFixtureInte
 {
     public function load(ObjectManager $manager): void
     {
-        $backend = $this->getReference('user_super_admin', User::class);
-        $frontend = $this->getReference('user_admin', User::class);
-        $pm = $this->getReference('user', User::class);
+        $users = [
+            'user_super_admin',
+            'user_admin',
+            'user_manager',
+            'user',
+        ];
+        $positions = [
+            PositionDictionaryFactory::createPositionDictionary('Backend Developer'),
+            PositionDictionaryFactory::createPositionDictionary('Frontend Developer'),
+            PositionDictionaryFactory::createPositionDictionary('Project Manager'),
+            PositionDictionaryFactory::createPositionDictionary('Human Resources'),
+        ];
 
-        $backendDev = PositionDictionaryFactory::createPositionDictionary(
-            'Backend Developer',
-        );
-        $backendDev->addUser($backend);
+        foreach ($users as $user) {
+            $user = $this->getReference($user, User::class);
+            if (!$user instanceof User) {
+                continue;
+            }
 
-        $frontendDev = PositionDictionaryFactory::createPositionDictionary(
-            'Frontend Developer',
-        );
-        $frontendDev->addUser($frontend);
+            if (in_array('ROLE_ADMIN', $user->getRoles())) {
+                foreach ($positions as $position) {
+                    $user->addPosition($position);
+                }
 
-        $projectManager = PositionDictionaryFactory::createPositionDictionary(
-            'Project Manager',
-        );
-        $projectManager->addUser($pm);
+                $manager->persist($user);
 
-        $HR = PositionDictionaryFactory::createPositionDictionary(
-            'Human Resources',
-        );
+                continue;
+            }
 
-        $HR->addUser($backend);
-        $HR->addUser($frontend);
-        $HR->addUser($pm);
+            $user->addPosition($positions[rand(0, 3)]);
+            $manager->persist($user);
+        }
 
-        $manager->persist($backendDev);
-        $manager->persist($frontendDev);
-        $manager->persist($projectManager);
-        $manager->persist($HR);
         $manager->flush();
     }
 
