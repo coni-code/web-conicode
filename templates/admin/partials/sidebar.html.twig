@@ -20,13 +20,14 @@
                     <span>{{ 'admin.sidebar.link.reports'|trans }}</span>
                 </a>
             </li>
+            {% if app.user and is_admin(app.user) %}
             <li class="sub-menu">
-                <a href="javascript:void(0);"><span>Trello</span> -></a>
+                <a href="javascript:void(0);"><span>{{ 'admin.sidebar.group.dictionary'|trans }}</span> -></a>
                 <ul>
-                    <li><a href="javascript:void(0);">Example#1</a></li>
-                    <li><a href="javascript:void(0);">Example#2</a></li>
+                    <li><a href="{{ path('dev_position_index') }}">{{ 'admin.sidebar.link.position_dictionary'|trans }}</a></li>
                 </ul>
             </li>
+            {% endif %}
         </ul>
     </div>
 </aside>
