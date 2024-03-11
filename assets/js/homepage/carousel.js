@@ -10,7 +10,7 @@ const portfolio = new Glide('#portfolio', {
 });
 
 portfolio.mount();
-const count = document.getElementById('team-count').attributes.getNamedItem('data').value;
+const count = document.getElementById('team-count').attributes.getNamedItem('data-count').value;
 const team = new Glide('#team', {
     type: 'carousel',
     startAt: 1,
