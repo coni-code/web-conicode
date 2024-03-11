@@ -10,12 +10,11 @@ use App\Service\Factory\UserLinkFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Exception;
 
 class UserLinkFixtures extends Fixture implements DependentFixtureInterface
 {
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function load(ObjectManager $manager): void
     {
