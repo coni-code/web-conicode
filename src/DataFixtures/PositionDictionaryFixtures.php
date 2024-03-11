@@ -19,22 +19,22 @@ class PositionDictionaryFixtures extends Fixture implements DependentFixtureInte
         $pm = $this->getReference('user', User::class);
 
         $backendDev = PositionDictionaryFactory::createPositionDictionary(
-            "Backend Developer",
+            'Backend Developer',
         );
         $backendDev->addUser($backend);
 
         $frontendDev = PositionDictionaryFactory::createPositionDictionary(
-            "Frontend Developer",
+            'Frontend Developer',
         );
         $frontendDev->addUser($frontend);
 
         $projectManager = PositionDictionaryFactory::createPositionDictionary(
-            "Project Manager",
+            'Project Manager',
         );
         $projectManager->addUser($pm);
 
         $HR = PositionDictionaryFactory::createPositionDictionary(
-            "Human Resources",
+            'Human Resources',
         );
 
         $HR->addUser($backend);

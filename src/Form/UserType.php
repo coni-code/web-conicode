@@ -6,7 +6,6 @@ namespace App\Form;
 
 use App\Entity\Dictionary\PositionDictionary;
 use App\Entity\User;
-use App\Enum\LinkTypeEnum;
 use App\Form\Listener\UserLinkListener;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

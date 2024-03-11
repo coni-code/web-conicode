@@ -6,7 +6,6 @@ namespace App\Command;
 
 use App\Entity\Trello\Member;
 use App\Entity\User;
-use App\Enum\PositionEnum;
 use App\Enum\RoleEnum;
 use App\Repository\Trello\MemberRepository;
 use App\Repository\UserRepository;

@@ -7,7 +7,6 @@ namespace App\Form\DataTransformers;
 use App\Enum\LinkTypeEnum;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
-use ValueError;
 
 class LinkTypeTransformer implements DataTransformerInterface
 {
@@ -32,12 +31,8 @@ class LinkTypeTransformer implements DataTransformerInterface
 
         try {
             return LinkTypeEnum::from($value);
-        } catch (ValueError $e) {
-            throw new TransformationFailedException(
-                sprintf(
-                    'The value "%s" is not a valid LinkTypeEnum.',
-                    $value
-                ), 0, $e);
+        } catch (\ValueError $e) {
+            throw new TransformationFailedException(sprintf('The value "%s" is not a valid LinkTypeEnum.', $value), 0, $e);
         }
     }
 }

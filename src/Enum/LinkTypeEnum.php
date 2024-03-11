@@ -7,9 +7,9 @@ namespace App\Enum;
 enum LinkTypeEnum: string
 {
     case GITHUB = 'github';
-    case GITLAB   = 'gitlab';
+    case GITLAB = 'gitlab';
     case LINKEDIN = 'linkedin';
-    case WEBSITE  = 'website';
+    case WEBSITE = 'website';
     case YOUTUBE = 'youtube';
 
     public static function getChoices(): array

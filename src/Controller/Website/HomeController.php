@@ -6,7 +6,6 @@ namespace App\Controller\Website;
 
 use App\Form\ContactType;
 use App\Repository\UserRepository;
-use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;

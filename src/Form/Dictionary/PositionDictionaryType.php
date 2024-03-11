@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form\Dictionary;
 
 use App\Entity\Dictionary\PositionDictionary;
