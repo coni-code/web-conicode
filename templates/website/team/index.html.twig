@@ -1,44 +1,36 @@
+{% if users|filter(user => user.member and user.member.avatarHash and user.name)|length > 0 %}
 <div class="card-element carusel-dark" id="team" data-box="team">
     {% set count = 0 %}
     <div class="glide carusel">
         <div class="glide__track carusel" data-glide-el="track">
             <ul class="glide__slides carusel">
-            {% if users %}
-                {% for user in users %}
-                    {% if user.member and user.member.avatarHash and user.name %}
-                        <li class="glide__slide carusel-element team-item">
-                            {% set avatarUrl = "build/trello/avatar/" ~ user.member.avatarHash ~ ".png" %}
-                                <img class="carusel-img team-image" src='{{asset(avatarUrl) }}'/>
-                                <h4>{{user.name}} {{user.surname}}</h4>
-                                <p class="team-title">Member</p>
-                                <p class="team-social">
-                                    {% if user.githubLink %}
-                                        <a href="{{user.githubLink}}"><i class="fab fa-github"></i></a>
+            {% for user in users %}
+                {% if user.member and user.member.avatarHash and user.name %}
+                    <li class="glide__slide carusel-element team-item">
+                        {% set avatarUrl = "build/trello/avatar/" ~ user.member.avatarHash ~ ".png" %}
+                            <img class="carusel-img team-image" src='{{asset(avatarUrl) }}' alt="member avatar"/>
+                            <h4>{{ user.name }} {{ user.surname }}</h4>
+                            <p class="team-title">{{ user.positions|map(position => position.name)|join(', ') }}</p>
+                            <p class="team-social">
+                                {% for link in user.links %}
+                                    {% if link.type.value == 'website' %}
+                                        <a href="{{ link.url }}" target="_blank"><i class="fa-solid fa-globe"></i></a>
+                                    {% else %}
+                                        <a href="{{ link.url }}" target="_blank"><i class="fab fa-{{ link.type.value }}"></i></a>
                                     {% endif %}
-                                    {% if user.gitlabLink %}
-                                        <a href="{{user.gitlabLink}}"><i class="fab fa-gitlab"></i></a>
-                                    {% endif %}
-                                    {% if user.linkedinLink %}
-                                        <a href="{{user.linkedinLink}}"><i class="fab fa-linkedin"></i></a>
-                                    {% endif %}
-                                    {% if user.websiteLink %}
-                                        <a href="{{user.websiteLink}}"><i class="fa-solid fa-globe"></i></a>
-                                    {% endif %}
-                                    {% if user.youtubeLink %}
-                                        <a href="{{user.youtubeLink}}"><i class="fab fa-youtube"></i></a>
-                                    {% endif %}
-                                    {% if user.email %}
-                                        <a href="mailto:{{user.email}}"><i class="fa-regular fa-envelope"></i></a>
-                                    {% endif %}
-                                </p>
-                        </li>
-                        {% set count = count + 1 %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+                                {% endfor %}
+                                {% if user.email %}
+                                    <a href="mailto:{{user.email}}"><i class="fa-regular fa-envelope"></i></a>
+                                {% endif %}
+                            </p>
+                    </li>
+                    {% set count = count + 1 %}
+                {% endif %}
+            {% endfor %}
             </ul>
         </div>
-        <span id="team-count" data="{{count}}">
+        <span id="team-count" data-count="{{count}}">
         {{ include('website/carousel/controls/_controls.html.twig')}}
     </div>
 </div>
+{% endif %}

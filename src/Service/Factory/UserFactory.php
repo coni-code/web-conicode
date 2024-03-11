@@ -16,12 +16,6 @@ class UserFactory
         ?string $surname,
         string $password,
         array $roles,
-        array $positions = null,
-        string $githubLink = null,
-        string $gitlabLink = null,
-        string $linkedinLink = null,
-        string $websiteLink = null,
-        string $youtubeLink = null,
     ): User {
         $user = new User();
 
@@ -30,12 +24,6 @@ class UserFactory
         $user->setSurname($surname);
         $user->setPassword($passwordHasher->hashPassword($user, $password));
         $user->setRoles($roles);
-        $user->setPositions($positions);
-        $user->setGithubLink($githubLink);
-        $user->setGitlabLink($gitlabLink);
-        $user->setYoutubeLink($youtubeLink);
-        $user->setWebsiteLink($websiteLink);
-        $user->setlinkedinLink($linkedinLink);
 
         return $user;
     }

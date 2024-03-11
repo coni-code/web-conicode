@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Enum\PositionEnum;
 use App\Service\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -28,12 +27,6 @@ class UserFixtures extends Fixture
             $faker->lastName(),
             'admin',
             ['ROLE_ADMIN'],
-            [PositionEnum::LEAD_BACKEND_DEVELOPER, PositionEnum::TEAM_LEADER, PositionEnum::HR],
-            $faker->imageUrl(),
-            $faker->imageUrl(),
-            $faker->imageUrl(),
-            $faker->imageUrl(),
-            null,
         );
 
         $admin = UserFactory::createUser(
@@ -43,10 +36,6 @@ class UserFixtures extends Fixture
             $faker->lastName(),
             'admin',
             ['ROLE_ADMIN'],
-            [PositionEnum::JUNIOR_BACKEND_DEVELOPER],
-            $faker->imageUrl(),
-            null,
-            $faker->imageUrl(),
         );
 
         $pm = UserFactory::createUser(
@@ -56,12 +45,6 @@ class UserFixtures extends Fixture
             $faker->lastName(),
             'manager',
             ['ROLE_MANAGER'],
-            [PositionEnum::HR, PositionEnum::PROJECT_MANAGER, PositionEnum::BUSINESS_ANALYST],
-            null,
-            null,
-            $faker->imageUrl(),
-            $faker->imageUrl(),
-            $faker->imageUrl(),
         );
 
         $user = UserFactory::createUser(
@@ -71,11 +54,6 @@ class UserFixtures extends Fixture
             $faker->lastName(),
             'user',
             ['ROLE_USER'],
-            [PositionEnum::TRAINEE],
-            $faker->imageUrl(),
-            null,
-            $faker->imageUrl(),
-            $faker->imageUrl(),
         );
 
         $this->addReference('user_super_admin', $superAdmin);

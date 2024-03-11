@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use App\Entity\Dictionary\PositionDictionary;
 use App\Entity\Trello\Member;
-use App\Enum\PositionEnum;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,7 +26,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private array $roles = [];
 
     /**
-     * @var string The hashed password
+     * @var ?string The hashed password
      */
     #[ORM\Column]
     private ?string $password = null;
@@ -37,23 +37,13 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $surname = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $positions = [];
+    /** @var Collection<PositionDictionary> */
+    #[ORM\ManyToMany(targetEntity: PositionDictionary::class, inversedBy: 'users', cascade: ['persist'])]
+    #[ORM\JoinTable(name: 'users_positions')]
+    private Collection $positions;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $githubLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $gitlabLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $linkedinLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $websiteLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $youtubeLink = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLink::class, cascade: ['persist'])]
+    private Collection $links;
 
     /** @var Collection<Meeting> */
     #[ORM\ManyToMany(targetEntity: Meeting::class, inversedBy: 'users', cascade: ['persist'])]
@@ -69,6 +59,8 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     public function __construct()
     {
         $this->meetings = new ArrayCollection();
+        $this->positions = new ArrayCollection();
+        $this->links = new ArrayCollection();
     }
 
     public function getEmail(): ?string
@@ -147,74 +139,56 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         $this->surname = $surname;
     }
 
-    public function getPositions(): ?array
+    public function getPositions(): Collection
     {
         return $this->positions;
     }
 
-    public function setPositions(?array $positions): void
+    public function setPositions(Collection $positions): void
     {
         $this->positions = $positions;
     }
 
-    public function addPosition(PositionEnum $position): void
+    public function addPosition(PositionDictionary $position): void
     {
-        $this->positions[] = $position;
+        if (!$this->positions->contains($position)) {
+            $this->positions->add($position);
+            $position->addUser($this);
+        }
     }
 
-    public function removePosition(array $positions, $position): void
+    public function removePosition(PositionDictionary $position): void
     {
-        unset($positions[array_search($position, $positions, true)]);
+        if ($this->positions->contains($position)) {
+            $this->positions->removeElement($position);
+            $position->removeUser($this);
+        }
     }
 
-    public function getGithubLink(): ?string
+    public function getLinks(): Collection
     {
-        return $this->githubLink;
+        return $this->links;
     }
 
-    public function setGithubLink(?string $githubLink): void
+    public function setLinks(Collection $links): void
     {
-        $this->githubLink = $githubLink;
+        $this->links = $links;
     }
 
-    public function getGitlabLink(): ?string
+    public function addLink(UserLink $link): void
     {
-        return $this->gitlabLink;
+        if (!$this->links->contains($link)) {
+            $this->links->add($link);
+            $link->setUser($this);
+        }
     }
 
-    public function setGitlabLink(?string $gitlabLink): void
+    public function removeLink(UserLink $link): void
     {
-        $this->gitlabLink = $gitlabLink;
-    }
-
-    public function getLinkedinLink(): ?string
-    {
-        return $this->linkedinLink;
-    }
-
-    public function setLinkedinLink(?string $linkedinLink): void
-    {
-        $this->linkedinLink = $linkedinLink;
-    }
-
-    public function getWebsiteLink(): ?string
-    {
-        return $this->websiteLink;
-    }
-
-    public function setWebsiteLink(?string $websiteLink): void
-    {
-        $this->websiteLink = $websiteLink;
-    }
-
-    public function getYoutubeLink(): ?string
-    {
-        return $this->youtubeLink;
-    }
-
-    public function setYoutubeLink(?string $youtubeLink): void
-    {
-        $this->youtubeLink = $youtubeLink;
+        if ($this->links->contains($link)) {
+            $this->links->removeElement($link);
+            $link->setUser(null);
+        }
     }
 
     public function getMember(): ?Member
