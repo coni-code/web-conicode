@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Website;
 
 use App\Form\ContactType;
+use App\Repository\UserRepository;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     public function __construct(
-        private readonly UserService $userService,
+        private readonly UserRepository $userRepository,
     ) {
     }
 
@@ -33,7 +34,7 @@ class HomeController extends AbstractController
 
         return $this->render('website/home.html.twig', [
             'form' => $form,
-            'users' => $this->userService->getAll(),
+            'users' => $this->userRepository->findAll(),
         ]);
     }
 }
