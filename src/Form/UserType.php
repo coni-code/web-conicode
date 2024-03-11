@@ -35,8 +35,6 @@ class UserType extends AbstractType
             ->add('links', CollectionType::class, [
                 'entry_type' => UserLinkType::class,
                 'by_reference' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
                 'entry_options' => [
                     'label' => false,
                 ],
