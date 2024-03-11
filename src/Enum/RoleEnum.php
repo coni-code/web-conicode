@@ -13,8 +13,8 @@ enum RoleEnum: int
     public static function getChoices(): array
     {
         return [
-            self::ROLE_USER->value    => self::ROLE_USER->name,
-            self::ROLE_ADMIN->value   => self::ROLE_ADMIN->name,
+            self::ROLE_USER->value => self::ROLE_USER->name,
+            self::ROLE_ADMIN->value => self::ROLE_ADMIN->name,
             self::ROLE_MANAGER->value => self::ROLE_MANAGER->name,
         ];
     }

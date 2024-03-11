@@ -22,4 +22,22 @@ class PositionDictionaryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, PositionDictionary::class);
     }
+
+    public function save(PositionDictionary $position): bool
+    {
+        $em = $this->getEntityManager();
+        $em->persist($position);
+        $em->flush();
+
+        return true;
+    }
+
+    public function delete(PositionDictionary $position): bool
+    {
+        $em = $this->getEntityManager();
+        $em->remove($position);
+        $em->flush();
+
+        return true;
+    }
 }
