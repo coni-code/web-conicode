@@ -33,7 +33,7 @@ class PositionDictionaryFixtures extends Fixture implements DependentFixtureInte
                 continue;
             }
 
-            if (in_array('ROLE_ADMIN', $user->getRoles())) {
+            if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
                 foreach ($positions as $position) {
                     $user->addPosition($position);
                 }
