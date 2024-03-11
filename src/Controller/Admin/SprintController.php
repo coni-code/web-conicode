@@ -44,7 +44,7 @@ class SprintController extends AbstractController
 
         return $this->render('admin/sprint/new.html.twig', [
             'sprint' => $sprint,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -62,7 +62,7 @@ class SprintController extends AbstractController
 
         return $this->render('admin/sprint/edit.html.twig', [
             'sprint' => $sprint,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
