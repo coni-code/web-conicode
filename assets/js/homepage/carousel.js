@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const count = teamCountElement.attributes.getNamedItem('data-count').value;
     const team = new Glide('#team', {
         type: 'carousel',
-        startAt: 1,
+        startAt: 0,
         perView: width <= 900 ? width <= 600 ? 1 : Math.min(count, 2) : Math.min(count, 3),
     });
 
