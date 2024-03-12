@@ -27,10 +27,12 @@ export class MeetingModal {
                 this.ckeditor = editor;
                 this.ckeditor.model.document.on('change:data', () => {
                     this.descriptionInput.value = this.ckeditor.getData();
+                    this.debounceSaveChanges();
                 });
 
                 this.descriptionInput.addEventListener('input', () => {
                     this.ckeditor.setData(this.descriptionInput.value);
+                    this.debounceSaveChanges();
                 });
             })
             .catch(error => {
