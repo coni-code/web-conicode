@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 setTimeout(() => {
                     typeWriter(text, i);
-                }, 50);
+                }, 60);
             }
         }
     }
