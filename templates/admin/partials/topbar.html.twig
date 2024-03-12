@@ -1,4 +1,5 @@
 <div class="topbar">
+    <a class="home-return" href="http://127.0.0.1:8000/pl"><i class="fas fa-arrow-left"></i>{{ 'admin.home.backlink'|trans }}</a>
     <div class="user-info">
         <div class="toggle-dropdown">
             {% if app.user.member and app.user.member.avatarHash %}

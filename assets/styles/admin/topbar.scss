@@ -126,4 +126,19 @@
     background-color: $primary-red-color;
     border-radius: 20px;
   }
+
+  .home-return {
+    text-decoration: none;
+    margin-right: 40px;
+    color: #aeb2b7;
+  }
+
+  .home-return i {
+    margin-right: 5px;
+  }
+
+  .home-return:hover {
+    transition: all 200ms ease-in;
+    color: $primary-red-color;
+  }
 }

@@ -78,3 +78,4 @@ admin.form.position.name: 'Nazwa'
 admin.position.header.edit_position: 'Edytuj stanowisko'
 admin.sidebar.group.dictionary: "Słowniki"
 admin.sidebar.link.position_dictionary: "Stanowiska"
+admin.home.backlink: "Wróć na stronę główną"
