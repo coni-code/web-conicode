@@ -45,7 +45,7 @@
 @media (width <= 900px) {
     .portfolio-img{
         position: relative;
-        border-radius: 0 0 50px 50px;
+        border-radius: 0 0 20px 20px;
         width: 100%;
         transform: translate(32%,-15%);
     }
@@ -70,6 +70,14 @@
 }
 
 @media (width <= 550px) {
+    .portfolio-title  {
+        font-size: 20px;
+    }
+
+    .portfolio-desc {
+        font-size: 1rem;
+    }
+
     .portfolio-img{
         position: relative;
         border-radius: 0 0 50px 50px;

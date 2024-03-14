@@ -42,6 +42,7 @@
     border-radius: 20px;
     background-color: $primary-background-color-low-opacity;
     padding: 20px;
+    box-shadow: 0 0 4px #223951e9;
 
     img{
         max-width: 100%;
@@ -112,6 +113,10 @@
     text-align: center;
 }
 
+.about-us-element p {
+    font-weight: 300;
+}
+
 .about-us-element h2{
     color: $primary-red-color;
 }
@@ -135,7 +140,7 @@
     margin-left: auto;
     opacity: 0;
     animation: typing2 2s steps(40) forwards;
-    animation-delay: 3s;
+    animation-delay: 4s;
 }
 
 #trans-quote {
