@@ -15,6 +15,10 @@ home.quote: "Programowanie to nie tylko pisanie kodu, to budowanie mostów międ
 home.shortcuts: "Na skróty"
 home.exception.error404: "Błąd 404: Strona nie znaleziana"
 home.exception.backlink: "Wróć na stronę główną"
+home.header.aboutus.desc: "Jesteśmy lokalną grupą programistów non-profit zajmującą się tworzeniem aplikacji mobilnych oraz stron internetowych. Chcemy inspirować i wspierać adeptów IT."
+home.header.ourmotivation.desc: Naszą główną motywacją jest zbudowanie efektywnego portfolio, które otworzy Nam wiele drzwi w branży IT, chęć rozwoju oraz pracy w zespole złożonym z ludzi, którzy pasjonują się programowaniem.
+home.header.aboutus: "O NAS"
+home.header.ourmotivation: "NASZA MOTYWACJA"
 admin.form.meeting.status.pending: "Oczekujące"
 admin.form.meeting.status.confirmed: "Potwierdzone"
 admin.topbar.option.settings: "Ustawienia"
