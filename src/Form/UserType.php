@@ -7,19 +7,22 @@ namespace App\Form;
 use App\Entity\Dictionary\PositionDictionary;
 use App\Entity\User;
 use App\Form\Listener\UserLinkListener;
+use App\Service\UserService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
-    public function __construct(private readonly UserLinkListener $linkListener)
-    {
+    public function __construct(
+        private readonly UserLinkListener $linkListener,
+    ){
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -27,8 +30,9 @@ class UserType extends AbstractType
         $builder
             ->add('email', TextType::class)
             ->add('password', PasswordType::class, [
-                'mapped' => false,
+                'mapped' => true,
                 'required' => false,
+                'empty_data' => $options['password'],
             ])
             ->add('name', TextType::class)
             ->add('surname', TextType::class)
@@ -58,6 +62,7 @@ class UserType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
             'isAdmin' => false,
+            'password' => null,
         ]);
     }
 }
