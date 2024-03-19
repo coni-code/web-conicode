@@ -28,12 +28,12 @@ class UserService
         return in_array(RoleEnum::ROLE_ADMIN->name, $user->getRoles(), true);
     }
 
-    public function handleForm(FormInterface $form): void
+    public function handleForm(FormInterface $form, string $password): void
     {
         /** @var User $user */
         $user = $form->getData();
 
-        if ($form['password']->getData()) {
+        if ($form['password']->getData() != $password) {
             $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
         }
 
