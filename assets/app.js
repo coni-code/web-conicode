@@ -19,7 +19,7 @@ import 'select2/dist/css/select2.min.css';
 import './styles/home/nav.scss';
 import './styles/home/contact.scss';
 import './styles/home/header.scss';
-import './styles/home/portfolio.scss';
+import './styles/home/technology.scss';
 import './styles/home/team.scss';
 import './styles/home/carousel.scss';
 import './styles/home/exception.scss';
