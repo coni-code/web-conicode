@@ -24,4 +24,5 @@ import './styles/admin/calendar.scss';
 import './styles/admin/meeting.scss';
 import './styles/admin/form.scss';
 import './styles/admin/detail.scss';
+import './styles/admin/list.scss';
 import './styles/overrides/select2.scss';
