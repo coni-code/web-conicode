@@ -67,9 +67,11 @@ class SprintController extends AbstractController
     }
 
     #[Route('/{id}/details', name: 'sprint_details', methods: ['GET'])]
-    public function details(): Response
+    public function details(Sprint $sprint): Response
     {
-        return $this->render('admin/sprint/details.html.twig');
+        return $this->render('admin/sprint/details.html.twig', [
+            'sprint' => $sprint,
+        ]);
     }
 
     #[Route('/{id}', name: 'sprint_delete', methods: ['POST'])]

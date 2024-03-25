@@ -13,6 +13,7 @@ class SprintUserFactory
     ): SprintUser {
         $sprint = new SprintUser();
         $sprint->setAvailabilityInHours($availabilityInHours);
+
         return $sprint;
     }
 }

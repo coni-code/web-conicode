@@ -1,39 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DataFixtures;
 
 use App\Service\Factory\SprintFactory;
-use DateInterval;
-use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
-use Exception;
 use Faker;
 
 class SprintFixtures extends Fixture implements FixtureGroupInterface
 {
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create();
-        $startDay = new DateTime('first day of this month');
+        $startDay = new \DateTime('first day of this month');
 
-        for ($i = 1; $i < 11; $i++) {
-            $endDay = new DateTime($startDay->format('Y-m-d'));
-            $startDay = new DateTime($startDay->format('Y-m-d'));
+        for ($i = 1; $i < 11; ++$i) {
+            $endDay = new \DateTime($startDay->format('Y-m-d'));
+            $startDay = new \DateTime($startDay->format('Y-m-d'));
             $offset = 7;
-            $startDay->add(DateInterval::createFromDateString($offset . ' days'));
+            $startDay->add(\DateInterval::createFromDateString($offset . ' days'));
             $offset += 7;
-            $endDay->add(DateInterval::createFromDateString($offset . ' days'));
+            $endDay->add(\DateInterval::createFromDateString($offset . ' days'));
 
             $sprint = SprintFactory::createSprint(
                 "Sprint [$i]",
                 $startDay,
                 $endDay,
-                $faker->numberBetween(4,24),
+                $faker->numberBetween(4, 24),
                 $faker->randomElement([true, false]),
             );
 

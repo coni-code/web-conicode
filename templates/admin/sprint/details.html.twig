@@ -18,6 +18,22 @@
             <div class="card-header">
                 <h4>{{ header }}</h4>
             </div>
+            <div class="card-body">
+                <table class="base-table">
+                    <tr>
+                        <th class="w-25">{{ 'admin.form.sprint.title'|trans }}</th>
+                        <td>{{ sprint.title }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'admin.form.sprint.start_date'|trans }}</th>
+                        <td>{{ sprint.startDate|date('d M Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'admin.form.sprint.end_date'|trans }}</th>
+                        <td>{{ sprint.endDate|date('d M Y') }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -12,8 +12,8 @@ class SprintFactory
         string $title,
         \DateTimeInterface $startDate,
         \DateTimeInterface $endDate,
-        ?int $storyPoints = null,
-        ?bool $isSuccessful = null,
+        int $storyPoints = null,
+        bool $isSuccessful = null,
     ): Sprint {
         $sprint = new Sprint();
         $sprint->setTitle($title);
