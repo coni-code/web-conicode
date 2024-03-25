@@ -34,6 +34,7 @@ Encore
     .addEntry('particles', './assets/js/particles.js')
     .addEntry('particles-ini', './assets/libs/particles.js/particles.js')
     .addEntry('home/carousel', './assets/js/homepage/carousel.js')
+    .addEntry('admin/list', './assets/js/admin/list.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
 
     // Enable jquery

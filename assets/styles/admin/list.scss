@@ -1,0 +1,6 @@
+@import "../variables";
+
+.base-table .base-row:hover {
+  background-color: $primary-light-background-color-list-hover;
+  cursor: pointer;
+}

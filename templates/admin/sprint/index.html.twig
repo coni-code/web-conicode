@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <table class="base-table">
+                <table class="base-table" data-element-name="sprint">
                     <thead>
                         <tr>
                             <th>{{ 'admin.form.sprint.title'|trans }}</th>
@@ -34,7 +34,7 @@
                     </thead>
                     <tbody>
                         {% for sprint in sprints %}
-                        <tr>
+                        <tr class="base-row" data-details-path="{{ path('dev_sprint_details', { 'id': sprint.id }) }}">
                             <td>{{ sprint.title }}</td>
                             <td>{{ sprint.startDate|date('Y-m-d') }}</td>
                             <td>{{ sprint.endDate|date('Y-m-d') }}</td>
@@ -54,4 +54,6 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+
+    {{ encore_entry_script_tags('admin/list') }}
 {% endblock %}

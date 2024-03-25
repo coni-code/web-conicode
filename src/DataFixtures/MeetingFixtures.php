@@ -10,7 +10,7 @@ use App\Service\Factory\MeetingFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
+use Faker;
 
 class MeetingFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -19,7 +19,7 @@ class MeetingFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create();
+        $faker = Faker\Factory::create();
         $startDay = new \DateTime('first day of this month');
 
         $user = $this->getReference('user_admin');
