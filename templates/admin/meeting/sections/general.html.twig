@@ -51,17 +51,20 @@
         <span class="close-button">&times;</span>
         <div class="meeting-modal-left">
             <label>
-                <input id="title" type="text" />
+                <input id="title" type="text" placeholder="{{ 'admin.form.sprint.title'|trans }}"/>
             </label>
             <label>
                 <textarea id="description"></textarea>
             </label>
+            <div id="editor"></div>
         </div>
         <div class="meeting-modal-right">
             <label>
                 <input id="date-range" type="text" placeholder="{{ 'admin.form.meeting.date_range_placeholder'|trans }}" />
             </label>
-            <select id="select2" class="w-100 form-control form-select meeting-users-select select2-enable" multiple></select>
+            <label>
+                <select id="select2" class="w-100 form-control form-select meeting-users-select select2-enable" multiple></select>
+            </label>
             <button class="btn-delete w-100">{{ 'form.delete'|trans }}</button>
             <button class="btn-create w-100" style="display: none;">{{ 'admin.form.save'|trans }}</button>
         </div>

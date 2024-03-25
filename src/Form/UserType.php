@@ -4,55 +4,55 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Entity\Dictionary\PositionDictionary;
 use App\Entity\User;
-use App\Enum\PositionEnum;
+use App\Form\Listener\UserLinkListener;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class UserType extends AbstractType
 {
+    public function __construct(
+        private readonly UserLinkListener $linkListener,
+    ) {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('email', TextType::class)
             ->add('password', PasswordType::class, [
-                'mapped' => false,
+                'mapped' => true,
                 'required' => false,
-//                'constraints' => [
-//                    new Length([
-//                        'min' => 6,
-//                        'minMessage' => 'Password should be at least 6 characters long.',
-//                    ]),
-//                    new Regex([
-//                        'pattern' => '/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[-_!@#$%^&*()+]).*$/',
-//                        'message' => 'Password must contain at least one digit, one uppercase letter, one lowercase letter, and one special character.',
-//                    ]),
-//                ],
+                'empty_data' => $options['password'],
             ])
             ->add('name', TextType::class)
             ->add('surname', TextType::class)
-            ->add('githubLink', UrlType::class, ['required' => false])
-            ->add('gitlabLink', UrlType::class, ['required' => false])
-            ->add('linkedinLink', UrlType::class, ['required' => false])
-            ->add('websiteLink', UrlType::class, ['required' => false])
-            ->add('youtubeLink', UrlType::class, ['required' => false])
+            ->add('links', CollectionType::class, [
+                'entry_type' => UserLinkType::class,
+                'by_reference' => false,
+                'entry_options' => [
+                    'label' => false,
+                ],
+                'label' => false,
+            ])
         ;
 
         if ($options['isAdmin']) {
-            $builder
-                ->add('positions', ChoiceType::class, [
-                    'choices' => PositionEnum::getChoices(),
-                    'multiple' => true,
-                ])
-            ;
+            $builder->add('positions', EntityType::class, [
+                'class' => PositionDictionary::class,
+                'multiple' => true,
+                'choice_label' => 'name',
+            ]);
         }
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this->linkListener, 'onPreSetData']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -60,6 +60,7 @@ class UserType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
             'isAdmin' => false,
+            'password' => null,
         ]);
     }
 }

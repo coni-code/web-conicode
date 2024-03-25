@@ -1,0 +1,20 @@
+{{ form_start(form) }}
+<div class="card-body">
+    <div class="row">
+        <div class="col-xxl-6">
+            <div class="form-group">
+                {{ form_label(form.name, 'admin.form.position.name'|trans) }}
+                {{ form_widget(form.name, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-footer">
+    <a class="btn btn-danger" href="{{ path('dev_position_index') }}">{{ 'admin.form.cancel'|trans }}</a>
+    <button class="btn btn-success">{{ button_label|default('admin.form.save'|trans) }}</button>
+</div>
+{{ form_end(form) }}

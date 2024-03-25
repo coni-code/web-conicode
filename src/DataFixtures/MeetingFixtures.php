@@ -22,15 +22,6 @@ class MeetingFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
-        $userArray = [
-            'user_super_admin',
-            'user_admin',
-            'user_manager',
-            'user',
-        ];
-
-        $users = array_map(fn ($userReference) => $this->getReference($userReference), $userArray);
-
         $faker = Faker\Factory::create();
         $startDay = new DateTime('first day of this month');
 
