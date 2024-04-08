@@ -16,6 +16,11 @@
         <div class="card">
             <div class="card-header">
                 <h4>{{ header }}</h4>
+                <a data-delete-url="{{ path('dev_user_delete', { 'id': user.id }) }}"
+                   data-redirect-url="{{ path('app_home') }}"
+                   class="btn btn-danger">
+                    <span class="fas fa-trash"></span>
+                </a>
             </div>
             {{ include('admin/user/_form.html.twig') }}
         </div>
@@ -25,4 +30,5 @@
     {{ parent() }}
     {{ encore_entry_script_tags('select2') }}
     {{ encore_entry_script_tags('form-validator') }}
+    {{ encore_entry_script_tags('handle-delete-btn') }}
 {% endblock %}

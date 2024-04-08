@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Exception\NotFoundException;
 use App\Form\UserType;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,6 +44,19 @@ class UserController extends AbstractController
 
         return $this->render('admin/user/edit.html.twig', [
             'form' => $form->createView(),
+            'user' => $user,
         ]);
+    }
+
+    #[Route('/{id}', name: 'user_delete', methods: ['POST'])]
+    public function delete(Request $request, string $id): Response
+    {
+        try {
+            $this->userService->delete($id);
+        } catch (NotFoundException $e) {
+            return new Response('error', Response::HTTP_NOT_FOUND);
+        }
+
+        return new Response('success', Response::HTTP_OK);
     }
 }

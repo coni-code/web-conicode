@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Enum\RoleEnum;
+use App\Exception\NotFoundException;
 use App\Repository\UserRepository;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -38,5 +39,14 @@ class UserService
         }
 
         $this->userRepository->save($user);
+    }
+
+    public function delete(string $id): bool
+    {
+        if (!$sprint = $this->userRepository->find($id)) {
+            throw new NotFoundException();
+        }
+
+        return $this->userRepository->delete($sprint);
     }
 }
