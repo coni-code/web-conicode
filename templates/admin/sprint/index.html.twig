@@ -42,6 +42,12 @@
                                 <a href="{{ path('dev_sprint_edit', { 'id': sprint.id }) }}" class="btn btn-secondary">
                                     {{ 'form.edit'|trans }}
                                 </a>
+                                {% if is_admin(app.user) %}
+                                    <a data-delete-url="{{ path('dev_sprint_delete', { 'id': sprint.id }) }}"
+                                       class="btn btn-danger delete-btn">
+                                        <span class="fa fa-trash"></span>
+                                    </a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}

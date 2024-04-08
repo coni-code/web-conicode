@@ -21,5 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = detailsPath;
             });
         }
+
+        const deleteBtn = row.querySelector('.delete-btn');
+
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', event => {
+                event.stopPropagation();
+
+                const deletePath = deleteBtn.getAttribute('data-delete-url');
+
+                if (!deletePath) {
+                    return;
+                }
+
+                const deleteUrl = `${window.location.origin}${deletePath}`;
+
+                fetch(deleteUrl, {
+                    method: 'POST',
+                }).then(() => {
+                    window.location.reload();
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        }
     });
 });

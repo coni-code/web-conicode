@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <table class="base-table">
+                <table class="base-table" data-element-name="position">
                     <thead>
                         <tr>
                             <th>{{ 'admin.form.position.name'|trans }}</th>
@@ -32,12 +32,18 @@
                     </thead>
                     <tbody>
                         {% for position in positions %}
-                        <tr>
+                        <tr class="base-row">
                             <td>{{ position.name }}</td>
                             <td>
                                 <a href="{{ path('dev_position_edit', { 'id': position.id }) }}" class="btn btn-secondary">
                                     {{ 'form.edit'|trans }}
                                 </a>
+                                {% if is_admin(app.user) %}
+                                    <a data-delete-url="{{ path('dev_position_delete', { 'id': position.id }) }}"
+                                       class="btn btn-danger delete-btn">
+                                        <span class="fa fa-trash"></span>
+                                    </a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}
@@ -50,4 +56,6 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+
+    {{ encore_entry_script_tags('admin/list') }}
 {% endblock %}

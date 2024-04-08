@@ -77,13 +77,12 @@ class SprintController extends AbstractController
     #[Route('/{id}', name: 'sprint_delete', methods: ['POST'])]
     public function delete(Request $request, string $id): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-            try {
-                $this->service->delete($id);
-            } catch (NotFoundException $e) {
-            }
+        try {
+            $this->service->delete($id);
+        } catch (NotFoundException $e) {
+            return new Response('error', Response::HTTP_NOT_FOUND);
         }
 
-        return $this->redirectToRoute('dev_sprint_index', [], Response::HTTP_SEE_OTHER);
+        return new Response('success', Response::HTTP_OK);
     }
 }
