@@ -21,11 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(deleteUrl, {
             method: 'POST',
         }).then(() => {
-            if (!redirectPath) {
-                window.location.reload();
-            } else {
+            if (redirectPath) {
                 window.location.href = redirectUrl;
+
+                return;
             }
+
+            window.location.reload();
         }).catch(error => {
             console.error('Error:', error);
         });
