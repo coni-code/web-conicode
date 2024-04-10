@@ -34,6 +34,7 @@ class HomeController extends AbstractController
             $this->mailerService->sendContactUsData($form->getData(), $mailer);
 
             $this->addFlash('success', 'Siemano');
+
             return $this->redirectToRoute('app_home');
         }
 
