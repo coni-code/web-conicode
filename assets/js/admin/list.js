@@ -36,13 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const deleteUrl = `${window.location.origin}${deletePath}`;
 
-                fetch(deleteUrl, {
-                    method: 'POST',
-                }).then(() => {
-                    window.location.reload();
-                }).catch(error => {
-                    console.error('Error:', error);
-                });
+                // eslint-disable-next-line no-alert
+                const isConfirmed = confirm('Are you sure?');
+
+                if (isConfirmed) {
+                    fetch(deleteUrl, {
+                        method: 'POST',
+                    }).then(() => {
+                        window.location.reload();
+                    }).catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
             });
         }
     });

@@ -18,18 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteBtn.addEventListener('click', event => {
         event.stopPropagation();
 
-        fetch(deleteUrl, {
-            method: 'POST',
-        }).then(() => {
-            if (redirectPath) {
-                window.location.href = redirectUrl;
+        // eslint-disable-next-line no-alert
+        const isConfirmed = confirm('Are you sure?');
 
-                return;
-            }
+        if (isConfirmed) {
+            fetch(deleteUrl, {
+                method: 'POST',
+            }).then(() => {
+                if (redirectPath) {
+                    window.location.href = redirectUrl;
 
-            window.location.reload();
-        }).catch(error => {
-            console.error('Error:', error);
-        });
+                    return;
+                }
+
+                window.location.reload();
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
     });
 });
