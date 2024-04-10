@@ -1,7 +1,8 @@
+@import '../variables';
+
 #technology{
     grid-column: span 8;
-    height: 600px;
-    overflow: hidden;
+    min-height: 600px;
     position: relative;
 }
 
@@ -11,6 +12,8 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    position: relative;
+    padding-top: 60px;
 }
 
 .tech-tag-list{
@@ -37,17 +40,28 @@
     border-radius: 16px;
 }
 
+.tech-button{
+    font-size: 1em;
+    font-weight: 400;
+    padding: 8px 12px;
+}
+
 .tech-description{
+    width: 75%;
     margin-top: 20px;
+    padding: 8px 12px;
     text-align: center;
     font-weight: 400;
     text-shadow: 0 0 20px black;
+    border: solid rgba(0, 0, 0, 0.10);
+    background-color: rgba(0, 0, 0, 0.055);
+    border-radius: 12px;
 }
 
 .tech-icon{
-    width: 100%;
+    width: 70%;
     opacity: 40%;
-    position:absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -78,7 +92,8 @@
 @media (width <= 900px) {
     #technology{
         grid-column: span 12;
-        height: 600px;
+        height:max-content;
         overflow: hidden;
+        font-size: 0.7em;
     }
 }
