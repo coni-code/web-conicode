@@ -14,25 +14,58 @@
             </ol>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h4>{{ header }}</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ header }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="base-table">
+                            <tr>
+                                <th class="w-25">{{ 'admin.form.sprint.title'|trans }}</th>
+                                <td>{{ sprint.title }}</td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">{{ 'admin.form.sprint.start_date'|trans }}</th>
+                                <td>{{ sprint.startDate|date('d M Y') }}</td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">{{ 'admin.form.sprint.end_date'|trans }}</th>
+                                <td>{{ sprint.endDate|date('d M Y') }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <table class="base-table">
-                    <tr>
-                        <th class="w-25">{{ 'admin.form.sprint.title'|trans }}</th>
-                        <td>{{ sprint.title }}</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">{{ 'admin.form.sprint.start_date'|trans }}</th>
-                        <td>{{ sprint.startDate|date('d M Y') }}</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">{{ 'admin.form.sprint.end_date'|trans }}</th>
-                        <td>{{ sprint.endDate|date('d M Y') }}</td>
-                    </tr>
-                </table>
+            <div class="col-md-6">
+                {{ form_start(form) }}
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ 'admin.sprint.header.user_availability'|trans }}</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(form.availabilityInHours, 'admin.sprint.hours_availability') }}
+                                {{ form_widget(form.availabilityInHours, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="form-group">
+                            {{ form_widget(form.submit, {
+                                'label': 'admin.form.save'|trans,
+                                'id': 'submit-form-button',
+                                'attr': {
+                                    'class': 'btn btn-success'
+                                },
+                            }) }}
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>

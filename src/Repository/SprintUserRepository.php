@@ -22,4 +22,13 @@ class SprintUserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, SprintUser::class);
     }
+
+    public function save(SprintUser $sprintUser): bool
+    {
+        $em = $this->getEntityManager();
+        $em->persist($sprintUser);
+        $em->flush();
+
+        return true;
+    }
 }
