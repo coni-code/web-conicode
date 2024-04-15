@@ -28,16 +28,17 @@ class UserController extends AbstractController
         $this->denyAccessUnlessGranted('VIEW', $user);
 
         $isAdmin = $this->userService->isAdmin($this->getUser());
-        $password = $user->getPassword();
-
-        $form = $this->createForm(UserType::class, $user, ['isAdmin' => $isAdmin, 'password' => $password]);
+        $form = $this->createForm(UserType::class, $user, [
+            'isAdmin' => $isAdmin,
+            'password' => $user->getPassword(),
+        ]);
 
         $form->add('submit', SubmitType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->userService->handleForm($form, $password);
+            $this->userService->processForm($form, $request, $user);
 
             return $this->redirectToRoute('dev_admin', [], Response::HTTP_SEE_OTHER);
         }

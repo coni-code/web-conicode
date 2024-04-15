@@ -56,6 +56,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: SprintUser::class, cascade: ['persist', 'remove'])]
     private ?Collection $sprintUsers = null;
 
+    #[ORM\Column]
+    private ?string $cvFilename = null;
+
     public function __construct()
     {
         $this->meetings = new ArrayCollection();
@@ -257,6 +260,16 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     public function getDisplayName(): string
     {
         return $this->__toString();
+    }
+
+    public function getCvFilename(): ?string
+    {
+        return $this->cvFilename;
+    }
+
+    public function setCvFilename(?string $cvFilename): void
+    {
+        $this->cvFilename = $cvFilename;
     }
 
     public function __toString(): string

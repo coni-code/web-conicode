@@ -8,29 +8,34 @@
                 {% if user.member and user.member.avatarHash %}
                     <li class="glide__slide carusel-element team-item">
                         {% set avatarUrl = "build/trello/avatar/" ~ user.member.avatarHash ~ ".png" %}
-                            <img class="carusel-img team-image" src='{{asset(avatarUrl) }}' alt="member avatar"/>
-                            <h4>
-                                {% if user.name %} {{ user.name }} {% endif %}
-                                {% if user.surname %} {{ user.surname }} {% endif %}
-                                {% if user.name is null and user.surname is null %}
-                                    {{ user.email }}
-                                {% endif %}
-                            </h4>
-                            <p class="team-title">{{ user.positions|map(position => position.name)|join(', ') }}</p>
-                            <p class="team-social">
-                                {% for link in user.links %}
-                                    {% if link.url|length > 0 %}
-                                        {% if link.type.value == 'website' %}
-                                            <a href="{{ link.url }}" target="_blank"><i class="fa-solid fa-globe"></i></a>
-                                        {% else %}
-                                            <a href="{{ link.url }}" target="_blank"><i class="fab fa-{{ link.type.value }}"></i></a>
-                                        {% endif %}
+                        <img class="carusel-img team-image" src='{{asset(avatarUrl) }}' alt="member avatar"/>
+                        <h4>
+                            {% if user.name %} {{ user.name }} {% endif %}
+                            {% if user.surname %} {{ user.surname }} {% endif %}
+                            {% if user.name is null and user.surname is null %}
+                                {{ user.email }}
+                            {% endif %}
+                        </h4>
+                        <p class="team-title">{{ user.positions|map(position => position.name)|join(', ') }}</p>
+                        <p class="team-social">
+                            {% for link in user.links %}
+                                {% if link.url|length > 0 %}
+                                    {% if link.type.value == 'website' %}
+                                        <a href="{{ link.url }}" target="_blank"><i class="fa-solid fa-globe"></i></a>
+                                    {% else %}
+                                        <a href="{{ link.url }}" target="_blank"><i class="fab fa-{{ link.type.value }}"></i></a>
                                     {% endif %}
-                                {% endfor %}
-                                {% if user.email %}
-                                    <a href="mailto:{{user.email}}"><i class="fa-regular fa-envelope"></i></a>
                                 {% endif %}
-                            </p>
+                            {% endfor %}
+                            {% if user.email %}
+                                <a href="mailto:{{user.email}}"><i class="fa-regular fa-envelope"></i></a>
+                            {% endif %}
+                            {% if user.cvFilename %}
+                            <a href="{{ path('dev_download_cv', {'id': user.id}) }}" download>
+                                <i class="fa fa-download"></i>
+                            </a>
+                            {% endif %}
+                        </p>
                     </li>
                     {% set count = count + 1 %}
                 {% endif %}
