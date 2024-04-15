@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\Sprint;
-use App\Entity\SprintUser;
 use App\Entity\User;
 use App\Exception\NotFoundException;
 use App\Form\SprintType;

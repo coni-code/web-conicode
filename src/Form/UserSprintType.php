@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form;
 
 use App\Entity\SprintUser;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserSprintType extends AbstractType
@@ -16,7 +18,7 @@ class UserSprintType extends AbstractType
             ->add('availabilityInHours', NumberType::class, [
                 'label' => 'Your Availability (hours)',
                 'required' => false,
-                'attr' => ['min' => 0]
+                'attr' => ['min' => 0],
             ]);
     }
 
