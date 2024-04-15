@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\Sprint;
+use App\Entity\User;
 use App\Exception\NotFoundException;
 use App\Form\SprintType;
+use App\Form\UserSprintType;
 use App\Repository\SprintRepository;
 use App\Service\SprintService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -66,11 +69,29 @@ class SprintController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/details', name: 'sprint_details', methods: ['GET'])]
-    public function details(Sprint $sprint): Response
+    #[Route('/{id}/details', name: 'sprint_details', methods: ['GET', 'POST'])]
+    public function details(Request $request, Sprint $sprint): Response
     {
+        $user = $this->getUser();
+        $sprintUser = null;
+
+        if ($user instanceof User) {
+            $sprintUser = $this->service->prepareSprintUser($sprint, $user);
+        }
+
+        $form = $this->createForm(UserSprintType::class, $sprintUser);
+        $form->add('submit', SubmitType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->service->saveUserSprintDataFromForm($form);
+
+            return $this->redirectToRoute('dev_sprint_details', ['id' => $sprint->getId()]);
+        }
+
         return $this->render('admin/sprint/details.html.twig', [
             'sprint' => $sprint,
+            'form' => $form->createView(),
         ]);
     }
 
