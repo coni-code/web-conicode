@@ -1,5 +1,5 @@
 <div class="topbar">
-    <a class="home-return" href="https://conicode.pl/pl/"><i class="fas fa-arrow-left"></i>{{ 'admin.home.backlink'|trans }}</a>
+    <a class="home-return" href="{{ path('app_home') }}"><i class="fas fa-arrow-left"></i>{{ 'admin.home.backlink'|trans }}</a>
     <div class="user-info">
         <div class="toggle-dropdown">
             {% if app.user.member and app.user.member.avatarHash %}
