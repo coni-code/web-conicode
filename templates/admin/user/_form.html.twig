@@ -1,4 +1,6 @@
-{{ form_start(form) }}
+{{ form_start(form, {
+    'enctype': 'multipart/form-data'
+}) }}
 <div class="card-body row">
     <div class="col-lg-6">
         <div class="row">
@@ -73,6 +75,19 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    {{ form_label(form.cvFilename, 'admin.form.user.cv'|trans) }}
+                    {{ form_widget(form.cvFilename, {
+                        'attr': {
+                            'class': 'form-control',
+                            'name': 'cvFilename',
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="card-footer">

@@ -5,3 +5,7 @@ flysystem:
             adapter: 'local'
             options:
                 directory: '%kernel.project_dir%/assets/trello'
+        uploads.cv.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/var/uploads/cv'
