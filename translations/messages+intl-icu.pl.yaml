@@ -59,6 +59,7 @@ admin.form.user.password: 'Hasło'
 admin.form.user.repeat-password: 'Powtórz Hasło'
 admin.form.user.role: 'Rola'
 admin.form.user.member: 'Trello ID'
+admin.form.user.cv: 'CV'
 admin.form.meeting.date_range_placeholder: 'Wybierz zakres dat'
 admin.sprint.header.singular: "Sprint"
 admin.sprint.header.plural: "Sprinty"
