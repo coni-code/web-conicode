@@ -18,8 +18,8 @@ class MailerService
         $email = (new Email())
             ->from($data['email'])
             ->to($this->contactEmail)
-            ->subject('Wiadomość z formularza kontaktowego')
-            ->text('Nadawca: ' . $data['email'] . "\n\nWiadomość:\n" . $data['body']);
+            ->subject('[WEBSITE] ' . $data['subject'])
+            ->text('From: ' . $data['email'] . "\n\n" . $data['body']);
 
         $mailer->send($email);
     }
