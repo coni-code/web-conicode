@@ -6,9 +6,9 @@ namespace App\Enum;
 
 enum CvExtensionEnum: string
 {
-    case DOC  = 'doc';
+    case DOC = 'doc';
     case DOCX = 'docx';
-    case PDF  = 'pdf';
+    case PDF = 'pdf';
 
     public static function getChoices(): array
     {

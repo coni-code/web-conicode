@@ -28,11 +28,10 @@ class FileController extends AbstractController
             $user->getName(),
             $user->getSurname(),
             (new \DateTime('now'))->format('Y'),
-            $extension
+            $extension,
         );
         $response = new BinaryFileResponse($filePath);
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $filename);
-
 
         return $response;
     }

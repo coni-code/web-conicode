@@ -30,7 +30,7 @@ class UserController extends AbstractController
         $isAdmin = $this->userService->isAdmin($this->getUser());
         $form = $this->createForm(UserType::class, $user, [
             'isAdmin' => $isAdmin,
-            'password' => $user->getPassword()
+            'password' => $user->getPassword(),
         ]);
 
         $form->add('submit', SubmitType::class);
