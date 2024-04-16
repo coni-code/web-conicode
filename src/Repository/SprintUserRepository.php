@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Entity\Sprint;
 use App\Entity\SprintUser;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -30,5 +32,16 @@ class SprintUserRepository extends ServiceEntityRepository
         $em->flush();
 
         return true;
+    }
+
+    public function findSprintUSerByUserAndSprint(User $user, Sprint $sprint): ?SprintUser
+    {
+        return $this->createQueryBuilder('sp')
+            ->where('sp.user = :user')
+            ->andWhere('sp.sprint = :sprint')
+            ->setParameter('user', $user)
+            ->setParameter('sprint', $sprint)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

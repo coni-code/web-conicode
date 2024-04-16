@@ -10,6 +10,7 @@ use App\Exception\NotFoundException;
 use App\Form\SprintType;
 use App\Form\UserSprintType;
 use App\Repository\SprintRepository;
+use App\Repository\UserRepository;
 use App\Service\SprintService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,8 +21,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/sprint', name: 'dev_')]
 class SprintController extends AbstractController
 {
-    public function __construct(private readonly SprintService $service)
-    {
+    public function __construct(
+        private readonly SprintService $service,
+        private readonly UserRepository $userRepository,
+    ) {
     }
 
     #[Route('/', name: 'sprint_index', methods: ['GET'])]
@@ -91,6 +94,7 @@ class SprintController extends AbstractController
 
         return $this->render('admin/sprint/details.html.twig', [
             'sprint' => $sprint,
+            'users' => $this->userRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }
