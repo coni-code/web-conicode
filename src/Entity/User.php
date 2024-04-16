@@ -56,7 +56,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: SprintUser::class, cascade: ['persist', 'remove'])]
     private ?Collection $sprintUsers = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?string $cvFilename = null;
 
     public function __construct()
