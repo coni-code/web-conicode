@@ -369,6 +369,7 @@ export class MeetingModal {
     }
 
     convertToLocalTime(utcDate) {
+        // eslint-disable-next-line no-mixed-operators
         return new Date(utcDate.getTime() - utcDate.getTimezoneOffset() * 60000);
     }
 }
