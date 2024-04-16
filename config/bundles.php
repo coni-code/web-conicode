@@ -15,5 +15,4 @@ return [
     League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
     Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
     ApiPlatform\Symfony\Bundle\ApiPlatformBundle::class => ['all' => true],
-    Cron\CronBundle\CronCronBundle::class => ['all' => true],
 ];
