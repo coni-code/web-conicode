@@ -38,6 +38,7 @@ class SprintUserExtension extends AbstractExtension
     {
         $hours = $sprintUser->getAvailabilityInHours();
         $storyPoints = $hours / 4;
+
         return max($storyPoints, 0.25);
     }
 
@@ -45,6 +46,7 @@ class SprintUserExtension extends AbstractExtension
     {
         $sumOfHours = $this->calculateSumOfHours($sprint);
         $storyPoints = $sumOfHours / 4;
+
         return max($storyPoints, 0.25);
     }
 
