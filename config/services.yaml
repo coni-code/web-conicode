@@ -16,14 +16,6 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    scheduler:
-        class: Symfony\Component\Scheduler\Scheduler
-        tags: ['scheduler']
-
-    App\Command\SaveTrelloDataCommand:
-        tags:
-            - { name: 'scheduler.task', expression: '0 * * * *' }
-
     GuzzleHttp\Client:
         arguments:
             $config: [timeout: 4]
