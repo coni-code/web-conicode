@@ -184,7 +184,9 @@ export class MeetingModal {
         this.ckeditor.setData(this.descriptionInput.value);
 
         if (data.startDate && data.endDate) {
-            this.datePicker.setDate([new Date(data.startDate), new Date(data.endDate)]);
+            const localStart = this.convertToLocalTime(new Date(data.startDate));
+            const localEnd = this.convertToLocalTime(new Date(data.endDate));
+            this.datePicker.setDate([localStart, localEnd], true);
         } else {
             this.datePicker.clear();
         }
@@ -298,11 +300,19 @@ export class MeetingModal {
     }
 
     prepareMeetingData() {
+        const toLocalISOString = date => {
+            const pad = num => num.toString().padStart(2, '0');
+            return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+        };
+
+        const localStartDate = toLocalISOString(this.datePicker.selectedDates[0]);
+        const localEndDate = toLocalISOString(this.datePicker.selectedDates[1]);
+
         const meetingData = {
             title: this.titleInput.value,
             description: this.descriptionInput.value,
-            startDate: this.datePicker.selectedDates[0].toISOString(),
-            endDate: this.datePicker.selectedDates[1].toISOString(),
+            startDate: localStartDate,
+            endDate: localEndDate,
         };
 
         if (this.currentMeetingId) {
@@ -356,5 +366,10 @@ export class MeetingModal {
         if (this.currentMeetingId) {
             this.prepareModalData(this.currentMeetingId);
         }
+    }
+
+    convertToLocalTime(utcDate) {
+        // eslint-disable-next-line no-mixed-operators
+        return new Date(utcDate.getTime() - utcDate.getTimezoneOffset() * 60000);
     }
 }
