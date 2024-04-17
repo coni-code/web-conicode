@@ -45,7 +45,28 @@
                         <h4>{{ 'admin.sprint.header.user_availability'|trans }}</h4>
                     </div>
                     <div class="card-body">
-
+                        <div class="col-md-12">
+                            <table class="base-table">
+                                {% for user in users %}
+                                <tr>
+                                    <th class="w-25">{{ user.name }} {{ user.surname }}</th>
+                                    <td>
+                                        {% set sprintUser = find_sprint_user(user, sprint) %}
+                                        {% if sprintUser %}
+                                            {{ calculate_sp_sum_for_sprint_user(sprintUser) }} SP
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <th class="w-25">{{ 'admin.sprint.story_point_sum'|trans }}</th>
+                                    <td>{{ calculate_sp_sum_for_sprint(sprint) }} SP</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr>
                         <div class="col-md-6">
                             <div class="form-group">
                                 {{ form_label(form.availabilityInHours, 'admin.sprint.hours_availability') }}

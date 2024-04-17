@@ -29,6 +29,7 @@
                             <th>{{ 'admin.form.sprint.title'|trans }}</th>
                             <th>{{ 'admin.form.sprint.start_date'|trans }}</th>
                             <th>{{ 'admin.form.sprint.end_date'|trans }}</th>
+                            <th>{{ 'admin.sprint.story_point_sum'|trans }}</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@
                             <td>{{ sprint.title }}</td>
                             <td>{{ sprint.startDate|date('Y-m-d') }}</td>
                             <td>{{ sprint.endDate|date('Y-m-d') }}</td>
+                            <td>{{ calculate_sp_sum_for_sprint(sprint) }}</td>
                             <td>
                                 <a href="{{ path('dev_sprint_edit', { 'id': sprint.id }) }}" class="btn btn-secondary">
                                     {{ 'form.edit'|trans }}
