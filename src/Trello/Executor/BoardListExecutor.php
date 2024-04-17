@@ -35,8 +35,8 @@ class BoardListExecutor extends AbstractExecutor
         $boardLists = $this->preparer->prepare($boardListData);
         $existingLists = $this->boardListRepository->findAll();
 
-        $existingListIds = array_map(fn($list) => $list->getId(), $existingLists);
-        $fetchedListIds = array_map(fn($list) => $list->getId(), $boardLists->toArray());
+        $existingListIds = array_map(fn ($list) => $list->getId(), $existingLists);
+        $fetchedListIds = array_map(fn ($list) => $list->getId(), $boardLists->toArray());
         $listsNotFetched = array_diff($existingListIds, $fetchedListIds);
 
         foreach ($listsNotFetched as $listId) {
