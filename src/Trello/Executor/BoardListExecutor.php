@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Trello\Executor;
 
+use App\Repository\Trello\BoardListRepository;
 use App\Trello\Client\Config;
 use App\Trello\Fetcher\BoardListFetcher;
 use App\Trello\Preparer\BoardListPreparer;
@@ -16,6 +17,7 @@ class BoardListExecutor extends AbstractExecutor
     public function __construct(
         private readonly BoardListFetcher $fetcher,
         private readonly BoardListPreparer $preparer,
+        private readonly BoardListRepository $boardListRepository,
         private readonly Config $config,
     ) {
     }
@@ -29,9 +31,23 @@ class BoardListExecutor extends AbstractExecutor
             return;
         }
 
-        $boardListDatum = $this->fetcher->getListsFromBoard($boardId);
-        $boardList = $this->preparer->prepare($boardListDatum);
+        $boardListData = $this->fetcher->getListsFromBoard($boardId);
+        $boardLists = $this->preparer->prepare($boardListData);
+        $existingLists = $this->boardListRepository->findAll();
 
-        $this->save($boardList);
+        $existingListIds = array_map(fn($list) => $list->getId(), $existingLists);
+        $fetchedListIds = array_map(fn($list) => $list->getId(), $boardLists->toArray());
+        $listsNotFetched = array_diff($existingListIds, $fetchedListIds);
+
+        foreach ($listsNotFetched as $listId) {
+            $listToUpdate = $this->boardListRepository->findOneBy(['id' => $listId]);
+
+            if ($listToUpdate) {
+                $listToUpdate->setBoard(null);
+                $this->boardListRepository->save($listToUpdate);
+            }
+        }
+
+        $this->save($boardLists);
     }
 }

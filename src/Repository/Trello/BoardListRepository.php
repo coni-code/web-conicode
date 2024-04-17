@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repository\Trello;
 
+use App\Entity\Trello\Board;
 use App\Entity\Trello\BoardList;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,8 +18,19 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class BoardListRepository extends ServiceEntityRepository
 {
+    private const EXPIRATION_DAYS = 30;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, BoardList::class);
+    }
+
+    public function save(BoardList $boardList): bool
+    {
+        $em = $this->getEntityManager();
+        $em->persist($boardList);
+        $em->flush();
+
+        return true;
     }
 }
