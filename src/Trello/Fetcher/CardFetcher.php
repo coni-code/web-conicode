@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\GuzzleException;
 class CardFetcher extends AbstractFetcher
 {
     private const CARDS = 'boards/{id}/cards';
+    private const LIST_CARDS = 'lists/{id}/cards';
     private const PLUGIN_DATA = 'cards/{id}/pluginData';
 
     /**
@@ -20,6 +21,19 @@ class CardFetcher extends AbstractFetcher
     {
         return $this->client->get(
             self::CARDS,
+            $id,
+        );
+    }
+
+    /**
+     * @return array<string>
+     *
+     * @throws GuzzleException
+     */
+    public function getCardsFromList(string $id): array
+    {
+        return $this->client->get(
+            self::LIST_CARDS,
             $id,
         );
     }

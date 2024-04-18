@@ -1,4 +1,5 @@
 /assets/trello/
+/.cron.lock
 
 ###> symfony/framework-bundle ###
 /.env.prod

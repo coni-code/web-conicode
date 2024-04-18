@@ -20,4 +20,13 @@ class BoardListRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, BoardList::class);
     }
+
+    public function save(BoardList $boardList): bool
+    {
+        $em = $this->getEntityManager();
+        $em->persist($boardList);
+        $em->flush();
+
+        return true;
+    }
 }
