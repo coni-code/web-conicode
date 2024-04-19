@@ -1,6 +1,35 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block body %}
+
+<div class="page">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{ 'Aktualny sprint: ' }}{{ latest_sprint.title }}</h3>
+                </div>
+                <div class="card-body">
+                    <table class="base-table">
+                        <tr>
+                            <th class="w-25">{{ 'admin.form.sprint.end_date'|trans }}</th>
+                            <td>{{ latest_sprint.endDate|date('d M Y') }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'Suma SP:' }}</th>
+                            <td>{{ 'X/' }}{{ latest_sprint.storyPoints }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'admin.form.sprint.end_date'|trans }}</th>
+                            <td>{{ latest_sprint.endDate|date('d M Y') }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
