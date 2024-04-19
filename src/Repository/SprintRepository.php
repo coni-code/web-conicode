@@ -40,4 +40,15 @@ class SprintRepository extends ServiceEntityRepository
 
         return true;
     }
+
+    public function findLatestSprint(): ?Sprint
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.startDate < :currentDateTime')
+            ->where('s.endDate > :currentDateTime')
+            ->setParameter('currentDateTime', new \DateTime())
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
