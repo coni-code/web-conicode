@@ -34,7 +34,7 @@ class SprintUserRepository extends ServiceEntityRepository
         return true;
     }
 
-    public function findSprintUSerByUserAndSprint(User $user, Sprint $sprint): ?SprintUser
+    public function findSprintUserByUserAndSprint(User $user, Sprint $sprint): ?SprintUser
     {
         return $this->createQueryBuilder('sp')
             ->where('sp.user = :user')

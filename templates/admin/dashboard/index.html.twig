@@ -4,6 +4,7 @@
 
 <div class="page">
     <div class="row">
+        {% if latest_sprint %}
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
@@ -17,16 +18,32 @@
                         </tr>
                         <tr>
                             <th class="w-25">{{ 'Suma SP:' }}</th>
-                            <td>{{ 'X/' }}{{ latest_sprint.storyPoints }}</td>
+                            <td>{{ latest_sprint.storyPoints ? latest_sprint.storyPoints : 'X/X' }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'admin.form.sprint.end_date'|trans }}</th>
-                            <td>{{ latest_sprint.endDate|date('d M Y') }}</td>
+                            <th class="w-25">{{ 'Twoje SP:' }}</th>
+                            <td>
+                                {% set sprintUser = find_sprint_user(app.user, latest_sprint) %}
+                                {% if sprintUser %}
+                                    {{ calculate_sp_sum_in_latest_done() }}/{{ calculate_sp_sum_for_sprint_user(sprintUser)}}
+                                {% else %}
+                                    X/X
+                                {% endif %}
+                            </td>
                         </tr>
                     </table>
                 </div>
             </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3>To do</h3>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
         </div>
+        {% endif %}
     </div>
 </div>
 

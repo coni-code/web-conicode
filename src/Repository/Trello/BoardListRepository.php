@@ -29,4 +29,13 @@ class BoardListRepository extends ServiceEntityRepository
 
         return true;
     }
+
+    public function findDoneList(): ?BoardList
+    {
+        return $this->createQueryBuilder('bl')
+            ->where('bl.name LIKE :done')
+            ->setParameter('done', '%Done%')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
