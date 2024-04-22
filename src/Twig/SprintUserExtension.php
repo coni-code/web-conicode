@@ -81,7 +81,7 @@ class SprintUserExtension extends AbstractExtension
 
         $totalSP = 0;
         foreach ($allCards as $card) {
-            if (in_array($member, $card->getMembers()->toArray())) {
+            if (in_array($member, $card->getMembers()->toArray(), true)) {
                 $numberOfMembers = count($card->getMembers());
                 if ($numberOfMembers > 0) {
                     $spPerMember = $card->getStoryPoints() / $numberOfMembers;
