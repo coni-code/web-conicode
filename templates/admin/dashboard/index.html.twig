@@ -1,6 +1,72 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block body %}
+
+<div class="page">
+    <div class="row">
+        {% if latest_sprint %}
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{ 'admin.home.current_sprint'|trans }}: <span class="home-sprint-title">{{ latest_sprint.title }}</span></h3>
+                </div>
+                <div class="card-body">
+                    <table class="base-table">
+                        <tr>
+                            <th class="w-25">{{ 'admin.form.sprint.end_date'|trans }}</th>
+                            <td>{{ latest_sprint.endDate|date('d M Y') }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'admin.home.sprint.sprint_sp'|trans }}</th>
+                            <td>
+                                {% if latest_sprint.storyPoints %}
+                                    {% set doneSp = calculate_sp_sum_in_latest_done() %}
+                                    <span class="home-done-sp {% if doneSp <= latest_sprint.storyPoints %}home-sp-red{% else %}home-sp-green{% endif %}">
+                                        {{ doneSp }}
+                                    </span>
+                                    /{{ latest_sprint.storyPoints }}
+                                {% else %}
+                                    <span class="home-done-sp">X</span>
+                                    /X
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'admin.home.sprint.your_sp'|trans }}</th>
+                            <td>
+                                {% set sprintUser = find_sprint_user(app.user, latest_sprint) %}
+                                {% if sprintUser %}
+                                    <span class="home-done-sp {% if calculate_sp_sum_for_sprint_user(sprintUser) < calculate_sp_sum_for_sprint_user(sprintUser) %}home-sp-red{% else %}home-sp-green{% endif %}">
+                                        {{ calculate_sp_sum_for_sprint_user_in_latest_done(sprintUser) }}
+                                    </span>
+                                    /{{ calculate_sp_sum_for_sprint_user(sprintUser)}}
+                                {% else %}
+                                    <span class="home-done-sp">X</span>
+                                    /X
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3>{{ 'admin.home.sprint.cards_to_do'|trans }}</h3>
+                </div>
+                <div class="card-body home-to-do-cards">
+                    {% for card in to_do_cards %}
+                        <a class="home-to-do-cards_card" href="{{ card.url }}">
+                            {{ card.name }}
+                            <span class="home-to-do-cards_card_sp">{{ card.storyPoints ? card.storyPoints ~ ' SP' : 'UNESTIMATED' }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
