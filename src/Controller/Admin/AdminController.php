@@ -16,7 +16,7 @@ class AdminController extends AbstractController
     public function __construct(
         private readonly SprintRepository $sprintRepository,
         private readonly SprintUserRepository $sprintUserRepository,
-    ){
+    ) {
     }
 
     #[Route('/admin', name: 'dev_admin')]
@@ -30,9 +30,7 @@ class AdminController extends AbstractController
             $sprintUser = $this->sprintUserRepository->findSprintUserByUserAndSprint($user, $latestSprint);
         }
 
-
-        return $this->render('admin/dashboard/index.html.twig',
-        [
+        return $this->render('admin/dashboard/index.html.twig', [
             'latest_sprint' => $latestSprint,
             'sprint_user' => $sprintUser,
         ]);

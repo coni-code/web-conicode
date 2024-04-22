@@ -18,7 +18,7 @@ class SprintUserExtension extends AbstractExtension
     public function __construct(
         private readonly SprintUserRepository $repository,
         private readonly BoardListRepository $boardListRepository,
-    ){
+    ) {
     }
 
     /**
@@ -60,9 +60,8 @@ class SprintUserExtension extends AbstractExtension
         $doneList = $this->boardListRepository->findDoneList();
         $cards = $doneList->getCards();
 
-
-        /** @var Card $card */
-        return array_reduce($cards->toArray(), fn($spSum, $card) => $spSum + $card->getStoryPoints(), 0);
+        /* @var Card $card */
+        return array_reduce($cards->toArray(), fn ($spSum, $card) => $spSum + $card->getStoryPoints(), 0);
     }
 
     private function calculateSumOfHours(Sprint $sprint): int
