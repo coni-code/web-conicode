@@ -89,3 +89,7 @@ admin.position.header.edit_position: 'Edytuj stanowisko'
 admin.sidebar.group.dictionary: "Słowniki"
 admin.sidebar.link.position_dictionary: "Stanowiska"
 admin.home.backlink: "Wróć na stronę główną"
+admin.home.sprint.sprint_sp: 'Łączna suma SP'
+admin.home.sprint.your_sp: 'Twoja suma SP'
+admin.home.sprint.cards_to_do: 'Przykładowe zadania do wykonania'
+admin.home.current_sprint: 'Aktualny sprint'

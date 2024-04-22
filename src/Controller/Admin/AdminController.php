@@ -7,6 +7,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Repository\SprintRepository;
 use App\Repository\SprintUserRepository;
+use App\Repository\Trello\CardRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,7 @@ class AdminController extends AbstractController
     public function __construct(
         private readonly SprintRepository $sprintRepository,
         private readonly SprintUserRepository $sprintUserRepository,
+        private readonly CardRepository $cardRepository,
     ) {
     }
 
@@ -25,14 +27,17 @@ class AdminController extends AbstractController
         $user = $this->getUser();
         $latestSprint = $this->sprintRepository->findLatestSprint();
         $sprintUser = null;
+        $toDoCards = null;
 
         if ($user instanceof User && $latestSprint) {
             $sprintUser = $this->sprintUserRepository->findSprintUserByUserAndSprint($user, $latestSprint);
+            $toDoCards = $this->cardRepository->findToDoCardsAssignedToUser($user);
         }
 
         return $this->render('admin/dashboard/index.html.twig', [
             'latest_sprint' => $latestSprint,
             'sprint_user' => $sprintUser,
+            'to_do_cards' => $toDoCards,
         ]);
     }
 }

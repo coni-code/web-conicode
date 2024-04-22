@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h3>{{ 'Aktualny sprint: ' }}{{ latest_sprint.title }}</h3>
+                    <h3>{{ 'admin.home.current_sprint'|trans }}: <span class="home-sprint-title">{{ latest_sprint.title }}</span></h3>
                 </div>
                 <div class="card-body">
                     <table class="base-table">
@@ -17,17 +17,32 @@
                             <td>{{ latest_sprint.endDate|date('d M Y') }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'Suma SP:' }}</th>
-                            <td>{{ latest_sprint.storyPoints ? latest_sprint.storyPoints : 'X/X' }}</td>
+                            <th class="w-25">{{ 'admin.home.sprint.sprint_sp'|trans }}</th>
+                            <td>
+                                {% if latest_sprint.storyPoints %}
+                                    {% set doneSp = calculate_sp_sum_in_latest_done() %}
+                                    <span class="home-done-sp {% if doneSp <= latest_sprint.storyPoints %}home-sp-red{% else %}home-sp-green{% endif %}">
+                                        {{ doneSp }}
+                                    </span>
+                                    /{{ latest_sprint.storyPoints }}
+                                {% else %}
+                                    <span class="home-done-sp">X</span>
+                                    /X
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'Twoje SP:' }}</th>
+                            <th class="w-25">{{ 'admin.home.sprint.your_sp'|trans }}</th>
                             <td>
                                 {% set sprintUser = find_sprint_user(app.user, latest_sprint) %}
                                 {% if sprintUser %}
-                                    {{ calculate_sp_sum_in_latest_done() }}/{{ calculate_sp_sum_for_sprint_user(sprintUser)}}
+                                    <span class="home-done-sp {% if calculate_sp_sum_for_sprint_user(sprintUser) < calculate_sp_sum_for_sprint_user(sprintUser) %}home-sp-red{% else %}home-sp-green{% endif %}">
+                                        {{ calculate_sp_sum_for_sprint_user(sprintUser) }}
+                                    </span>
+                                    /{{ calculate_sp_sum_for_sprint_user(sprintUser)}}
                                 {% else %}
-                                    X/X
+                                    <span class="home-done-sp">X</span>
+                                    /X
                                 {% endif %}
                             </td>
                         </tr>
@@ -36,10 +51,15 @@
             </div>
             <div class="card mt-4">
                 <div class="card-header">
-                    <h3>To do</h3>
+                    <h3>{{ 'admin.home.sprint.cards_to_do'|trans }}</h3>
                 </div>
-                <div class="card-body">
-
+                <div class="card-body home-to-do-cards">
+                    {% for card in to_do_cards %}
+                        <a class="home-to-do-cards_card" href="{{ card.url }}">
+                            {{ card.name }}
+                            <span class="home-to-do-cards_card_sp">{{ card.storyPoints ? card.storyPoints ~ ' SP' : 'UNESTIMATED' }}</span>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

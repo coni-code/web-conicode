@@ -1,0 +1,54 @@
+@import "../variables";
+
+.home-done-sp {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.home-sp-red {
+  color: $primary-red-color;
+}
+
+.home-sp-green {
+  color: $primary-green-color;
+}
+
+.home-sprint-title {
+  color: $primary-yellow-color;
+}
+
+.home-to-do-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+  max-width: calc(4 * (200px + 1rem + 5px));
+
+  &_card {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: $primary-blue-color;
+    border-radius: 10px;
+    padding: 5px;
+    justify-content: space-between;
+    transition: .5s ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &_sp {
+      padding: 2px;
+      background-color: $primary-background-color;
+      margin-top: auto;
+      text-align: center;
+      align-self: center;
+      width: 100%;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}

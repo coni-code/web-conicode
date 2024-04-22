@@ -35,6 +35,7 @@ class BoardListRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('bl')
             ->where('bl.name LIKE :done')
             ->setParameter('done', '%Done%')
+            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
     }
