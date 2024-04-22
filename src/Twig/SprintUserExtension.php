@@ -31,6 +31,7 @@ class SprintUserExtension extends AbstractExtension
             new TwigFunction('calculate_sp_sum_for_sprint', [$this, 'calculateSPSumForSprint']),
             new TwigFunction('calculate_sp_sum_for_sprint_user', [$this, 'calculateSPSumForSprintUser']),
             new TwigFunction('calculate_sp_sum_in_latest_done', [$this, 'calculateFinishedSPSumInLatestDone']),
+            new TwigFunction('calculate_sp_sum_for_sprint_user_in_latest_done', [$this, 'calculateFinishedSPSumForSprintUserInLatestDone']),
         ];
     }
 
@@ -58,10 +59,39 @@ class SprintUserExtension extends AbstractExtension
     public function calculateFinishedSPSumInLatestDone(): float
     {
         $doneList = $this->boardListRepository->findDoneList();
+        if (!$doneList) {
+            return 0;
+        }
+
         $cards = $doneList->getCards();
 
         /* @var Card $card */
         return array_reduce($cards->toArray(), fn ($spSum, $card) => $spSum + $card->getStoryPoints(), 0);
+    }
+
+    public function calculateFinishedSPSumForSprintUserInLatestDone(SprintUser $sprintUser): float
+    {
+        $doneList = $this->boardListRepository->findDoneList();
+        if (!$doneList) {
+            return 0;
+        }
+
+        $member = $sprintUser->getUser()->getMember();
+        $allCards = $doneList->getCards();
+
+        $totalSP = 0;
+        foreach ($allCards as $card) {
+            if (in_array($member, $card->getMembers()->toArray())) {
+                $numberOfMembers = count($card->getMembers());
+                if ($numberOfMembers > 0) {
+                    $spPerMember = $card->getStoryPoints() / $numberOfMembers;
+                    $roundedSP = $this->roundToNearestQuarter($spPerMember);
+                    $totalSP += $roundedSP;
+                }
+            }
+        }
+
+        return $totalSP;
     }
 
     private function calculateSumOfHours(Sprint $sprint): int
@@ -74,5 +104,10 @@ class SprintUserExtension extends AbstractExtension
         }
 
         return (int) $sumOfHours;
+    }
+
+    private function roundToNearestQuarter(float $number): float
+    {
+        return round($number * 4) / 4;
     }
 }

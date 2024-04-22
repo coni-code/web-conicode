@@ -37,7 +37,7 @@
                                 {% set sprintUser = find_sprint_user(app.user, latest_sprint) %}
                                 {% if sprintUser %}
                                     <span class="home-done-sp {% if calculate_sp_sum_for_sprint_user(sprintUser) < calculate_sp_sum_for_sprint_user(sprintUser) %}home-sp-red{% else %}home-sp-green{% endif %}">
-                                        {{ calculate_sp_sum_for_sprint_user(sprintUser) }}
+                                        {{ calculate_sp_sum_for_sprint_user_in_latest_done(sprintUser) }}
                                     </span>
                                     /{{ calculate_sp_sum_for_sprint_user(sprintUser)}}
                                 {% else %}
