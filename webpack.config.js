@@ -34,6 +34,7 @@ Encore
     .addEntry('particles', './assets/js/particles.js')
     .addEntry('particles-ini', './assets/libs/particles.js/particles.js')
     .addEntry('home/carousel', './assets/js/homepage/carousel.js')
+    .addEntry('home/learnmore', './assets/js/homepage/learnmore.js')
     .addEntry('admin/list', './assets/js/admin/list.js')
     .addEntry('handle-delete-btn', './assets/js/admin/handle-delete-btn.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
