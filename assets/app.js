@@ -23,3 +23,4 @@ import './styles/home/technology.scss';
 import './styles/home/team.scss';
 import './styles/home/carousel.scss';
 import './styles/home/exception.scss';
+import './styles/home/footer.scss';
