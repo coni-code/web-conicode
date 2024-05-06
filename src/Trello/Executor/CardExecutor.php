@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Trello\Executor;
 
+use App\Repository\Trello\CardRepository;
 use App\Trello\Client\Config;
 use App\Trello\Fetcher\CardFetcher;
 use App\Trello\Preparer\CardPreparer;
@@ -16,6 +17,7 @@ class CardExecutor extends AbstractExecutor
     public function __construct(
         private readonly CardFetcher $fetcher,
         private readonly CardPreparer $preparer,
+        private readonly CardRepository $cardRepository,
         private readonly Config $config,
     ) {
     }
@@ -31,6 +33,20 @@ class CardExecutor extends AbstractExecutor
 
         $cardData = $this->fetcher->getCardsFromBoard($boardId);
         $cards = $this->preparer->prepare($cardData);
+        $existingCards = $this->cardRepository->findAll();
+
+        $existingCardIds = array_map(fn ($card) => $card->getId(), $existingCards);
+        $fetchedCardIds = array_map(fn ($card) => $card->getId(), $cards->toArray());
+        $cardsNotFetched = array_diff($existingCardIds, $fetchedCardIds);
+
+        foreach ($cardsNotFetched as $cardId) {
+            $cardToUpdate = $this->cardRepository->findOneBy(['id' => $cardId]);
+
+            if ($cardToUpdate) {
+                $cardToUpdate->setBoardList(null);
+                $this->cardRepository->save($cardToUpdate);
+            }
+        }
 
         $this->save($cards);
     }
