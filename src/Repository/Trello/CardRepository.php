@@ -23,7 +23,7 @@ class CardRepository extends ServiceEntityRepository
         parent::__construct($registry, Card::class);
     }
 
-    public function findToDoCardsAssignedToUser(User $user): array
+    public function findToDoCardsAssignedToUser(User $user, string $boardId): array
     {
         if (!$member = $user->getMember()) {
             return [];
@@ -36,8 +36,10 @@ class CardRepository extends ServiceEntityRepository
             ->innerJoin('c.boardList', 'l')
             ->where('m.id = :member')
             ->andWhere('l.name IN (:listNames)')
+            ->andWhere('l.board = :boardId')
             ->setParameter('member', $member)
             ->setParameter('listNames', $activeListNames)
+            ->setParameter('boardId', $boardId)
             ->getQuery()
             ->getResult();
     }
