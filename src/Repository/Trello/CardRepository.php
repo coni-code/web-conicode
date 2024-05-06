@@ -43,4 +43,13 @@ class CardRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function save(Card $card): bool
+    {
+        $em = $this->getEntityManager();
+        $em->persist($card);
+        $em->flush();
+
+        return true;
+    }
 }
