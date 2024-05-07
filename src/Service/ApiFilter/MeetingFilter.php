@@ -70,7 +70,8 @@ class MeetingFilter extends AbstractFilter
         };
     }
 
-    private function applyUserFilter(QueryBuilder $queryBuilder, string $alias, mixed $value): void {
+    private function applyUserFilter(QueryBuilder $queryBuilder, string $alias, mixed $value): void
+    {
         $queryBuilder
             ->andWhere(sprintf(':user MEMBER OF %s.users', $alias))
             ->setParameter('user', $value);
@@ -90,13 +91,15 @@ class MeetingFilter extends AbstractFilter
             ->setParameter('users', $userIds);
     }
 
-    private function applyStartDateFilter(QueryBuilder $queryBuilder, string $alias, mixed $value): void {
+    private function applyStartDateFilter(QueryBuilder $queryBuilder, string $alias, mixed $value): void
+    {
         $queryBuilder
             ->andWhere(sprintf('%s.startDate >= :startDate', $alias))
             ->setParameter('startDate', $value);
     }
 
-    private function applyEndDateFilter(QueryBuilder $queryBuilder, string $alias, mixed $value): void {
+    private function applyEndDateFilter(QueryBuilder $queryBuilder, string $alias, mixed $value): void
+    {
         $queryBuilder
             ->andWhere(sprintf('%s.endDate <= :endDate', $alias))
             ->setParameter('endDate', $value);
