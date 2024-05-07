@@ -55,7 +55,7 @@
                 </div>
                 <div class="card-body home-to-do-cards">
                     {% for card in to_do_cards %}
-                        <a class="home-to-do-cards_card" href="{{ card.url }}">
+                        <a class="home-to-do-cards_card" href="{{ card.url }}" target="_blank">
                             {{ card.name }}
                             <span class="home-to-do-cards_card_sp">{{ card.storyPoints ? card.storyPoints ~ ' SP' : 'UNESTIMATED' }}</span>
                         </a>
