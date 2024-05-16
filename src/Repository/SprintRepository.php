@@ -56,4 +56,12 @@ class SprintRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findAllOrderedByStartDate(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.startDate', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }
