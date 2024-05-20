@@ -118,7 +118,7 @@ class SprintUserExtension extends AbstractExtension
 
     private function roundToNearestQuarter(float $number): float
     {
-        if ($number <= 0 ) {
+        if ($number <= 0) {
             return 0;
         }
 
