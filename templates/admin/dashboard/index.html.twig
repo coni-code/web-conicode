@@ -19,7 +19,7 @@
                         <tr>
                             <th class="w-25">{{ 'admin.home.sprint.sprint_sp'|trans }}</th>
                             <td>
-                                {% if latest_sprint.storyPoints %}
+                                {% if latest_sprint.storyPoints is not null %}
                                     {% set doneSp = calculate_sp_sum_in_latest_done() %}
                                     <span class="home-done-sp {% if doneSp <= latest_sprint.storyPoints %}home-sp-red{% else %}home-sp-green{% endif %}">
                                         {{ doneSp }}

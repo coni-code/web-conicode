@@ -89,10 +89,6 @@ Encore
         from: './assets/trello',
         to: 'trello/[path][name].[ext]',
     })
-    .copyFiles({
-        from: './assets/files/cv',
-        to: 'files/cv/[path][name].[ext]',
-    })
 
     .copyFiles({
         from: './assets/libs/particles.js',

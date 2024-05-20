@@ -37,6 +37,16 @@ class SprintService
         $this->sprintUserRepository->save($form->getData());
     }
 
+    public function updateStoryPointSum(Sprint $sprint, float $storyPointSum): void
+    {
+        if ($storyPointSum <= 0) {
+            $storyPointSum = 0;
+        }
+
+        $sprint->setStoryPoints($storyPointSum);
+        $this->save($sprint);
+    }
+
     public function save(Sprint $sprint): void
     {
         $this->sprintRepository->save($sprint);

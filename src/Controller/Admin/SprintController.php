@@ -31,7 +31,7 @@ class SprintController extends AbstractController
     public function index(SprintRepository $sprintRepository): Response
     {
         return $this->render('admin/sprint/index.html.twig', [
-            'sprints' => $sprintRepository->findAll(),
+            'sprints' => $sprintRepository->findAllOrderedByStartDate(),
         ]);
     }
 

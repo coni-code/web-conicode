@@ -32,7 +32,7 @@ class PluginDataExecutor extends AbstractExecutor
                 $pluginData = $this->fetcher->getPluginDataFromCard($card->getId());
                 $cards->add($this->preparer->prepareCardEstimation($card, $pluginData, $estimationPluginId));
             } catch (GuzzleException $e) {
-                return;
+                continue;
             }
         }
 

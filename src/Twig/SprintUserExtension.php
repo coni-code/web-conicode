@@ -10,12 +10,14 @@ use App\Entity\Trello\Card;
 use App\Entity\User;
 use App\Repository\SprintUserRepository;
 use App\Repository\Trello\BoardListRepository;
+use App\Service\SprintService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class SprintUserExtension extends AbstractExtension
 {
     public function __construct(
+        private readonly SprintService $sprintService,
         private readonly SprintUserRepository $repository,
         private readonly BoardListRepository $boardListRepository,
     ) {
@@ -42,18 +44,15 @@ class SprintUserExtension extends AbstractExtension
 
     public function calculateSPSumForSprintUser(SprintUser $sprintUser): float
     {
-        $hours = $sprintUser->getAvailabilityInHours();
-        $storyPoints = $hours / 4;
-
-        return max($storyPoints, 0.25);
+        return $this->calculateSPSum($sprintUser->getAvailabilityInHours());
     }
 
     public function calculateSPSumForSprint(Sprint $sprint): float
     {
-        $sumOfHours = $this->calculateSumOfHours($sprint);
-        $storyPoints = $sumOfHours / 4;
+        $spSum = $this->calculateSPSum($this->calculateSumOfHours($sprint));
+        $this->sprintService->updateStoryPointSum($sprint, $spSum);
 
-        return max($storyPoints, 0.25);
+        return $spSum;
     }
 
     public function calculateFinishedSPSumInLatestDone(): float
@@ -94,6 +93,17 @@ class SprintUserExtension extends AbstractExtension
         return $totalSP;
     }
 
+    private function calculateSPSum(float $hours): float
+    {
+        $storyPoints = $hours / 4;
+
+        if ($storyPoints <= 0) {
+            return 0;
+        }
+
+        return max($storyPoints, 0.25);
+    }
+
     private function calculateSumOfHours(Sprint $sprint): int
     {
         $sumOfHours = 0;
@@ -108,6 +118,10 @@ class SprintUserExtension extends AbstractExtension
 
     private function roundToNearestQuarter(float $number): float
     {
+        if ($number <= 0) {
+            return 0;
+        }
+
         return round($number * 4) / 4;
     }
 }
