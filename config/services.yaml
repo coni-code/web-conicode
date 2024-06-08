@@ -4,6 +4,7 @@ parameters:
     board_id: '%env(TRELLO_BOARD_ID)%'
     organization_id: '%env(TRELLO_ORGANIZATION_ID)%'
     estimation_plugin_id: '%env(TRELLO_ESTIMATION_PLUGIN_ID)%'
+    contact_email: '%env(CONTACT_EMAIL)%'
 services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -50,3 +51,7 @@ services:
             $tokenStorage: '@security.token_storage'
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
+    App\Service\MailerService:
+        arguments:
+            $contactEmail: '%contact_email%'
